@@ -4,7 +4,10 @@ import java.util.List;
 
 public class Curriculum {
 
-    List<Page> pageList;
+    private List<Page> pageList;
 
+    public Curriculum(List<Page> pageList) {
+        this.pageList = pageList;
+    }
 
 }
