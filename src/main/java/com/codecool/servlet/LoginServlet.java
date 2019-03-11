@@ -28,7 +28,7 @@ public class LoginServlet extends HttpServlet {
         for (User user : UserList.getInstance().getUsers()) {
             if (name.equals(user.getName()) && password.equals(user.getPassword())) {
                 currentUser = user;
-                HttpSession session = request.getSession();
+                HttpSession session = request.getSession(true);
                 session.setAttribute("user", currentUser);
             }
         }
