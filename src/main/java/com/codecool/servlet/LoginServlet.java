@@ -31,10 +31,12 @@ public class LoginServlet extends HttpServlet {
             }
         }
 
-        if (currentUser.getUserRole().equals(UserRole.MENTOR)) {
-            request.getRequestDispatcher("mentor.html").forward(request, response);
-        } else if (currentUser.getUserRole().equals(UserRole.STUDENT)) {
-            request.getRequestDispatcher("student.html").forward(request, response);
+        if (currentUser != null) {
+            if (currentUser.getUserRole().equals(UserRole.MENTOR)) {
+                request.getRequestDispatcher("mentor.html").forward(request, response);
+            } else if (currentUser.getUserRole().equals(UserRole.STUDENT)) {
+                request.getRequestDispatcher("student.html").forward(request, response);
+            }
         }
     }
 }
