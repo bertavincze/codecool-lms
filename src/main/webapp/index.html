@@ -7,24 +7,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CodeCool LMS</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/onepager_style.css">
 </head>
 
 <body>
 
-<div class="header">
+<header>
     <a href="index.html"><h1>CodeCool LMS</h1></a>
-</div>
-
-<nav>
-    <ul>
-        <a href="student.html"><li>Student</li></a>
-        <a href="mentor.html"><li>Mentor</li></a>
-    </ul>
-</nav>
+</header>
 
 <div class="wrapper">
-    <div class="content">
+    <div class="log-in-content">
         <div class="container">
             <div class="containerhead">
                 <div class="title"><a href="">Login</a></div>
@@ -33,41 +27,17 @@
 
 
             <form action = "HelloForm" method = "post">
-                Name:       <input type = "text" name = "name">
-                <br />
-                Password: <input type = "text" name = "password" />
-                <br>
+                <p>Name:<input type = "text" name = "name"></p>
+                <p>Password: <input type = "text" name = "password"/></p>
                 <input type = "submit" value = "Submit" />
             </form>
-            <p>Not registered? <a href="registration.html">Register now!</a></p>
+            <p class="redirect">Not registered? <a href="registration.html">Register now!</a></p>
             <div class="containerfoot"></div>
         </div>
     </div>
 
-    <div class="sidebar">
-        <div class="sbcontainer">
-            <div class="containerhead">
-                <div class="title">Sidebar title</div>
-            </div>
-
-            <div class="desc">
-                <p>
-                    Text Text Text Text Text Text Text Text Text Text Text Text
-                </p>
-
-            </div>
-
-            <ul class="links">
-                <div class="linktitle">Navigation</div>
-                <li><a href="/">Sidebar link 1</a></li>
-                <li><a href="/">Sidebar link 2</a></li>
-                <li><a href="/">Sidebar link 3</a></li>
-                <li><a href="/">Sidebar link 4</a></li>
-            </ul>
-
-        </div>
-    </div>
-
 </div>
+<p  class ="temp" style="text-align: center; font-color: white; font-size: 40pt;"><a href="mentor.html">Mentor</a>
+<a href="student.html">Student</a></p> <!---temporary links to make navigating on the page easier while working on the back end--->
 </body>
 </html>
