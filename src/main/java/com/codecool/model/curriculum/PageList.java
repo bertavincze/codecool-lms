@@ -1,4 +1,4 @@
-package com.codecool.model;
+package com.codecool.model.curriculum;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,5 +14,9 @@ public class PageList {
 
     public static PageList getInstance() {
         return ourInstance;
+    }
+
+    public void addPage(Page page) {
+        pageList.add(page);
     }
 }

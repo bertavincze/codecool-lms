@@ -1,6 +1,6 @@
 package com.codecool.service;
 
-import com.codecool.model.User;
+import com.codecool.model.user.User;
 
 import java.util.ArrayList;
 import java.util.List;

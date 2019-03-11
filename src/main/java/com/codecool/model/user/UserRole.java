@@ -1,4 +1,4 @@
-package com.codecool.model;
+package com.codecool.model.user;
 
 public enum UserRole {
 

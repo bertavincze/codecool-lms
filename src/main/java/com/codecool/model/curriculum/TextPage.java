@@ -1,4 +1,4 @@
-package com.codecool.model;
+package com.codecool.model.curriculum;
 
 public class TextPage extends Page {
 
