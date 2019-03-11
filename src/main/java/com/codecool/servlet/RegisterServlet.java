@@ -1,9 +1,8 @@
 package com.codecool.servlet;
 
-import com.codecool.model.Greeting;
+
 import com.codecool.model.User;
 import com.codecool.model.UserRole;
-import com.codecool.service.GreetingService;
 import com.codecool.service.UserList;
 
 import javax.servlet.ServletException;
@@ -14,8 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/loggedin")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/register")
+public class RegisterServlet extends HttpServlet {
 
     UserList userList = UserList.getInstance();
 
@@ -23,8 +22,9 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String name = req.getParameter("name");
         String password = req.getParameter("password");
+        UserRole userRole = UserRole.valueOf(req.getParameter("status"));
 
-        //needs Session handling.
+        userList.addUser(new User(name, password, userRole));
 
     }
 }
