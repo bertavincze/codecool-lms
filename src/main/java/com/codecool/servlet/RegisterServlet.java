@@ -11,12 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
 @WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
-
-    UserList userList = UserList.getInstance();
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -26,7 +23,7 @@ public class RegisterServlet extends HttpServlet {
         String userRoleString = req.getParameter("status").toUpperCase();
         UserRole userRole = UserRole.valueOf(userRoleString);
         User user = new User(name, email, password, userRole);
-        userList.addUser(user);
+        UserList.getInstance().addUser(user);
         req.setAttribute("user", user);
         req.getRequestDispatcher("succesfulregist.jsp").forward(req, resp);
 

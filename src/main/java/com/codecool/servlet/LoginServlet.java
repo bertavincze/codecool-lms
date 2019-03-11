@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet("/loggedin")
+@WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 
     UserList userList = UserList.getInstance();
