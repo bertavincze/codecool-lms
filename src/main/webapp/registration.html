@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CodeCool LMS</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
 <body>
@@ -30,18 +30,22 @@
     <div class="content">
         <div class="container">
             <div class="containerhead">
-                <div class="title"><a href="">Page title</a></div>
+                <div class="title"><a href="">Registration</a></div>
             </div>
 
             <p>Welcome to Codecool LMS. This is a restricted access page, only for registered users.</p>
 
-            <form action = "HelloForm" method = "GET">
+            <form action = "HelloForm" method = "post">
+                <br>
                 Name:       <input type = "text" name = "first_name">
                 <br />
                 E-mail: <input type = "text" name = "last_name" />
                 <br>
+                Password: <input type = "text" name = "password" />
+                <br><br>
                 <input type = "radio" name = "status" value="mentor" /> Mentor
                 <input type = "radio" name = "status" value="student" /> Student
+                <br><br>
                 <input type = "submit" value = "Submit" />
             </form>
             <div class="containerfoot"></div>
