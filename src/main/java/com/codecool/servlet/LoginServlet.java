@@ -37,6 +37,8 @@ public class LoginServlet extends HttpServlet {
             } else if (currentUser.getUserRole().equals(UserRole.STUDENT)) {
                 request.getRequestDispatcher("student.html").forward(request, response);
             }
+        } else {
+            request.getRequestDispatcher("index.html").forward(request, response);
         }
     }
 }
