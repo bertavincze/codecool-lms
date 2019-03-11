@@ -27,19 +27,19 @@
     <div class="content">
         <div class="container">
             <div class="containerhead">
-                <div class="title"><a href="">Page title</a></div>
+                <div class="title"><a href="">Login</a></div>
             </div>
             <p>Welcome to Codecool LMS. This is a restricted access page, only for registered users.</p>
 
-            <form action = "HelloForm" method = "GET">
-                Name:       <input type = "text" name = "first_name">
+
+            <form action = "HelloForm" method = "post">
+                Name:       <input type = "text" name = "name">
                 <br />
-                E-mail: <input type = "text" name = "last_name" />
+                Password: <input type = "text" name = "password" />
                 <br>
-                <input type = "radio" name = "status" value="mentor" /> Mentor
-                <input type = "radio" name = "status" value="student" /> Student
                 <input type = "submit" value = "Submit" />
             </form>
+            <p>Not registered? <a href="registration.html">Register now!</a></p>
             <div class="containerfoot"></div>
         </div>
     </div>
