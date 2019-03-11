@@ -23,7 +23,6 @@ public class RegisterServlet extends HttpServlet {
         String name = req.getParameter("name");
         String email = req.getParameter("email");
         String password = req.getParameter("password");
-
         String userRoleString = req.getParameter("status").toUpperCase();
         UserRole userRole = UserRole.valueOf(userRoleString);
         User user = new User(name, email, password, userRole);
