@@ -3,7 +3,7 @@ package com.codecool.model.curriculum;
 public abstract class Page {
 
     private String title;
-    private boolean isPublished;
+    protected boolean isPublished;
 
     public Page(String title) {
         this.title = title;
