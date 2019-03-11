@@ -1,13 +1,15 @@
-package com.codecool.model;
+package com.codecool.model.user;
 
 public class User {
     private String name;
     private String email;
+    private String password;
     private UserRole userRole;
 
-    public User(String name, String email, UserRole userRole) {
+    public User(String name, String email, String password, UserRole userRole) {
         this.name = name;
         this.email = email;
+        this.password = password;
         this.userRole = userRole;
     }
 
@@ -19,6 +21,9 @@ public class User {
         return email;
     }
 
+    public String getPassword() {
+        return password;
+    }
 
     public UserRole getUserRole() {
         return userRole;
