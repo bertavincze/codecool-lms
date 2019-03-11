@@ -1,6 +1,6 @@
 
 body {
-    background:rgb(83, 146, 205);
+    background:#eeeeee;
     color:#444444;
     font-family:Roboto, 'Gibson', sans-serif;
     font-size:100%;
@@ -38,7 +38,7 @@ img {
     padding:150px 0px;
     text-align:center;
     width:100%;
-    background:url('pics/galaxygoats.jpg') center;
+    background:url('pics/goatcool.jpg') center;
 }
 
 
