@@ -1,3 +1,5 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,7 +20,6 @@
 
 <nav>
     <ul>
-        <a href="/codecool-lms/userlist"><li>UserList</li></a>
         <a href="profile.html"><li>Profile</li></a>
         <a href="curriculum.html"><li>Curriculum</li></a>
         <a href="solution.html"><li>Solution</li></a>
@@ -30,14 +31,22 @@
     <div class="content">
         <div class="container">
             <div class="containerhead">
-                <div class="title"><a href="">Page title</a></div>
+                <div class="title"><a href="">Registered Users</a></div>
             </div>
-            <h1>Some title</h1>
-            <p>
-                Text Text Text Text Text Text Text Text Text Text Text Text
-                Text Text Text Text Text Text Text Text Text Text Text Text
-                Text Text Text Text Text Text Text Text Text Text Text Text
-            </p>
+            <table>
+                <tr>
+                    <td><c:out value="name"/> </td>
+                    <td><c:out value="email"/></td>
+                    <td><c:out value="role"/></td>
+                </tr>
+                <c:forEach var="u" items="${users}">
+                    <tr>
+                        <td><c:out value="${u.name}"/> </td>
+                        <td><c:out value="${u.email}"/></td>
+                        <td><c:out value="${u.userRole}"/></td>
+                    </tr>
+                </c:forEach>
+            </table>
             <div class="containerfoot"></div>
         </div>
     </div>
