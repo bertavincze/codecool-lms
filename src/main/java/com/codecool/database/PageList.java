@@ -21,4 +21,8 @@ public class PageList {
     public void addPage(Page page) {
         pageList.add(page);
     }
+
+    public List<Page> getPageList() {
+        return pageList;
+    }
 }

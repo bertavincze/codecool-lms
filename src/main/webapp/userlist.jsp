@@ -37,15 +37,14 @@
             </div>
                 <table>
                     <tr>
-                        <td><c:out value="name"/> </td>
-                        <td><c:out value="email"/></td>
-                        <td><c:out value="role"/></td>
+                        <td>Name</td>
+                        <td>E-mail</td>
+                        <td>Role</td>
                     </tr>
                     <c:forEach var="u" items="${users}">
                         <tr>
                             <td><c:out value="${u.name}"/> </td>
                             <td><c:out value="${u.email}"/></td>
-
                         </tr>
                     </c:forEach>
                 </table>
@@ -61,7 +60,7 @@
 
             <div class="desc">
                 <p>Name: ${user.getName()}</p>
-                <p>Role: ${user.getUserRole().getValue()}</p>
+                <p>Role: </p>
                 <br>
             </div>
 
