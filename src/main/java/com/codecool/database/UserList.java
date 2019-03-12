@@ -1,4 +1,4 @@
-package com.codecool.service;
+package com.codecool.database;
 
 import com.codecool.model.user.User;
 

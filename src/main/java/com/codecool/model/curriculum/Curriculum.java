@@ -1,5 +1,7 @@
 package com.codecool.model.curriculum;
 
+import com.codecool.database.PageList;
+
 public class Curriculum {
 
     private PageList pageList;
