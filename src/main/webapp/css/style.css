@@ -38,7 +38,10 @@ img {
     padding:150px 0px;
     text-align:center;
     width:100%;
-    background:url('pics/goatcool.jpg') center;
+    background:url('pics/goatcool.jpg');
+    background-position: center;
+    background-size: cover;
+
 }
 
 
@@ -192,7 +195,7 @@ input[type=button], input[type=submit], input[type=reset] {
   font-size: 16px;
 }
 
-input[type=text], input[type=datetime-local] {
+input[type=text], input[type=datetime-local]  {
   width: 100%;
   padding: 8px 8px;
   margin: 4px 0;
@@ -217,3 +220,5 @@ select {
   border: none;
   background-color: #f1f1f1;
 }
+
+
