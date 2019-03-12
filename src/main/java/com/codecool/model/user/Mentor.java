@@ -13,4 +13,8 @@ public class Mentor extends User {
         urlList = new ArrayList<>(Arrays.asList("mentor.html", "curriculum-mentor.html", "submissions.html"));
         // URLs accessible by Mentor user. If you make a new html page, add it here.
     }
+
+    public List<String> getUrlList() {
+        return urlList;
+    }
 }

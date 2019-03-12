@@ -4,7 +4,7 @@ public class AssignmentPage extends Page {
 
     private String question;
     private int maxScore;
-    private String solution;
+    private int actualScore;
 
     public AssignmentPage(String title, String question, int maxScore) {
         super(title);
@@ -20,11 +20,7 @@ public class AssignmentPage extends Page {
         return maxScore;
     }
 
-    public String getSolution() {
-        return solution;
-    }
-
-    public void setSolution(String solution) {
-        this.solution = solution;
+    public void setActualScore(int actualScore) {
+        this.actualScore = actualScore;
     }
 }
