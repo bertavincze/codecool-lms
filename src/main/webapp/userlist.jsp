@@ -41,10 +41,18 @@
                         <td>E-mail</td>
                         <td>Role</td>
                     </tr>
-                    <c:forEach var="u" items="${users}">
+                    <c:forEach var="u" items="${userList}">
                         <tr>
                             <td><c:out value="${u.name}"/> </td>
                             <td><c:out value="${u.email}"/></td>
+                            <c:choose>
+                                  <c:when test="${u.getClass().simpleName == 'Student'}">
+                                        <td>Student</td>
+                                  </c:when>
+                                  <c:otherwise>
+                                        <td>Mentor</td>
+                                  </c:otherwise>
+                            </c:choose>
                         </tr>
                     </c:forEach>
                 </table>

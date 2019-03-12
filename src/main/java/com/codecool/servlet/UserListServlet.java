@@ -17,7 +17,7 @@ public class UserListServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
 
-        request.setAttribute("users", UserList.getInstance().getUsers());
+        request.setAttribute("userList", UserList.getInstance().getUsers());
         request.getRequestDispatcher("userlist.jsp").forward(request, response);
     }
 }
