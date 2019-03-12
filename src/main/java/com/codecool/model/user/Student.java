@@ -22,4 +22,9 @@ public class Student extends User {
         if (!solutionList.contains(solution)) {
             addSolution(solution);
         }
-    }}
+    }
+
+    public List<String> getUrlList() {
+        return urlList;
+    }
+}
