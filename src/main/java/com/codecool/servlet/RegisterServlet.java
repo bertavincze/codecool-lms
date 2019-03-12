@@ -1,6 +1,8 @@
 package com.codecool.servlet;
 
 
+import com.codecool.model.user.Mentor;
+import com.codecool.model.user.Student;
 import com.codecool.model.user.User;
 import com.codecool.database.UserList;
 
@@ -20,9 +22,9 @@ public class RegisterServlet extends HttpServlet {
         String email = req.getParameter("email");
         String password = req.getParameter("password");
         String userRoleString = req.getParameter("status").toUpperCase();
-        UserRole userRole = UserRole.valueOf(userRoleString);
+
         User user;
-        if (userRole.equals("mentor")) {
+        if (userRoleString.equals("mentor")) {
             user = new Mentor(name, email, password);
         } else {
             user = new Student(name, email, password);
