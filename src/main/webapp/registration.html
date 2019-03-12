@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GoatCool</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="css/reset.css">
-    <link rel="stylesheet" type="text/css" href="css/onepager_style.css">
+    <link rel="stylesheet" type="text/css" href="resources/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="resources/css/onepager_style.css">
 </head>
 
 <body>
@@ -27,20 +27,20 @@
             <p>Welcome to GoatCool! This is a restricted access page, only for registered users.</p>
 
 
-            <form action = "/codecool-lms/register" method = "post">
+            <form action="register" method="post">
 
 
-                <p>Name: <input type = "text" name = "name"></p>
-                <p>E-mail: <input type = "text" name = "email" /></p>
-                <p>Password: <input type = "text" name = "password" /></p>
+                <p>Name: <input type="text" name="name"></p>
+                <p>E-mail: <input type="text" name="email"/></p>
+                <p>Password: <input type="text" name="password"/></p>
                 <div id="radiobutton">
-                    <p><input type = "radio" name = "status" value="mentor" /> Mentor
-                    <input type = "radio" name = "status" value="student" /> Student</p>
+                    <p><input type="radio" name="status" value="mentor"/> Mentor
+                        <input type="radio" name="status" value="student"/> Student</p>
                 </div>
-                <input type = "submit" value = "Register!" />
+                <input type="submit" value="Register!"/>
 
             </form>
-            <p class="redirect">Already have an account? <a href="index.html">Log in!</a></p>
+            <p class="redirect">Already have an account? <a href="login">Log in!</a></p>
             <div class="containerfoot"></div>
 
         </div>

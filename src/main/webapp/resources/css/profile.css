@@ -6,7 +6,7 @@ table{
 .one-third{
     width: 25%;
     height: 150px;
-    background:url('pics/profile.jpg');
+    background:url('../pics/profile.jpg');
     background-attachment: center top;
     background-size: cover;
     background-repeat: no-repeat;
