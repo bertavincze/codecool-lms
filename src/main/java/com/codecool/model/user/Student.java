@@ -1,5 +1,7 @@
 package com.codecool.model.user;
 
+import com.codecool.model.curriculum.Solution;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -16,7 +18,10 @@ public class Student extends User {
         // URLs accessible by Student user. If you make a new html page, add it here.
     }
 
-    //public void addSolution(Solution solution) {
-    //    solutionList.add(solution);
-    //}
+    public void addSolution(Solution solution) {
+        if (!solutionList.contains(solution)) {
+            addSolution(solution);
+        }
+    }
 }
+
