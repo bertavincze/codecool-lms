@@ -1,4 +1,7 @@
-package com.codecool.servlet;
+package com.codecool.filter;
+
+import com.codecool.model.user.User;
+import com.codecool.model.user.UserRole;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -7,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter("/*")
+@WebFilter("/authenticate")
 public class AuthenticationFilter implements Filter {
 
     private ServletContext context;
@@ -27,10 +30,25 @@ public class AuthenticationFilter implements Filter {
 
         HttpSession session = req.getSession(false);
 
-        if (session == null && !(uri.endsWith("index.html") || !uri.endsWith("registration.html"))){
+        if (session == null && (uri.endsWith("student.html") || uri.endsWith("mentor.html"))) {
             System.out.println("Unauthorized access request");
-            req.getRequestDispatcher("index.html").forward(req, resp);
-        }else{
+            resp.sendRedirect("index.html");
+
+        } else if (session != null && session.getAttribute("user") == null) {
+            System.out.println("User not logged in");
+            resp.sendRedirect("index.html");
+            User currentUser = (User) req.getAttribute("user");
+
+            if (currentUser != null) {
+                if (currentUser.getUserRole().equals(UserRole.MENTOR)) {
+                    request.getRequestDispatcher("mentor.html").forward(request, response);
+
+                } else if (currentUser.getUserRole().equals(UserRole.STUDENT)) {
+                    request.getRequestDispatcher("student.html").forward(request, response);
+                }
+            }
+
+        } else {
             chain.doFilter(request, response);
         }
     }
