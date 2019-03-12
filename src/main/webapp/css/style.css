@@ -195,7 +195,7 @@ input[type=button], input[type=submit], input[type=reset] {
   font-size: 16px;
 }
 
-input[type=text], input[type=datetime-local] {
+input[type=text], input[type=datetime-local]  {
   width: 100%;
   padding: 8px 8px;
   margin: 4px 0;
