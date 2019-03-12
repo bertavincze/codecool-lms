@@ -1,10 +1,11 @@
 package com.codecool.model.user;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Mentor extends User {
+public class Mentor extends User implements Serializable {
 
     private List<String> urlList;
 

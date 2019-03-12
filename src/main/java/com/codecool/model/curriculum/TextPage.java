@@ -1,6 +1,8 @@
 package com.codecool.model.curriculum;
 
-public class TextPage extends Page {
+import java.io.Serializable;
+
+public class TextPage extends Page implements Serializable {
 
     private String content;
 
