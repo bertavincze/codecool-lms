@@ -45,7 +45,7 @@
                         <tr>
                             <td><c:out value="${u.name}"/> </td>
                             <td><c:out value="${u.email}"/></td>
-                            <td><c:out value="${u.userRole}"/></td>
+
                         </tr>
                     </c:forEach>
                 </table>
