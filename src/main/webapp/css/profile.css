@@ -1,0 +1,24 @@
+table{
+    margin-top: 20px;
+    width: 100%;
+    }
+
+.one-third{
+    width: 25%;
+    height: 150px;
+    background-color: grey;
+    display: inline-block;
+    float: left;
+    margin-bottom: 20px;}
+
+.two-third{
+    display: inline-block;
+    float: right;
+    width: 65%;}
+
+.containerfoot{
+    clear: both;
+    }
+
+.desc p{
+    text-align: center;}

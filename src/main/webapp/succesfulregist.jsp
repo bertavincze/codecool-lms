@@ -7,11 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="css/reset.css">
     <link rel="stylesheet" type="text/css" href="css/onepager_style.css">
-    <title>Greeting</title>
+    <title>GoatCool</title>
 </head>
 <body>
     <header>
-        <a href="index.html"><h1>CodeCool LMS</h1></a>
+        <a href="index.html"><h1>GoatCool</h1></a>
     </header>
     <div class="wrapper">
         <div class="log-in-content">
