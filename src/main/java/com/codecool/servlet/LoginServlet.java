@@ -1,7 +1,6 @@
 package com.codecool.servlet;
 
 import com.codecool.model.user.User;
-import com.codecool.model.user.UserRole;
 
 import com.codecool.database.UserList;
 
