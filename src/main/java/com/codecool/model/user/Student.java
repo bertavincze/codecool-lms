@@ -1,5 +1,7 @@
 package com.codecool.model.user;
 
+import com.codecool.model.curriculum.Solution;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -17,6 +19,7 @@ public class Student extends User {
     }
 
     public void addSolution(Solution solution) {
-        solutionList.add(solution);
-    }
-}
+        if (!solutionList.contains(solution)) {
+            addSolution(solution);
+        }
+    }}

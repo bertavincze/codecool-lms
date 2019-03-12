@@ -58,6 +58,23 @@
             <div class="desc">
                 <p>Welcome ${user.getName()}! You can see and edit your basic data and track your progress here.</p> <br>
                 <p><a href="/">Edit profile</a></p><br>
+
+                <!-- <div class="popup" onclick="myFunction()">Click me to toggle the popup!
+                    <form class="popuptext" id="myPopup" action = "/codecool-lms/editName" method = "post">
+                        <p>Name: <input type = "text" name = "name"></p>
+                        <input type = "submit" value = "Register!" />
+                    </form>
+                </div>
+
+                <script>
+
+                function myFunction() {
+                  var popup = document.getElementById("myPopup");
+                  popup.classList.toggle("show");
+                }
+                </script> -->
+
+
             </div>
             <div class="containerhead">
                 <div class="title"></div>

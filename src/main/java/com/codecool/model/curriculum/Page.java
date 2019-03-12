@@ -10,6 +10,10 @@ public abstract class Page {
         this.isPublished = false;
     }
 
+    public String getTitle(){
+        return this.title;
+    }
+
     public boolean isPublished() {
         return isPublished;
     }
