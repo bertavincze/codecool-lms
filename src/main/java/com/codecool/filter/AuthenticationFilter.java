@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter("/authenticate")
+@WebFilter("/*")
 public class AuthenticationFilter implements Filter {
 
     private ServletContext context;
@@ -31,26 +31,35 @@ public class AuthenticationFilter implements Filter {
 
         HttpSession session = req.getSession(false);
 
-        if (session == null && (uri.endsWith("student.html") || uri.endsWith("mentor.html"))) {
+        if (session == null && !uri.endsWith("index.html") && !uri.endsWith("login")) {
             System.out.println("Unauthorized access request");
             resp.sendRedirect("index.html");
 
         } else if (session != null && session.getAttribute("user") == null) {
             System.out.println("User not logged in");
             resp.sendRedirect("index.html");
+
+        } else if (session != null && session.getAttribute("user") != null) {
             User currentUser = (User) req.getAttribute("user");
 
-            if (currentUser != null) {
-                if (currentUser instanceof Mentor) {
-                    request.getRequestDispatcher("mentor.html").forward(request, response);
+            if (currentUser instanceof Student) {
+                for (String url: ((Student) currentUser).getUrlList()) {
+                    if (uri.endsWith(url)) {
+                        chain.doFilter(request, response);
+                    } else {
+                        req.getRequestDispatcher("noauth.jsp");
+                    }
+                }
 
-                } else if (currentUser instanceof Student) {
-                    request.getRequestDispatcher("student.html").forward(request, response);
+            } else if (currentUser instanceof Mentor) {
+                for (String url: ((Mentor) currentUser).getUrlList()) {
+                    if (uri.endsWith(url)) {
+                        chain.doFilter(request, response);
+                    } else {
+                        req.getRequestDispatcher("noauth.jsp");
+                    }
                 }
             }
-
-        } else {
-            chain.doFilter(request, response);
         }
     }
 
