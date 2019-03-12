@@ -16,8 +16,7 @@
     <div class="wrapper">
         <div class="log-in-content">
             <div class="thankyou">
-                <h1>Thank you for registering ${user.getName()}.</h1>
-                <p>You can <a href="index.html">log in</a> now!</p>
+                <h1>Access Denied</h1>
             </div>
         </div>
     </div>

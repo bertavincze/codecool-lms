@@ -45,7 +45,7 @@
                       </tr>
                       <tr>
                         <td>Role: </td>
-                        <td>${user.getUserRole().getValue()}</td>
+                        <td></td>
                       </tr>
                     </table>
                 </div>

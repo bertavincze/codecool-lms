@@ -15,11 +15,16 @@ public class Student extends User {
         super(name, email, password);
         solutionList = new ArrayList<>();
         urlList = new ArrayList<>(Arrays.asList("student.html", "curriculum-student.html", "stats.html"));
-        // URLs accessible by Student user. If you make a new html page, add it here.
+        //URLs accessible by Student user. If you make a new html page, add it here.
     }
 
     public void addSolution(Solution solution) {
         if (!solutionList.contains(solution)) {
             addSolution(solution);
         }
-    }}
+    }
+
+    public List<String> getUrlList() {
+        return urlList;
+    }
+}
