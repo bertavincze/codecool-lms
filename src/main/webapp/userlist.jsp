@@ -68,7 +68,14 @@
 
             <div class="desc">
                 <p>Name: ${user.getName()}</p>
-                <p>Role: </p>
+                    <c:choose>
+                          <c:when test="${user.getClass().simpleName == 'Student'}">
+                                <p>Role: Student</p>
+                          </c:when>
+                          <c:otherwise>
+                                <td>Role: Mentor</td>
+                          </c:otherwise>
+                    </c:choose>
                 <br>
             </div>
 
