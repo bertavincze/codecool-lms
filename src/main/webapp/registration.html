@@ -7,27 +7,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CodeCool LMS</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/onepager_style.css">
 </head>
 
 <body>
 
-<div class="header">
+<header>
     <a href="index.html"><h1>CodeCool LMS</h1></a>
-</div>
-
-<nav>
-    <ul>
-        <a href="/"><li>Navbar link 1</li></a>
-        <a href="/"><li>Navbar link 2</li></a>
-
-        <a href="/"><li>Navbar link 3</li></a>
-        <a href="/"><li>Navbar link 4</li></a>
-    </ul>
-</nav>
+</header>
 
 <div class="wrapper">
-    <div class="content">
+    <div class="log-in-content">
         <div class="container">
             <div class="containerhead">
                 <div class="title"><a href="">Registration</a></div>
@@ -35,22 +26,22 @@
 
             <p>Welcome to Codecool LMS. This is a restricted access page, only for registered users.</p>
 
-            <form action = "HelloForm" method = "post">
-                <br>
-                Name:       <input type = "text" name = "first_name">
-                <br />
-                E-mail: <input type = "text" name = "last_name" />
-                <br>
-                Password: <input type = "text" name = "password" />
-                <br><br>
-                <input type = "radio" name = "status" value="mentor" /> Mentor
-                <input type = "radio" name = "status" value="student" /> Student
-                <br><br>
+
+            <form action = "/codecool-lms/register" method = "post">
+
+
+                <p>Name: <input type = "text" name = "name"></p>
+                <p>E-mail: <input type = "text" name = "email" /></p>
+                <p>Password: <input type = "text" name = "password" /></p>
+                <div id="radiobutton">
+                    <p><input type = "radio" name = "status" value="mentor" /> Mentor
+                    <input type = "radio" name = "status" value="student" /> Student</p>
+                </div>
                 <input type = "submit" value = "Submit" />
+
             </form>
+            <p class="redirect">Already have an account? <a href="index.html">Log in!</a></p>
             <div class="containerfoot"></div>
-        </div>
-    </div>
 
         </div>
     </div>

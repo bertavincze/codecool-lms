@@ -29,18 +29,46 @@
     <div class="content">
         <div class="container">
             <div class="containerhead">
-                <div class="title"><a href="">Page title</a></div>
+                <div class="title"><a href="">New Assignment</a></div>
             </div>
-            <h1>Some title</h1>
-            <p>
-                Text Text Text Text Text Text Text Text Text Text Text Text
-                Text Text Text Text Text Text Text Text Text Text Text Text
-                Text Text Text Text Text Text Text Text Text Text Text Text
-            </p>
+
+                <p>Title:</p>
+                <p>${assignmentPage.getTitle()}</p>
+
+                <p>Question: </p>
+                <p>${assignmentPage.getQuestion()}</p>
+
+                <form id=formABC action="blablabla" method="POST">
+                    <p>Solution: </p>
+                    <p><textarea rows="20" cols="20" name="solution" id=btnTest></textarea></p>
+                <br><br>
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+                <p><input type="submit" id=btnSubmit></p>
+
+            </form>
             <div class="containerfoot"></div>
         </div>
     </div>
 
+    <script>
+    $(document).ready(function () {
+
+        $("#formABC").submit(function (e) {
+
+            //stop submitting the form to see the disabled button effect
+            e.preventDefault();
+
+            //disable the submit button
+            $("#btnSubmit").attr("disabled", true);
+
+            //disable a normal button
+            $("#btnTest").attr("disabled", true);
+
+            return true;
+
+        });
+    });
+</script>
     <div class="sidebar">
         <div class="sbcontainer">
             <div class="containerhead">
@@ -56,7 +84,7 @@
 
             <ul class="links">
                 <div class="linktitle">Navigation</div>
-                <li><a href="addassignment.html">Add new assignment</a></li>
+                <li><a href="/">Sidebar link 1</a></li>
                 <li><a href="/">Sidebar link 2</a></li>
                 <li><a href="/">Sidebar link 3</a></li>
                 <li><a href="/">Sidebar link 4</a></li>
