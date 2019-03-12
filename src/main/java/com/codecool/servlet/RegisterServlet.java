@@ -22,7 +22,12 @@ public class RegisterServlet extends HttpServlet {
         String password = req.getParameter("password");
         String userRoleString = req.getParameter("status").toUpperCase();
         UserRole userRole = UserRole.valueOf(userRoleString);
-        User user = new User(name, email, password, userRole);
+        User user;
+        if (userRole.equals("mentor")) {
+            user = new Mentor(name, email, password);
+        } else {
+            user = new Student(name, email, password);
+        }
         UserList.getInstance().addUser(user);
         req.setAttribute("user", user);
         req.getRequestDispatcher("succesfulregist.jsp").forward(req, resp);
