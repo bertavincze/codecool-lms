@@ -1,4 +1,6 @@
-package com.codecool.model.curriculum;
+package com.codecool.database;
+
+import com.codecool.model.curriculum.Page;
 
 import java.util.ArrayList;
 import java.util.List;
