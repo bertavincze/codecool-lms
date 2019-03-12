@@ -1,11 +1,9 @@
 package com.codecool.servlet;
 
 
+import com.codecool.database.PageList;
 import com.codecool.model.curriculum.AssignmentPage;
-import com.codecool.model.curriculum.PageList;
-import com.codecool.model.user.User;
-import com.codecool.model.user.UserRole;
-import com.codecool.service.UserList;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
