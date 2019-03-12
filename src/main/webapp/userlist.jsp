@@ -33,20 +33,20 @@
             <div class="containerhead">
                 <div class="title"><a href="">Registered Users</a></div>
             </div>
-            <table>
-                <tr>
-                    <td><c:out value="name"/> </td>
-                    <td><c:out value="email"/></td>
-                    <td><c:out value="role"/></td>
-                </tr>
-                <c:forEach var="u" items="${users}">
+                <table>
                     <tr>
-                        <td><c:out value="${u.name}"/> </td>
-                        <td><c:out value="${u.email}"/></td>
-                        <td><c:out value="${u.userRole}"/></td>
+                        <td><c:out value="name"/> </td>
+                        <td><c:out value="email"/></td>
+                        <td><c:out value="role"/></td>
                     </tr>
-                </c:forEach>
-            </table>
+                    <c:forEach var="u" items="${users}">
+                        <tr>
+                            <td><c:out value="${u.name}"/> </td>
+                            <td><c:out value="${u.email}"/></td>
+                            <td><c:out value="${u.userRole}"/></td>
+                        </tr>
+                    </c:forEach>
+                </table>
             <div class="containerfoot"></div>
         </div>
     </div>
