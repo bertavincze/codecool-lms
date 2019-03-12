@@ -10,6 +10,7 @@
     <title>CodeCool LMS</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/profile.css">
 </head>
 
 <body>
@@ -20,11 +21,11 @@
 
 <nav>
     <ul>
-        <a href="/codecool-lms/userlist"><li>UserList</li></a>
-        <a href="profile.html"><li>Profile</li></a>
+        <a href="userlist.jsp"><li class="marked">UserList</li></a>
         <a href="curriculum.html"><li>Curriculum</li></a>
         <a href="solution.html"><li>Solution</li></a>
         <a href="attendance.html"><li>Attendance</li></a>
+        <a href="profile.jsp"><li>Profile</li></a>
     </ul>
 </nav>
 
@@ -55,18 +56,17 @@
     <div class="sidebar">
         <div class="sbcontainer">
             <div class="containerhead">
-                <div class="title">Sidebar title</div>
+                <div class="title">Logged in user</div>
             </div>
 
             <div class="desc">
-                <p>
-                    Text Text Text Text Text Text Text Text Text Text Text Text
-                </p>
-
+                <p>Name: ${user.getName()}</p>
+                <p>Role: ${user.getUserRole().getValue()}</p>
+                <br>
             </div>
 
             <ul class="links">
-                <div class="linktitle">Navigation</div>
+                <div class="linktitle">Favourites</div>
                 <li><a href="/">Sidebar link 1</a></li>
                 <li><a href="/">Sidebar link 2</a></li>
                 <li><a href="/">Sidebar link 3</a></li>

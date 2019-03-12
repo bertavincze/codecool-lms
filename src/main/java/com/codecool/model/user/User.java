@@ -1,7 +1,5 @@
 package com.codecool.model.user;
 
-import com.codecool.model.curriculum.Solution;
-
 import java.io.Serializable;
 
 public abstract class User implements Serializable {
@@ -32,7 +30,4 @@ public abstract class User implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
-
-
-}
 }
