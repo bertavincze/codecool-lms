@@ -1,13 +1,13 @@
-package com.codecool.service;
+package com.codecool.database;
 
 import com.codecool.model.user.User;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserList implements UserListInterface {
+public class UserList {
     private static UserList ourInstance = new UserList();
-    private List<User> userList = null;
+    private List<User> userList;
 
     public static UserList getInstance() {
         return ourInstance;
@@ -17,12 +17,10 @@ public class UserList implements UserListInterface {
         userList = new ArrayList<>();
     }
 
-    @Override
     public void addUser(User user) {
         userList.add(user);
     }
 
-    @Override
     public List<User> getUsers() {
         return userList;
     }
