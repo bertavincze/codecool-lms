@@ -1,7 +1,8 @@
 package com.codecool.filter;
 
+import com.codecool.model.user.Mentor;
+import com.codecool.model.user.Student;
 import com.codecool.model.user.User;
-import com.codecool.model.user.UserRole;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -40,10 +41,10 @@ public class AuthenticationFilter implements Filter {
             User currentUser = (User) req.getAttribute("user");
 
             if (currentUser != null) {
-                if (currentUser.getUserRole().equals(UserRole.MENTOR)) {
+                if (currentUser instanceof Mentor) {
                     request.getRequestDispatcher("mentor.html").forward(request, response);
 
-                } else if (currentUser.getUserRole().equals(UserRole.STUDENT)) {
+                } else if (currentUser instanceof Student) {
                     request.getRequestDispatcher("student.html").forward(request, response);
                 }
             }

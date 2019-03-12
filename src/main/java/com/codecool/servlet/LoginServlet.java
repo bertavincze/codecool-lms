@@ -1,7 +1,8 @@
 package com.codecool.servlet;
 
+import com.codecool.model.user.Mentor;
+import com.codecool.model.user.Student;
 import com.codecool.model.user.User;
-import com.codecool.model.user.UserRole;
 
 import com.codecool.database.UserList;
 
@@ -33,9 +34,9 @@ public class LoginServlet extends HttpServlet {
         }
 
         if (currentUser != null) {
-            if (currentUser.getUserRole().equals(UserRole.MENTOR)) {
+            if (currentUser instanceof Mentor) {
                 request.getRequestDispatcher("mentor.html").forward(request, response);
-            } else if (currentUser.getUserRole().equals(UserRole.STUDENT)) {
+            } else if (currentUser instanceof Student) {
                 request.getRequestDispatcher("student.html").forward(request, response);
             }
         } else {
