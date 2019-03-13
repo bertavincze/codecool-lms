@@ -29,8 +29,11 @@
     <div class="content">
         <div class="container">
             <div class="containerhead">
-                <div class="title"><a href="">${page.getTitle()}</a></div>
+                <div class="title"><a href="">Study material</a></div>
             </div>
+
+
+                <h1>${page.getTitle()}</h1>
 
 
                 <p>${page.getContent()}</p>

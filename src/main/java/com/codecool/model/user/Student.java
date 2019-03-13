@@ -25,7 +25,12 @@ public class Student extends User implements Serializable {
         }
     }
 
+    public List<Solution> getSolutionList() {
+        return solutionList;
+    }
+
     public List<String> getUrlList() {
         return urlList;
     }
 }
+
