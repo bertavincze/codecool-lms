@@ -16,20 +16,14 @@
 
 <nav>
     <ul>
-        <a href="profile.html">
-            <li>Profile</li>
-        </a>
-        <a href="curriculum">
-            <li>Curriculum</li>
-        </a>
-        <a href="solution.html">
-            <li>Solution</li>
-        </a>
-        <a href="attendance.html">
-            <li>Attendance</li>
-        </a>
+        <a href="profile.jsp"><li>Profile</li></a>
+        <a href="userlist"><li>UserList</li></a>
+        <a href="curriculum"><li class="marked">Curriculum</li></a>
+        <a href="attendance"><li>Attendance</li></a>
+        <a href="solutions"><li>Student Solutions</li></a>
     </ul>
 </nav>
+
 
 <div class="wrapper">
     <div class="content">
@@ -71,22 +65,28 @@
     <div class="sidebar">
         <div class="sbcontainer">
             <div class="containerhead">
-                <div class="title">Sidebar title</div>
+                <div class="title">Current user</div>
             </div>
 
             <div class="desc">
-                <p>
-                    Text Text Text Text Text Text Text Text Text Text Text Text
-                </p>
-
+                <p>Name: ${user.getName()}</p>
+                    <c:choose>
+                          <c:when test="${user.getClass().simpleName == 'Student'}">
+                                <p>Role: Student</p>
+                          </c:when>
+                          <c:otherwise>
+                                <p>Role: Mentor</p>
+                          </c:otherwise>
+                    </c:choose>
+                <br>
             </div>
 
             <ul class="links">
-                <div class="linktitle">Navigation</div>
-                <li><a href="/">Sidebar link 1</a></li>
-                <li><a href="/">Sidebar link 2</a></li>
-                <li><a href="/">Sidebar link 3</a></li>
-                <li><a href="/">Sidebar link 4</a></li>
+                <div class="linktitle">Favourites</div>
+                <li><a href="">Sidebar link 1</a></li>
+                <li><a href="">Sidebar link 2</a></li>
+                <li><a href="">Sidebar link 3</a></li>
+                <li><a href="">Sidebar link 4</a></li>
             </ul>
 
         </div>

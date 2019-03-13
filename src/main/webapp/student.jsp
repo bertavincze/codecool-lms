@@ -1,3 +1,5 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,10 +18,10 @@
 
 <nav>
     <ul>
-        <a href="curriculum"><li>Curriculum</li></a>
-        <a href="userlist"><li>UserList</li></a>
-        <a href="assignment.html"><li>Assignments</li></a>
         <a href="profile.jsp"><li>Profile</li></a>
+        <a href="userlist"><li>UserList</li></a>
+        <a href="curriculum"><li>Curriculum</li></a>
+        <a href="assignments"><li>Assignments</li></a>
         <a href="stats"><li>Stats</li></a>
     </ul>
 </nav>
@@ -28,9 +30,9 @@
     <div class="content">
         <div class="container">
             <div class="containerhead">
-                <div class="title"><a href="">Page title</a></div>
+                <div class="title"><a href="">Welcome</a></div>
             </div>
-            <h1>Some title</h1>
+            <h1>You are now logged in as ${user.getClass().simpleName} ${user.getName()}.</h1>
             <p>
                 Text Text Text Text Text Text Text Text Text Text Text Text
                 Text Text Text Text Text Text Text Text Text Text Text Text
@@ -43,18 +45,24 @@
     <div class="sidebar">
         <div class="sbcontainer">
             <div class="containerhead">
-                <div class="title">Sidebar title</div>
+                <div class="title">Current user</div>
             </div>
 
             <div class="desc">
-                <p>
-                    Text Text Text Text Text Text Text Text Text Text Text Text
-                </p>
-
+                <p>Name: ${user.getName()}</p>
+                <c:choose>
+                    <c:when test="${user.getClass().simpleName == 'Student'}">
+                        <p>Role: Student</p>
+                    </c:when>
+                    <c:otherwise>
+                        <p>Role: Mentor</p>
+                    </c:otherwise>
+                </c:choose>
+                <br>
             </div>
 
             <ul class="links">
-                <div class="linktitle">Navigation</div>
+                <div class="linktitle">Favourites</div>
                 <li><a href="">Sidebar link 1</a></li>
                 <li><a href="">Sidebar link 2</a></li>
                 <li><a href="">Sidebar link 3</a></li>

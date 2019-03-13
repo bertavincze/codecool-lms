@@ -30,9 +30,18 @@
 <nav>
     <ul>
         <a href="profile.jsp"><li class="marked">Profile</li></a>
+        <a href="userlist"><li>UserList</li></a>
         <a href="curriculum"><li>Curriculum</li></a>
-        <a href="assignment.html"><li>Assignments</li></a>
-        <a href="stats.html"><li>Stats</li></a>
+        <c:choose>
+            <c:when test="${user.getClass().simpleName == 'Student'}">
+                 <a href="assignments"><li>Assignments</li></a>
+                 <a href="stats"><li>Stats</li></a>
+            </c:when>
+            <c:otherwise>
+                <a href="attendance"><li>Attendance</li></a>
+                <a href="solutions"><li>Student Solutions</li></a>
+            </c:otherwise>
+        </c:choose>
     </ul>
 </nav>
 
@@ -92,21 +101,16 @@
         <div class="sbcontainer">
             <div class="desc">
                 <p>Welcome ${user.getName()}! You can see and edit your basic data and track your progress here.</p> <br>
-
-
-
-
-
             </div>
             <div class="containerhead">
                 <div class="title"></div>
             </div>
             <ul class="links">
                 <div class="linktitle">Favourites</div>
-                <li><a href="/">Sidebar link 1</a></li>
-                <li><a href="/">Sidebar link 2</a></li>
-                <li><a href="/">Sidebar link 3</a></li>
-                <li><a href="/">Sidebar link 4</a></li>
+                <li><a href="">Sidebar link 1</a></li>
+                <li><a href="">Sidebar link 2</a></li>
+                <li><a href="">Sidebar link 3</a></li>
+                <li><a href="">Sidebar link 4</a></li>
             </ul>
 
         </div>

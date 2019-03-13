@@ -1,9 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page import="java.util.List" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
-
-<html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,11 +20,19 @@
 
 <nav>
     <ul>
-        <a href="userlist"><li class="marked">UserList</li></a>
-        <a href="curriculum"><li>Curriculum</li></a>
-        <a href="solution.html"><li>Solution</li></a>
-        <a href="attendance.html"><li>Attendance</li></a>
         <a href="profile.jsp"><li>Profile</li></a>
+        <a href="userlist"><li>UserList</li></a>
+        <a href="curriculum"><li class="marked">Curriculum</li></a>
+        <c:choose>
+            <c:when test="${user.getClass().simpleName == 'Student'}">
+                 <a href="assignments"><li>Assignments</li></a>
+                 <a href="stats"><li>Stats</li></a>
+            </c:when>
+            <c:otherwise>
+                <a href="attendance"><li>Attendance</li></a>
+                <a href="solutions"><li>Student Solutions</li></a>
+            </c:otherwise>
+        </c:choose>
     </ul>
 </nav>
 
@@ -63,7 +70,7 @@
     <div class="sidebar">
         <div class="sbcontainer">
             <div class="containerhead">
-                <div class="title">Logged in user</div>
+                <div class="title">Current user</div>
             </div>
 
             <div class="desc">
@@ -81,10 +88,10 @@
 
             <ul class="links">
                 <div class="linktitle">Favourites</div>
-                <li><a href="/">Sidebar link 1</a></li>
-                <li><a href="/">Sidebar link 2</a></li>
-                <li><a href="/">Sidebar link 3</a></li>
-                <li><a href="/">Sidebar link 4</a></li>
+                <li><a href="">Sidebar link 1</a></li>
+                <li><a href="">Sidebar link 2</a></li>
+                <li><a href="">Sidebar link 3</a></li>
+                <li><a href="">Sidebar link 4</a></li>
             </ul>
 
         </div>

@@ -18,13 +18,14 @@
 
 <nav>
     <ul>
-        <a href="curriculum"><li>Curriculum</li></a>
-        <a href="userlist"><li>UserList</li></a>
-        <a href="assignment.html"><li>Assignments</li></a>
         <a href="profile.jsp"><li>Profile</li></a>
-        <a href="stats"><li>Stats</li></a>
+        <a href="userlist"><li>UserList</li></a>
+        <a href="curriculum"><li class="marked">Curriculum</li></a>
+        <a href="attendance"><li>Attendance</li></a>
+        <a href="solutions"><li>Student Solutions</li></a>
     </ul>
 </nav>
+
 
 <div class="wrapper">
     <div class="content">
