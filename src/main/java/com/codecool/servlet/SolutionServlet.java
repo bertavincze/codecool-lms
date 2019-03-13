@@ -4,12 +4,16 @@ package com.codecool.servlet;
 import com.codecool.database.PageList;
 import com.codecool.model.curriculum.AssignmentPage;
 import com.codecool.model.curriculum.Page;
+import com.codecool.model.curriculum.Solution;
+import com.codecool.model.user.Student;
+import com.codecool.model.user.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet("/solution")
@@ -17,13 +21,16 @@ public class SolutionServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession(false);
+        Student user = (Student) session.getAttribute("user");
+
         resp.setContentType("text/html;charset=UTF-8");
         String name = req.getParameter("title");
         String question = req.getParameter("question");
-        String maxScore = req.getParameter("maxScore");
-        AssignmentPage assignmentPage = new AssignmentPage(name, question, Integer.parseInt(maxScore));
-        PageList.getInstance().addPage(assignmentPage);
-        req.getRequestDispatcher("mentor.html").forward(req, resp);
+        String answer = req.getParameter("solution");
+        Solution solution = new Solution(name, question, answer);
+        user.addSolution(solution);
+        req.getRequestDispatcher("student.html").forward(req, resp);
 
 
     }
@@ -31,16 +38,17 @@ public class SolutionServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        HttpSession session = request.getSession(false);
+        Student user = (Student) session.getAttribute("user");
 
-        String assignmentTitle = request.getParameter("assignmentTitle");
+        String title = request.getParameter("solutionTitle");
 
 
-        for (Page page : PageList.getInstance().getPageList()) {
-            if (page instanceof AssignmentPage) {
-                if (page.getTitle().equals(assignmentTitle)) {
-                    request.setAttribute("assignmentPage", page);
-                    request.getRequestDispatcher("sendassignment.jsp").forward(request, response);
-                }
+        for (Solution solution : user.getSolutionList()) {
+                if (solution.getTitle().equals(title)) {
+                    request.setAttribute("solution", solution);
+                    request.getRequestDispatcher("seesolution.jsp").forward(request, response);
+
             } else {
                 request.getRequestDispatcher("404.html").forward(request, response);
             }

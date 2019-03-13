@@ -18,8 +18,8 @@
 
 <nav>
     <ul>
-        <a href="profile.html"><li>Profile</li></a>
-        <a href="curriculum.html"><li>Curriculum</li></a>
+        <a href="profile.jsp"><li>Profile</li></a>
+        <a href="curriculum-mentor"><li>Curriculum</li></a>
         <a href="solution.html"><li>Solution</li></a>
         <a href="attendance.html"><li>Attendance</li></a>
     </ul>
@@ -29,16 +29,15 @@
     <div class="content">
         <div class="container">
             <div class="containerhead">
-                <div class="title"><a href="">Study material</a></div>
+                <div class="title"><a href=""></a>Solution</div>
             </div>
 
+                <h1>${solution.getTitle()}</h2>
+                <p>Question: </p>
+                <p>${solution.getQuestion()}</p>
 
-                <h1>${page.getTitle()}</h1>
-
-
-                <p>${page.getContent()}</p>
-
-
+                <p>Your answer: </p>
+                <p>${solution.getAnswer()}</p>
             <div class="containerfoot"></div>
         </div>
     </div>

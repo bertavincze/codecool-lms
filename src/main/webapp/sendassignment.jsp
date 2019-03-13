@@ -29,16 +29,20 @@
     <div class="content">
         <div class="container">
             <div class="containerhead">
-                <div class="title"><a href="">${page.getTitle()}</a></div>
+                <div class="title"><a href=""></a>Assignment</div>
             </div>
 
+                <h1>${page.getTitle()}</h2>
                 <p>Question: </p>
                 <p>${page.getQuestion()}</p>
 
-                <form action="blablabla" method="POST">
+                <form action="solution" method="POST">
                     <p>Solution: </p>
                     <p><textarea rows="20" cols="20" name="solution"></textarea></p>
                 <br><br>
+
+                 <input type="hidden" name="title" value="${page.getTitle()}">
+                  <input type="hidden" name="question" value="${page.getQuestion()}">
                 <p><input type="submit"></p>
 
             </form>
