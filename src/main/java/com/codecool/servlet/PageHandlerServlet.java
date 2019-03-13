@@ -55,14 +55,11 @@ public class PageHandlerServlet extends HttpServlet {
 
         if (isAssignmentPage(requestedPage)) {
             if (user instanceof Student) {
-                Student student = (Student) user;
-                if (student.getSolutionList() != null) {
-                    for (Solution solution : student.getSolutionList()) {
-                        if (solution.getTitle().equals(title)) {
-                            request.setAttribute("solution", solution);
-                            request.getRequestDispatcher("solution?title=" + solution.getTitle()).forward(request, response);
-                        }
-                    }
+                Solution solution = findUserSolutionByTitle(user, requestedPage.getTitle());
+                if (solution != null) {
+                    request.setAttribute("solution", solution);
+                    request.getRequestDispatcher("solution?title=" + solution.getTitle()).forward(request, response);
+
                 } else {
                     request.getRequestDispatcher("sendassignment.jsp").forward(request, response);
                 }
@@ -84,4 +81,15 @@ public class PageHandlerServlet extends HttpServlet {
         return page instanceof TextPage;
     }
 
+    private Solution findUserSolutionByTitle(User user, String title) {
+        Student student = (Student) user;
+        if (!student.getSolutionList().isEmpty()) {
+            for (Solution solution : student.getSolutionList()) {
+                if (solution.getTitle().equals(title)) {
+                    return solution;
+                }
+            }
+        }
+        return null;
+    }
 }

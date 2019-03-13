@@ -2,6 +2,7 @@ package com.codecool.servlet;
 
 import com.codecool.model.curriculum.Solution;
 import com.codecool.model.user.Student;
+import com.codecool.model.user.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -34,13 +35,25 @@ public class SolutionServlet extends HttpServlet {
 
         String title = request.getParameter("title");
 
-        for (Solution solution : user.getSolutionList()) {
-            if (solution.getTitle().equals(title)) {
-                request.setAttribute("solution", solution);
-                request.getRequestDispatcher("seesolution.jsp").forward(request, response);
-            } else {
-                request.getRequestDispatcher("404.html").forward(request, response);
+        Solution solution = findUserSolutionByTitle(user, title);
+        if (solution != null) {
+            request.setAttribute("solution", solution);
+            request.getRequestDispatcher("seesolution.jsp").forward(request, response);
+
+        } else {
+            request.getRequestDispatcher("404.html").forward(request, response);
+        }
+    }
+
+    private Solution findUserSolutionByTitle(User user, String title) {
+        Student student = (Student) user;
+        if (!student.getSolutionList().isEmpty()) {
+            for (Solution solution : student.getSolutionList()) {
+                if (solution.getTitle().equals(title)) {
+                    return solution;
+                }
             }
         }
+        return null;
     }
 }
