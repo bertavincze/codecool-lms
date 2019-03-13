@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GoatCool</title>
+    <title>CodeCool LMS</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="resources/css/style.css">
 </head>
@@ -13,16 +13,15 @@
 <body>
 
 <div class="header">
-    <a href="index.html"><h1>GoatCool</h1></a>
+    <a href="index.html"><h1>CodeCool LMS</h1></a>
 </div>
 
 <nav>
     <ul>
-        <a href="userlist"><li>UserList</li></a>
+        <a href="profile.html"><li>Profile</li></a>
         <a href="curriculum.html"><li>Curriculum</li></a>
-        <a href="assignment.html"><li>Assignments</li></a>
-        <a href="profile.jsp"><li>Profile</li></a>
-        <a href="stats.html"><li>Stats</li></a>
+        <a href="solution.html"><li>Solution</li></a>
+        <a href="attendance.html"><li>Attendance</li></a>
     </ul>
 </nav>
 
@@ -30,17 +29,17 @@
     <div class="content">
         <div class="container">
             <div class="containerhead">
-                <div class="title"><a href="">Page title</a></div>
+                <div class="title"><a href="">${page.getTitle()}</a></div>
             </div>
-            <h1>Some title</h1>
-            <p>
-                Text Text Text Text Text Text Text Text Text Text Text Text
-                Text Text Text Text Text Text Text Text Text Text Text Text
-                Text Text Text Text Text Text Text Text Text Text Text Text
-            </p>
+
+
+                <p>${page.getContent()}</p>
+
+
             <div class="containerfoot"></div>
         </div>
     </div>
+
 
     <div class="sidebar">
         <div class="sbcontainer">
@@ -59,8 +58,8 @@
                 <div class="linktitle">Navigation</div>
                 <li><a href="/">Sidebar link 1</a></li>
                 <li><a href="/">Sidebar link 2</a></li>
-                <li><a href="assignment?title=pager">pager</a></li>
-                <li><a href="assignment?title=tester">tester</a></li>
+                <li><a href="/">Sidebar link 3</a></li>
+                <li><a href="/">Sidebar link 4</a></li>
             </ul>
 
         </div>

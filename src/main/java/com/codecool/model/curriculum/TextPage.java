@@ -10,4 +10,8 @@ public class TextPage extends Page implements Serializable {
         super(title);
         this.content = content;
     }
+
+    public String getContent() {
+        return content;
+    }
 }
