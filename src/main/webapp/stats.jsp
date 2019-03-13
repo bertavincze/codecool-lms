@@ -21,8 +21,8 @@
 
 <nav>
     <ul>
-        <a href="userlist.jsp"><li class="marked">UserList</li></a>
-        <a href="curriculum.html"><li>Curriculum</li></a>
+        <a href="userlist"><li class="marked">UserList</li></a>
+        <a href="curriculum-student"><li>Curriculum</li></a>
         <a href="solution.html"><li>Solution</li></a>
         <a href="attendance.html"><li>Attendance</li></a>
         <a href="profile.jsp"><li>Profile</li></a>
