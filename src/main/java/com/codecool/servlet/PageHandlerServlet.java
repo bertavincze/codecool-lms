@@ -4,8 +4,8 @@ package com.codecool.servlet;
 import com.codecool.database.PageList;
 import com.codecool.model.curriculum.AssignmentPage;
 import com.codecool.model.curriculum.Page;
-import com.codecool.model.curriculum.Solution;
 import com.codecool.model.curriculum.TextPage;
+import com.codecool.model.user.Mentor;
 import com.codecool.model.user.Student;
 import com.codecool.model.user.User;
 
@@ -55,8 +55,8 @@ public class PageHandlerServlet extends HttpServlet {
         if (isAssignmentPage(requestedPage)) {
             if (user instanceof Student) {
                 request.getRequestDispatcher("solution").forward(request, response);
-            } else {
-                request.getRequestDispatcher("curriculum").forward(request, response);
+            } else if (user instanceof Mentor) {
+                request.getRequestDispatcher("seeassignment.jsp").forward(request, response);
             }
 
         } else if (isTextPage(requestedPage)) {
