@@ -25,6 +25,8 @@ public class RegisterServlet extends HttpServlet {
         String password = req.getParameter("password");
         String userRoleString = req.getParameter("status");
 
+        validateUserData(name, email, password, userRoleString);
+
         if (isValidUserData) {
             User user = null;
             if (userRoleString.equals("mentor")) {
@@ -45,7 +47,7 @@ public class RegisterServlet extends HttpServlet {
         req.getRequestDispatcher("registration.html").forward(req, resp);
     }
 
-    private void validateUserData(HttpServletResponse resp, String name, String email, String password, String userRoleString) throws IOException {
+    private void validateUserData(String name, String email, String password, String userRoleString) throws IOException {
         for (User user: UserList.getInstance().getUsers()) {
             if (user.getName().equals(name) && user.getEmail().equals(email)) {
                 isValidUserData = false;
