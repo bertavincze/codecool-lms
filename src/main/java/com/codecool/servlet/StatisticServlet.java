@@ -1,5 +1,6 @@
 package com.codecool.servlet;
 
+import com.codecool.model.user.Student;
 import com.codecool.model.user.User;
 
 import javax.servlet.ServletException;
@@ -17,9 +18,9 @@ public class StatisticServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession(false);
-        User user = (User) session.getAttribute("user");
+        User user = (Student) session.getAttribute("user");
 
 
-        request.getRequestDispatcher("profile.jsp").forward(request, response);
+        request.getRequestDispatcher("stats.jsp").forward(request, response);
     }
 }
