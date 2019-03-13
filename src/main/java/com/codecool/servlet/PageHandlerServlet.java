@@ -34,7 +34,7 @@ public class PageHandlerServlet extends HttpServlet {
             TextPage textPage = new TextPage(name, content);
             PageList.getInstance().addPage(textPage);
         }
-        request.getRequestDispatcher("mentor.html").forward(request, response);
+        request.getRequestDispatcher("mentor.jsp").forward(request, response);
     }
 
     @Override

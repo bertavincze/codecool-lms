@@ -47,9 +47,9 @@ public class LoginServlet extends HttpServlet {
     private void routeUser(HttpServletRequest request, HttpServletResponse response, User currentUser) throws ServletException, IOException {
         if (currentUser != null) {
             if (currentUser instanceof Mentor) {
-                request.getRequestDispatcher("mentor.html").forward(request, response);
+                request.getRequestDispatcher("mentor.jsp").forward(request, response);
             } else if (currentUser instanceof Student) {
-                request.getRequestDispatcher("student.html").forward(request, response);
+                request.getRequestDispatcher("student.jsp").forward(request, response);
             }
         } else {
             request.getRequestDispatcher("index.html").forward(request, response);

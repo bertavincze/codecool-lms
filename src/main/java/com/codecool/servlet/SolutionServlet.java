@@ -25,7 +25,7 @@ public class SolutionServlet extends HttpServlet {
         String answer = req.getParameter("solution");
         Solution solution = new Solution(name, question, answer);
         user.addSolution(solution);
-        req.getRequestDispatcher("student.html").forward(req, resp);
+        req.getRequestDispatcher("student.jsp").forward(req, resp);
 
 
     }
