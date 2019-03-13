@@ -44,12 +44,12 @@ public class PublishServlet extends HttpServlet {
                 }
             }
         }
-        request.getRequestDispatcher("curriculum").forward(request, response);
+        request.getRequestDispatcher("curriculum-mentor.jsp").forward(request, response);
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("curriculum").forward(request, response);
+        request.getRequestDispatcher("curriculum.jsp").forward(request, response);
 
     }
 }
