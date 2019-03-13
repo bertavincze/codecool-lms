@@ -1,6 +1,8 @@
 package com.codecool.model.curriculum;
 
-public class AssignmentPage extends Page {
+import java.io.Serializable;
+
+public class AssignmentPage extends Page implements Serializable {
 
     private String question;
     private int maxScore;

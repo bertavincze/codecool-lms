@@ -1,5 +1,5 @@
 body{
-	background:url('pics/galaxybg.jpg');
+	background:url('../pics/galaxybg.jpg');
 	background-attachment: center top;
 	background-size: cover;
 	background-repeat: no-repeat;

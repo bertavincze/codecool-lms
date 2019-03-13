@@ -2,11 +2,12 @@ package com.codecool.model.user;
 
 import com.codecool.model.curriculum.Solution;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Student extends User {
+public class Student extends User implements Serializable {
 
     private List<Solution> solutionList;
     private List<String> urlList;

@@ -21,7 +21,7 @@ public class RegisterServlet extends HttpServlet {
         String name = req.getParameter("name");
         String email = req.getParameter("email");
         String password = req.getParameter("password");
-        String userRoleString = req.getParameter("status").toUpperCase();
+        String userRoleString = req.getParameter("status");
 
         User user;
         if (userRoleString.equals("mentor")) {
@@ -34,5 +34,10 @@ public class RegisterServlet extends HttpServlet {
         req.getRequestDispatcher("succesfulregist.jsp").forward(req, resp);
 
 
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.getRequestDispatcher("registration.html").forward(req, resp);
     }
 }
