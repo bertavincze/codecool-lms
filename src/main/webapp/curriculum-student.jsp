@@ -28,62 +28,46 @@
     <div class="content">
         <div class="container">
             <div class="containerhead">
-                <div class="title">Profile</div>
+                <div class="title">Curriculum</div>
             </div>
-            <div class="one-third">
-            </div>
-                <div class="two-third">
-                     <table>
-                      <tr>
-                        <td>Name: </td>
-                        <td>${user.getName()}</td>
-                      </tr>
-                      <tr>
-                        <td>E-mail: </td>
-                        <td>${user.getEmail()}</td>
-                      </tr>
-                      <tr>
-                        <td>Role: </td>
-                        <td></td>
-                      </tr>
-                    </table>
-                </div>
+            <ul>
+            <c:forEach var="page" items="${PageList.getInstance().getPageList()}">
+                 <c:choose>
+                 <c:when test="${page.isPublished()}">
+                        <a href=""><li>${page.getTitle()</li></a>
+                  </c:when>
+            </c:choose>
+            </c:forEach>
+            </ul>
             <div class="containerfoot"></div>
         </div>
     </div>
 
     <div class="sidebar">
         <div class="sbcontainer">
+        <div class="containerhead">
+            <div class="title">Logged in user</div>
+            </div>
             <div class="desc">
-                <p>Welcome ${user.getName()}! You can see and edit your basic data and track your progress here.</p> <br>
-                <p><a href="/">Edit profile</a></p><br>
-
-                <!-- <div class="popup" onclick="myFunction()">Click me to toggle the popup!
-                    <form class="popuptext" id="myPopup" action = "/codecool-lms/editName" method = "post">
-                        <p>Name: <input type = "text" name = "name"></p>
-                        <input type = "submit" value = "Register!" />
-                    </form>
-                </div>
-
-                <script>
-
-                function myFunction() {
-                  var popup = document.getElementById("myPopup");
-                  popup.classList.toggle("show");
-                }
-                </script> -->
-
-
+                <p>Name: ${user.getName()}</p>
+                <c:choose>
+                      <c:when test="${user.getClass().simpleName == 'Student'}">
+                            <p>Role: Student</p>
+                      </c:when>
+                      <c:otherwise>
+                            <p>Role: Mentor</p>
+                      </c:otherwise>
+                </c:choose>
             </div>
             <div class="containerhead">
                 <div class="title"></div>
             </div>
             <ul class="links">
                 <div class="linktitle">Favourites</div>
-                <li><a href="/">Sidebar link 1</a></li>
-                <li><a href="/">Sidebar link 2</a></li>
-                <li><a href="/">Sidebar link 3</a></li>
-                <li><a href="/">Sidebar link 4</a></li>
+                <li><a href="">Sidebar link 1</a></li>
+                <li><a href="">Sidebar link 2</a></li>
+                <li><a href="">Sidebar link 3</a></li>
+                <li><a href="">Sidebar link 4</a></li>
             </ul>
 
         </div>
