@@ -24,19 +24,15 @@ public class SolutionServlet extends HttpServlet {
         String answer = req.getParameter("solution");
         Solution solution = new Solution(name, question, answer);
         user.addSolution(solution);
-        req.getRequestDispatcher("student.jsp").forward(req, resp);
-
-
+        req.getRequestDispatcher("curriculum").forward(req, resp);
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         HttpSession session = request.getSession(false);
         Student user = (Student) session.getAttribute("user");
 
         String title = request.getParameter("title");
-
 
         for (Solution solution : user.getSolutionList()) {
             if (solution.getTitle().equals(title)) {

@@ -7,6 +7,7 @@ import com.codecool.model.curriculum.Page;
 import com.codecool.model.curriculum.Solution;
 import com.codecool.model.curriculum.TextPage;
 import com.codecool.model.user.Student;
+import com.codecool.model.user.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -33,13 +34,14 @@ public class PageHandlerServlet extends HttpServlet {
             TextPage textPage = new TextPage(name, content);
             PageList.getInstance().addPage(textPage);
         }
-        request.getRequestDispatcher("mentor.jsp").forward(request, response);
+        request.getRequestDispatcher("curriculum").forward(request, response);
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String title = request.getParameter("title");
         HttpSession session = request.getSession(false);
+        User user = (User) session.getAttribute("user");
 
         Page requestedPage = null;
         for (Page page : PageList.getInstance().getPageList()) {
@@ -51,8 +53,8 @@ public class PageHandlerServlet extends HttpServlet {
         }
 
         if (isAssignmentPage(requestedPage)) {
-            if (hasSolutionByUser(requestedPage.getTitle(), session)) {
-                request.getRequestDispatcher("seesolution.jsp").forward(request, response);
+            if (user instanceof Student) {
+                request.getRequestDispatcher("solution").forward(request, response);
             } else {
                 request.getRequestDispatcher("curriculum").forward(request, response);
             }
@@ -68,16 +70,6 @@ public class PageHandlerServlet extends HttpServlet {
 
     private boolean isTextPage(Page page) {
         return page instanceof TextPage;
-    }
-
-    private boolean hasSolutionByUser(String title, HttpSession session) {
-        Student user = (Student) session.getAttribute("user");
-        for (Solution solution : user.getSolutionList()) {
-            if (solution.getTitle().equals(title)) {
-                return true;
-            }
-        }
-        return false;
     }
 
 }
