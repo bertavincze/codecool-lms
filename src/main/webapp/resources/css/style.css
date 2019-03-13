@@ -90,10 +90,17 @@ nav li {
     padding:16px 24px;
 }
 
+nav p{
+    font-size:16px;
+    margin:0px auto;
+    padding:16px 24px;
+}
+
 .marked{
     border-bottom:3px solid rgba(227, 0, 65, 0.7);
     color: rgba(227, 0, 65, 0.7);
 }
+
 
 
 nav li:hover {
@@ -101,6 +108,22 @@ nav li:hover {
     background-color: rgba(83, 146, 205, 0.7);
     color: rgba(227, 0, 65, 0.7);
 }
+
+.container-middle{
+    background:#ffffff;
+    margin:0 0 5% 0;
+    padding:8%;
+    border-radius: 25px;
+    text-align: center;
+    }
+
+
+
+.content-middle{
+    margin: 0 auto;
+    size: 50%;
+}
+
 
 /* MEDIA QUERIES FOR RESPONSIVE LAYOUT */
 @media (min-width:1020px) {
