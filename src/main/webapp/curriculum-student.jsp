@@ -32,7 +32,7 @@
                 <div class="title">Curriculum</div>
             </div>
             <ul>
-            <c:forEach var="page" items="${PageList.getInstance().getPageList()}">
+            <c:forEach var="page" items="${pageList}">
                  <c:choose>
                  <c:when test="${page.isPublished()}">
                         <a href="assignment?title=${page.getTitle()}"><li>${page.getTitle()}</li></a>
