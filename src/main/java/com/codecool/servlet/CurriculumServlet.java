@@ -1,6 +1,7 @@
 package com.codecool.servlet;
 
 import com.codecool.model.user.Mentor;
+import com.codecool.model.user.Student;
 import com.codecool.model.user.User;
 
 import javax.servlet.ServletException;
@@ -24,7 +25,7 @@ public class CurriculumServlet extends HttpServlet {
 
         if (user instanceof Mentor) {
             request.getRequestDispatcher("curriculum-mentor.jsp").forward(request, response);
-        } else {
+        } else if (user instanceof Student){
             request.getRequestDispatcher("curriculum-student.jsp").forward(request, response);
         }
     }
