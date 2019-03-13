@@ -3,7 +3,6 @@ package com.codecool.servlet;
 import com.codecool.model.user.Mentor;
 import com.codecool.model.user.Student;
 import com.codecool.model.user.User;
-
 import com.codecool.database.UserList;
 
 import javax.servlet.ServletException;

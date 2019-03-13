@@ -21,7 +21,6 @@ public class PageHandlerServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         if (request.getParameter("question") != null) {
             String name = request.getParameter("title");
             String question = request.getParameter("question");

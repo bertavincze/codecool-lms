@@ -2,9 +2,6 @@ package com.codecool.servlet;
 
 import com.codecool.database.PageList;
 import com.codecool.model.curriculum.Page;
-import com.codecool.model.user.Mentor;
-import com.codecool.model.user.Student;
-import com.codecool.model.user.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,7 +15,6 @@ public class PublishServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("text/html");
 
         String[] published = request.getParameterValues("publish");
         String[] unpublished = request.getParameterValues("unpublish");
@@ -50,7 +46,6 @@ public class PublishServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("curriculum.jsp").forward(request, response);
-
     }
 }
 

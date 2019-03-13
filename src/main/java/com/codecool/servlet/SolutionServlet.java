@@ -19,7 +19,6 @@ public class SolutionServlet extends HttpServlet {
         HttpSession session = req.getSession(false);
         Student user = (Student) session.getAttribute("user");
 
-        resp.setContentType("text/html;charset=UTF-8");
         String name = req.getParameter("title");
         String question = req.getParameter("question");
         String answer = req.getParameter("solution");
@@ -32,7 +31,7 @@ public class SolutionServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+
         HttpSession session = request.getSession(false);
         Student user = (Student) session.getAttribute("user");
 

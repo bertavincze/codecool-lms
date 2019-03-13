@@ -20,8 +20,6 @@ public class CurriculumServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-
         HttpSession session = request.getSession(false);
         User user = (User) session.getAttribute("user");
         List<Page> pageList = PageList.getInstance().getPageList();
