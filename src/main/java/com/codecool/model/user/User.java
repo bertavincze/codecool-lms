@@ -31,4 +31,8 @@ public abstract class User implements Serializable {
         this.name = name;
     }
 
+    public void setEmail(String mail) {
+        this.email = mail;
+    }
+
 }
