@@ -20,6 +20,8 @@ public class RegisterServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("text/html;charset=UTF-8");
+
         String name = req.getParameter("name");
         String email = req.getParameter("email");
         String password = req.getParameter("password");
@@ -44,6 +46,7 @@ public class RegisterServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("text/html;charset=UTF-8");
         req.getRequestDispatcher("registration.html").forward(req, resp);
     }
 

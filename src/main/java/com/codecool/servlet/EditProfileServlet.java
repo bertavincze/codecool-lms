@@ -26,6 +26,7 @@ public class EditProfileServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
         String newName = request.getParameter("name");
         getCurrentUser(request).setName(newName);
         request.getRequestDispatcher("profile.jsp").forward(request, response);

@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="java.util.List" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -69,7 +70,16 @@
                       </tr>
                       <tr>
                         <td>Role: </td>
-                        <td></td>
+                        <td>
+                        <c:choose>
+                            <c:when test="${user.getClass().simpleName == 'Student'}">
+                                <p>Student</p>
+                            </c:when>
+                            <c:otherwise>
+                                <p>Mentor</p>
+                            </c:otherwise>
+                            </c:choose>
+                        </td>
                       </tr>
                     </table>
 

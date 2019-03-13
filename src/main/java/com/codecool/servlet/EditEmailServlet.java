@@ -24,6 +24,7 @@ public class EditEmailServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
         String newMail = request.getParameter("email");
         getCurrentUser(request).setEmail(newMail);
         request.getRequestDispatcher("profile.jsp").forward(request, response);
