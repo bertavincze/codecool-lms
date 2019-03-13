@@ -20,26 +20,30 @@ public class PublishServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
 
-        String published[] = request.getParameterValues("publish");
-        String unpublished[] = request.getParameterValues("unpublish");
+        String[] published = request.getParameterValues("publish");
+        String[] unpublished = request.getParameterValues("unpublish");
 
         //needs refactoring
-        for (Page page : PageList.getInstance().getPageList()) {
-            for (String name : published) {
-                if (page.getTitle().equals(name)) {
-                    page.publish();
+        if (published != null) {
+            for (Page page : PageList.getInstance().getPageList()) {
+                for (String name : published) {
+                    System.out.println(name);
+                    if (page.getTitle().equals(name)) {
+                        page.publish();
+                    }
                 }
             }
         }
 
-        for (Page page : PageList.getInstance().getPageList()) {
-            for (String name : unpublished) {
-                if (page.getTitle().equals(name)) {
-                    page.unpublish();
+        if (unpublished != null) {
+            for (Page page : PageList.getInstance().getPageList()) {
+                for (String name : unpublished) {
+                    if (page.getTitle().equals(name)) {
+                        page.unpublish();
+                    }
                 }
             }
         }
-
         request.getRequestDispatcher("curriculum").forward(request, response);
     }
 

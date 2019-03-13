@@ -32,19 +32,31 @@
             <div class="containerhead">
                 <div class="title">Curriculum</div>
             </div>
-            <p>Modify page status below:</p>
-            <form action="publishservlet" method="">
+            <h1>Published pages</h1>
+            <p>Check the box to unpublish the selected page.</p>
+            <form action="publishservlet" method="post">
             <ul>
             <c:forEach var="page" items="${pageList}">
                 <c:choose>
                 <c:when test="${page.isPublished()}">
-                <li><input type="checkbox" name="unpublish" value="${page.getTitle()}" />Unpublish: <a href="">${page.getTitle()}</a></li>
-
+                <li><input type="checkbox" name="unpublish" value="${page.getTitle()}" />Published: <a href="">${page.getTitle()}</a></li>
                 </c:when>
-                <c:otherwise>
-                <li><input type="checkbox" name="publish" value="${page.getTitle()}" />Publish: <a href="">${page.getTitle()}</a></li>
-
-                </c:otherwise>
+                </c:choose>
+            </c:forEach>
+            </ul>
+            <br>
+            <input type="submit" value="Submit changes">
+            <br>
+            </form>
+            <h1>Unpublished pages</h1>
+            <p>Check the box to publish the selected page.</p>
+            <form action="publishservlet" method="post">
+            <ul>
+            <c:forEach var="page" items="${pageList}">
+                <c:choose>
+                <c:when test="${!page.isPublished()}">
+                <li><input type="checkbox" name="publish" value="${page.getTitle()}" />Unpublished: <a href="">${page.getTitle()}</a></li>
+                </c:when>
                 </c:choose>
             </c:forEach>
             </ul>
