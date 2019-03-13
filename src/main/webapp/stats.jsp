@@ -9,8 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CodeCool LMS</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <link rel="stylesheet" type="text/css" href="css/profile.css">
+    <link rel="stylesheet" type="text/css" href="resources/css/style.css">
+    <link rel="stylesheet" type="text/css" href="resources/css/profile.css">
 </head>
 
 <body>
@@ -26,6 +26,7 @@
         <a href="solution.html"><li>Solution</li></a>
         <a href="attendance.html"><li>Attendance</li></a>
         <a href="profile.jsp"><li>Profile</li></a>
+        <a href="stats"><li>Stats</li></a>
     </ul>
 </nav>
 
@@ -37,9 +38,10 @@
             </div>
                 <table>
                     <tr>
-                        <td>Name</td>
-                        <td>Assignment</td>
-                        <td>Score</td>
+                        <td>Assignment title</td>
+                        <td>Submission Date</td>
+                        <td>Max Score</td>
+                        <td>Student Score</td>
                     </tr>
                      <c:forEach var="s" items="${user.getSolutionList()}">
                         <tr>
