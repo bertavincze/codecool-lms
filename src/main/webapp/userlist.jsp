@@ -21,8 +21,8 @@
 <nav>
     <ul>
         <a href="profile.jsp"><li>Profile</li></a>
-        <a href="userlist"><li>UserList</li></a>
-        <a href="curriculum"><li class="marked">Curriculum</li></a>
+        <a href="userlist"><li class="marked">UserList</li></a>
+        <a href="curriculum"><li>Curriculum</li></a>
         <c:choose>
             <c:when test="${user.getClass().simpleName == 'Student'}">
                  <a href="assignments"><li>Assignments</li></a>
