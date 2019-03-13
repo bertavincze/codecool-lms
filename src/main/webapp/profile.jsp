@@ -19,7 +19,7 @@
 <nav>
     <ul>
         <a href="profile.jsp"><li class="marked">Profile</li></a>
-        <a href="curriculum.html"><li>Curriculum</li></a>
+        <a href="curriculum"><li>Curriculum</li></a>
         <a href="assignment.html"><li>Assignments</li></a>
         <a href="stats.html"><li>Stats</li></a>
     </ul>

@@ -21,7 +21,7 @@
         <a href="profile.jsp"><li>Profile</li></a>
         <a href="curriculum"><li class="marked">Curriculum</li></a>
         <a href="assignment.html"><li>Assignments</li></a>
-        <a href="stats.html"><li>Stats</li></a>
+        <a href="stats"><li>Stats</li></a>
     </ul>
 </nav>
 
