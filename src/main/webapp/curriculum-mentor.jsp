@@ -34,11 +34,7 @@
             </div>
             <ul>
             <c:forEach var="page" items="${PageList.getInstance().getPageList()}">
-                 <c:choose>
-                 <c:when test="${page.isPublished()}">
-                        <a href=""><li>${page.getTitle()}</li></a>
-                  </c:when>
-            </c:choose>
+                <a href=""><li>${page.getTitle()}</li></a>
             </c:forEach>
             </ul>
             <div class="containerfoot"></div>

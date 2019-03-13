@@ -35,7 +35,7 @@
             <c:forEach var="page" items="${PageList.getInstance().getPageList()}">
                  <c:choose>
                  <c:when test="${page.isPublished()}">
-                        <a href=""><li>${page.getTitle()}</li></a>
+                        <a href="assignment?title=${page.getTitle()}"><li>${page.getTitle()}</li></a>
                   </c:when>
             </c:choose>
             </c:forEach>

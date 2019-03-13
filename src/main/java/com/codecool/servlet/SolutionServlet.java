@@ -1,12 +1,7 @@
 package com.codecool.servlet;
 
-
-import com.codecool.database.PageList;
-import com.codecool.model.curriculum.AssignmentPage;
-import com.codecool.model.curriculum.Page;
 import com.codecool.model.curriculum.Solution;
 import com.codecool.model.user.Student;
-import com.codecool.model.user.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -30,8 +25,6 @@ public class SolutionServlet extends HttpServlet {
         String answer = req.getParameter("solution");
         Solution solution = new Solution(name, question, answer);
         user.addSolution(solution);
-        System.out.println(solution.getTitle() + "1");
-        System.out.println(user.getSolutionList().get(0).getTitle() + "2");
         req.getRequestDispatcher("student.html").forward(req, resp);
 
 
@@ -44,7 +37,6 @@ public class SolutionServlet extends HttpServlet {
         Student user = (Student) session.getAttribute("user");
 
         String title = request.getParameter("title");
-        System.out.println(title + "3");
 
 
         for (Solution solution : user.getSolutionList()) {
