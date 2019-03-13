@@ -73,7 +73,7 @@
                                 <p>Role: Student</p>
                           </c:when>
                           <c:otherwise>
-                                <td>Role: Mentor</td>
+                                <p>Role: Mentor</p>
                           </c:otherwise>
                     </c:choose>
                 <br>
