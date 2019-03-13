@@ -44,7 +44,7 @@ public class PublishServlet extends HttpServlet {
                 }
             }
         }
-        request.getRequestDispatcher("curriculum-mentor.jsp").forward(request, response);
+        request.getRequestDispatcher("curriculum").forward(request, response);
     }
 
     @Override
