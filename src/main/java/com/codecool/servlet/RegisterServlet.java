@@ -16,7 +16,7 @@ import java.io.IOException;
 @WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
 
-    private boolean isValidUserData = false;
+    private boolean isValidUserData = true;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -57,6 +57,6 @@ public class RegisterServlet extends HttpServlet {
                 isValidUserData = false;
             }
         }
-        isValidUserData = true;
+
     }
 }
