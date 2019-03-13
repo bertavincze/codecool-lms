@@ -201,6 +201,8 @@ input[type=button], input[type=submit], input[type=reset] {
   margin:4px 0px;
   cursor:pointer;
   font-size: 16px;
+  border-radius: 15px;
+  padding: 10px 25px;
 }
 
 input[type=text], input[type=datetime-local]  {

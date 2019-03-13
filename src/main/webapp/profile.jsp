@@ -11,6 +11,16 @@
     <title>GoatCool</title>
 </head>
 <body>
+<script type="text/javascript">
+    function editName() {
+        var popup = document.getElementById("editName");
+        popup.classList.toggle("show");
+    }
+    function editMail() {
+         var popup = document.getElementById("editMail");
+         popup.classList.toggle("show");
+        }
+</script>
 
 <div class="header">
     <a href="index.html"><h1>GoatCool</h1></a>
@@ -37,17 +47,32 @@
                      <table>
                       <tr>
                         <td>Name: </td>
-                        <td>${user.getName()}</td>
+                        <td><p>${user.getName()}</p>
+                            <form id="editName" action = "editedName" method = "post">
+                                <input class="popupbox" type = "text" name = "name">
+                                <input class="popupbutton" type = "submit" value = "Save" />
+                            </form>
+                        </td>
+                        <td class="icon" onclick="editName()">
+                        </td>
                       </tr>
                       <tr>
                         <td>E-mail: </td>
-                        <td>${user.getEmail()}</td>
+                        <td><p>${user.getEmail()}</p>
+                            <form id="editMail" action = "editedMail" method = "post">
+                                <input  class="popupbox" type = "text" name = "email">
+                                <input  class="popupbutton" type = "submit" value = "Save" />
+                            </form>
+                        </td>
+                        <td class="icon" onclick="editMail()">
+                        </td>
                       </tr>
                       <tr>
                         <td>Role: </td>
                         <td></td>
                       </tr>
                     </table>
+
                 </div>
             <div class="containerfoot"></div>
         </div>
@@ -57,26 +82,9 @@
         <div class="sbcontainer">
             <div class="desc">
                 <p>Welcome ${user.getName()}! You can see and edit your basic data and track your progress here.</p> <br>
-                <p><a href="/">Edit profile</a></p><br>
 
-                <div class="popup" onclick="myFunction()">Click me to toggle the popup!
-                    <form class="popuptext" id="myPopup" action = "editedName" method = "post">
-                        <p>Name: <input type = "text" name = "name"></p>
-                        <input type = "submit" value = "Save" />
-                    </form>
-                    <form class="popuptext" id="myPopup" action = "editedMail" method = "post">
-                        <p>E-mail: <input type = "text" name = "email"></p>
-                        <input type = "submit" value = "Save" />
-                    </form>
-                </div>
 
-                <script>
 
-                function myFunction() {
-                  var popup = document.getElementById("myPopup");
-                  popup.classList.toggle("show");
-                }
-                </script>
 
 
             </div>
