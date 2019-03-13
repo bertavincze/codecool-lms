@@ -30,6 +30,8 @@ public class SolutionServlet extends HttpServlet {
         String answer = req.getParameter("solution");
         Solution solution = new Solution(name, question, answer);
         user.addSolution(solution);
+        System.out.println(solution.getTitle() + "1");
+        System.out.println(user.getSolutionList().get(0).getTitle() + "2");
         req.getRequestDispatcher("student.html").forward(req, resp);
 
 
@@ -41,18 +43,18 @@ public class SolutionServlet extends HttpServlet {
         HttpSession session = request.getSession(false);
         Student user = (Student) session.getAttribute("user");
 
-        String title = request.getParameter("solutionTitle");
+        String title = request.getParameter("title");
+        System.out.println(title + "3");
 
 
         for (Solution solution : user.getSolutionList()) {
-                if (solution.getTitle().equals(title)) {
-                    request.setAttribute("solution", solution);
-                    request.getRequestDispatcher("seesolution.jsp").forward(request, response);
-
-            } else {
-                request.getRequestDispatcher("404.html").forward(request, response);
+            if (solution.getTitle().equals(title)) {
+                System.out.println(title + "4");
+                request.setAttribute("solution", solution);
+                request.getRequestDispatcher("seesolution.jsp").forward(request, response);
+                return;
             }
-
         }
+        request.getRequestDispatcher("404.html").forward(request, response);
     }
 }
