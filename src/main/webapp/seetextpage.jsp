@@ -18,8 +18,8 @@
 
 <nav>
     <ul>
-        <a href="profile.jsp"><li>Profile</li></a>
-        <a href="curriculum-mentor"><li>Curriculum</li></a>
+        <a href="profile.html"><li>Profile</li></a>
+        <a href="curriculum.html"><li>Curriculum</li></a>
         <a href="solution.html"><li>Solution</li></a>
         <a href="attendance.html"><li>Attendance</li></a>
     </ul>
@@ -32,16 +32,10 @@
                 <div class="title"><a href="">${page.getTitle()}</a></div>
             </div>
 
-                <p>Question: </p>
-                <p>${page.getQuestion()}</p>
 
-                <form action="blablabla" method="POST">
-                    <p>Solution: </p>
-                    <p><textarea rows="20" cols="20" name="solution"></textarea></p>
-                <br><br>
-                <p><input type="submit"></p>
+                <p>${page.getContent()}</p>
 
-            </form>
+
             <div class="containerfoot"></div>
         </div>
     </div>

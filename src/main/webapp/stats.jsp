@@ -7,22 +7,22 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GoatCool</title>
+    <title>CodeCool LMS</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="resources/css/style.css">
-    <link rel="stylesheet" type="text/css" href="resources/css/profile.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/profile.css">
 </head>
 
 <body>
 
 <div class="header">
-    <a href="index.html"><h1>GoatCool</h1></a>
+    <a href="index.html"><h1>CodeCool LMS</h1></a>
 </div>
 
 <nav>
     <ul>
         <a href="userlist"><li class="marked">UserList</li></a>
-        <a href="curriculum.html"><li>Curriculum</li></a>
+        <a href="curriculum-student"><li>Curriculum</li></a>
         <a href="solution.html"><li>Solution</li></a>
         <a href="attendance.html"><li>Attendance</li></a>
         <a href="profile.jsp"><li>Profile</li></a>
@@ -33,18 +33,18 @@
     <div class="content">
         <div class="container">
             <div class="containerhead">
-                <div class="title"><a href="">Registered Users</a></div>
+                <div class="title"><a href="">Assignment Scores</a></div>
             </div>
                 <table>
                     <tr>
                         <td>Name</td>
-                        <td>E-mail</td>
-                        <td>Role</td>
+                        <td>Assignment</td>
+                        <td>Score</td>
                     </tr>
-                    <c:forEach var="u" items="${userList}">
+                     <c:forEach var="s" items="${user.getSolutionList()}">
                         <tr>
-                            <td><c:out value="${u.name}"/> </td>
-                            <td><c:out value="${u.email}"/></td>
+                            <td><c:out value="${s.title}"/> </td>
+                            <td><c:out value="${s.answer}"/></td>
                             <c:choose>
                                   <c:when test="${u.getClass().simpleName == 'Student'}">
                                         <td>Student</td>
@@ -73,7 +73,7 @@
                                 <p>Role: Student</p>
                           </c:when>
                           <c:otherwise>
-                                <p>Role: Mentor</p>
+                                <td>Role: Mentor</td>
                           </c:otherwise>
                     </c:choose>
                 <br>

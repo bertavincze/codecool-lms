@@ -1,8 +1,8 @@
 package com.codecool.servlet;
 
-import com.codecool.database.UserList;
-import com.codecool.model.user.Student;
+
 import com.codecool.model.user.User;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
