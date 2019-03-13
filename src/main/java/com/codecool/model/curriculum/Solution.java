@@ -19,8 +19,7 @@ public class Solution implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Solution solution = (Solution) o;
-        return Objects.equals(title, solution.title) &&
-            Objects.equals(answer, solution.answer);
+        return Objects.equals(title, solution.title);
     }
 
     @Override
@@ -34,5 +33,9 @@ public class Solution implements Serializable {
 
     public String getAnswer() {
         return answer;
+    }
+
+    public String getQuestion() {
+        return question;
     }
 }

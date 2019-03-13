@@ -21,7 +21,7 @@ public class Student extends User implements Serializable {
 
     public void addSolution(Solution solution) {
         if (!solutionList.contains(solution)) {
-            addSolution(solution);
+            solutionList.add(solution);
         }
     }
 
