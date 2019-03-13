@@ -39,7 +39,7 @@
             <c:forEach var="page" items="${pageList}">
                 <c:choose>
                 <c:when test="${page.isPublished()}">
-                <li><input type="checkbox" name="unpublish" value="${page.getTitle()}" />Published: <a href="">${page.getTitle()}</a></li>
+                <li><input type="checkbox" name="unpublish" value="${page.getTitle()}" />Published: <a href="handlepage?title=${page.getTitle()}">${page.getTitle()}</a></li>
                 </c:when>
                 </c:choose>
             </c:forEach>
@@ -55,7 +55,7 @@
             <c:forEach var="page" items="${pageList}">
                 <c:choose>
                 <c:when test="${!page.isPublished()}">
-                <li><input type="checkbox" name="publish" value="${page.getTitle()}" />Unpublished: <a href="">${page.getTitle()}</a></li>
+                <li><input type="checkbox" name="publish" value="${page.getTitle()}" />Unpublished: <a href="handlepage?title=${page.getTitle()}">${page.getTitle()}</a></li>
                 </c:when>
                 </c:choose>
             </c:forEach>
@@ -71,7 +71,7 @@
     <div class="sidebar">
         <div class="sbcontainer">
             <div class="containerhead">
-                <div class="title">Logged in user</div>
+                <div class="title">Current user</div>
             </div>
 
             <div class="desc">
@@ -89,10 +89,10 @@
 
             <ul class="links">
                 <div class="linktitle">Favourites</div>
-                <li><a href="/">Sidebar link 1</a></li>
-                <li><a href="/">Sidebar link 2</a></li>
-                <li><a href="/">Sidebar link 3</a></li>
-                <li><a href="/">Sidebar link 4</a></li>
+                <li><a href="">Sidebar link 1</a></li>
+                <li><a href="">Sidebar link 2</a></li>
+                <li><a href="">Sidebar link 3</a></li>
+                <li><a href="">Sidebar link 4</a></li>
             </ul>
 
         </div>

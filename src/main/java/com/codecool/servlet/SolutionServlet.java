@@ -41,7 +41,6 @@ public class SolutionServlet extends HttpServlet {
 
         for (Solution solution : user.getSolutionList()) {
             if (solution.getTitle().equals(title)) {
-                System.out.println(title + "4");
                 request.setAttribute("solution", solution);
                 request.getRequestDispatcher("seesolution.jsp").forward(request, response);
                 return;

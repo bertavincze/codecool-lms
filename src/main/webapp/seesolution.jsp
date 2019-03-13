@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CodeCool LMS</title>
+    <title>GoatCool</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="resources/css/style.css">
 </head>
@@ -13,7 +11,7 @@
 <body>
 
 <div class="header">
-    <a href="index.html"><h1>CodeCool LMS</h1></a>
+    <a href="index.html"><h1>GoatCool</h1></a>
 </div>
 
 <nav>
@@ -31,8 +29,7 @@
             <div class="containerhead">
                 <div class="title"><a href=""></a>Solution</div>
             </div>
-
-                <h1>${solution.getTitle()}</h2>
+                <h1>${solution.getTitle()}</h1>
                 <p>Question: </p>
                 <p>${solution.getQuestion()}</p>
 
@@ -58,10 +55,10 @@
 
             <ul class="links">
                 <div class="linktitle">Navigation</div>
-                <li><a href="/">Sidebar link 1</a></li>
-                <li><a href="/">Sidebar link 2</a></li>
-                <li><a href="/">Sidebar link 3</a></li>
-                <li><a href="/">Sidebar link 4</a></li>
+                <li><a href="">Sidebar link 1</a></li>
+                <li><a href="">Sidebar link 2</a></li>
+                <li><a href="">Sidebar link 3</a></li>
+                <li><a href="">Sidebar link 4</a></li>
             </ul>
 
         </div>
