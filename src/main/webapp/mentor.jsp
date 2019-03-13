@@ -63,8 +63,8 @@
 
             <ul class="links">
                 <div class="linktitle">Favourites</div>
-                <li><a href="addassignment.jsp">Add new assignment page</a></li>
-                <li><a href="addtextpage.jsp">Add new text page</a></li>
+                <li><a href="">Sidebar link 1</a></li>
+                <li><a href="">Sidebar link 2</a></li>
                 <li><a href="">Sidebar link 3</a></li>
                 <li><a href="">Sidebar link 4</a></li>
             </ul>
