@@ -43,8 +43,9 @@
                     </tr>
                     <c:forEach var="u" items="${users}">
                         <tr>
-                            <td><c:out value="${u.name}"/> </td>
-                            <td><c:out value="${u.email}"/></td>
+                            <td>Test<td>
+                            <td>${u.getName()}</td>
+                            <td><c:out value="${u.email}"/> </td>
                         </tr>
                     </c:forEach>
                 </table>
