@@ -1,10 +1,11 @@
 package com.codecool.model.curriculum;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Solution {
-    String title;
-    String answer;
+public class Solution implements Serializable {
+   private String title;
+    private String answer;
 
     public Solution(String title, String answer) {
         this.title = title;

@@ -1,9 +1,5 @@
 package com.codecool.filter;
 
-import com.codecool.model.user.Mentor;
-import com.codecool.model.user.Student;
-import com.codecool.model.user.User;
-
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
@@ -25,42 +21,18 @@ public class AuthenticationFilter implements Filter {
 
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse resp = (HttpServletResponse) response;
-
-        String uri = req.getRequestURI();
-        System.out.println("Requested Resource:" + uri);
-
         HttpSession session = req.getSession(false);
+        String contextPath = context.getContextPath();
+        String loginURI = contextPath + "/login";
+        String requestURI = req.getRequestURI();
+        String registerURI = contextPath + "/register";
 
-        if (session == null && !uri.endsWith("index.html") && !uri.endsWith("login")) {
-            System.out.println("Unauthorized access request");
-            resp.sendRedirect("index.html");
-
-        } else if (session != null && session.getAttribute("user") == null) {
-            System.out.println("User not logged in");
-            resp.sendRedirect("index.html");
-
-        } else if (session != null && session.getAttribute("user") != null) {
-            User currentUser = (User) req.getAttribute("user");
-
-            if (currentUser instanceof Student) {
-                for (String url: ((Student) currentUser).getUrlList()) {
-                    if (uri.endsWith(url)) {
-                        chain.doFilter(request, response);
-                    } else {
-                        req.getRequestDispatcher("noauth.jsp");
-                    }
-                }
-
-            } else if (currentUser instanceof Mentor) {
-                for (String url: ((Mentor) currentUser).getUrlList()) {
-                    if (uri.endsWith(url)) {
-                        chain.doFilter(request, response);
-                    } else {
-                        req.getRequestDispatcher("noauth.jsp");
-                    }
-                }
-            }
+        if ((session != null && session.getAttribute("user") != null)
+            || requestURI.startsWith(contextPath + "/resources/")
+            || req.getRequestURI().equals(loginURI) || req.getRequestURI().equals(registerURI)) {
+            chain.doFilter(request, response);
+        } else {
+            resp.sendRedirect(loginURI);
         }
     }
-
 }

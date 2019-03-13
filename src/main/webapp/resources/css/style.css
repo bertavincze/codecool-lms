@@ -40,7 +40,7 @@ img {
     padding:150px 0px;
     text-align:center;
     width:100%;
-    background:url('pics/goatcool.jpg');
+    background:url('../pics/goatcool.jpg');
     background-position: center;
     background-size: cover;
 

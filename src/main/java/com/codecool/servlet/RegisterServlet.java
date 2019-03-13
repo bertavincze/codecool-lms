@@ -16,23 +16,47 @@ import java.io.IOException;
 @WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
 
+    private boolean isValidUserData = false;
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String name = req.getParameter("name");
         String email = req.getParameter("email");
         String password = req.getParameter("password");
-        String userRoleString = req.getParameter("status").toUpperCase();
+        String userRoleString = req.getParameter("status");
 
-        User user;
-        if (userRoleString.equals("mentor")) {
-            user = new Mentor(name, email, password);
+        validateUserData(name, email, password, userRoleString);
+
+        if (isValidUserData) {
+            User user = null;
+            if (userRoleString.equals("mentor")) {
+                user = new Mentor(name, email, password);
+            } else if (userRoleString.equals("student")){
+                user = new Student(name, email, password);
+            }
+            UserList.getInstance().addUser(user);
+            req.setAttribute("user", user);
+            req.getRequestDispatcher("succesfulregist.jsp").forward(req, resp);
         } else {
-            user = new Student(name, email, password);
+            resp.sendRedirect("registration.html");
         }
-        UserList.getInstance().addUser(user);
-        req.setAttribute("user", user);
-        req.getRequestDispatcher("succesfulregist.jsp").forward(req, resp);
+    }
 
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.getRequestDispatcher("registration.html").forward(req, resp);
+    }
 
+    private void validateUserData(String name, String email, String password, String userRoleString) throws IOException {
+        for (User user: UserList.getInstance().getUsers()) {
+            if (user.getName().equals(name) && user.getEmail().equals(email)) {
+                isValidUserData = false;
+            } else if (user.getEmail().equals(email) || user.getName().equals(name)) {
+                isValidUserData = false;
+            } else if (name == null || email == null || password == null || userRoleString == null) {
+                isValidUserData = false;
+            }
+        }
+        isValidUserData = true;
     }
 }

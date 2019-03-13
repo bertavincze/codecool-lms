@@ -1,6 +1,8 @@
 package com.codecool.model.curriculum;
 
-public abstract class Page {
+import java.io.Serializable;
+
+public abstract class Page implements Serializable {
 
     private String title;
     protected boolean isPublished;
