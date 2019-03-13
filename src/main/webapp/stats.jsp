@@ -34,7 +34,7 @@
     <div class="content">
         <div class="container">
             <div class="containerhead">
-                <div class="title"><a href="">Assignment Scores</a></div>
+                <div class="title"><a href="">Assignment Statistics</a></div>
             </div>
                 <table>
                     <tr>
