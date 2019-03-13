@@ -33,7 +33,7 @@
                 <div class="title">Curriculum</div>
             </div>
             <ul>
-            <c:forEach var="page" items="${PageList.getInstance().getPageList()}">
+            <c:forEach var="page" items="${pageList}">
                 <a href=""><li>${page.getTitle()}</li></a>
             </c:forEach>
             </ul>
