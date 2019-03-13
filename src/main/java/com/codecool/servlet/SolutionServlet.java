@@ -38,9 +38,9 @@ public class SolutionServlet extends HttpServlet {
             if (solution.getTitle().equals(title)) {
                 request.setAttribute("solution", solution);
                 request.getRequestDispatcher("seesolution.jsp").forward(request, response);
-                return;
+            } else {
+                request.getRequestDispatcher("404.html").forward(request, response);
             }
         }
-        request.getRequestDispatcher("404.html").forward(request, response);
     }
 }
