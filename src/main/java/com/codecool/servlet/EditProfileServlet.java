@@ -1,8 +1,6 @@
 package com.codecool.servlet;
 
-
 import com.codecool.model.user.User;
-
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,24 +13,21 @@ import java.io.IOException;
 @WebServlet("/editedName")
 public class EditProfileServlet extends HttpServlet {
 
-    User currentUser;
+    private User currentUser;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-
         request.getRequestDispatcher("profile.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
         String newName = request.getParameter("name");
         getCurrentUser(request).setName(newName);
         request.getRequestDispatcher("profile.jsp").forward(request, response);
     }
 
-    protected User getCurrentUser(HttpServletRequest request){
+    private User getCurrentUser(HttpServletRequest request){
         HttpSession session = request.getSession(false);
         currentUser = (User) session.getAttribute("user");
         return currentUser;

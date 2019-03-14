@@ -1,5 +1,4 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@ page import="java.util.List" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,8 +19,8 @@
 <nav>
     <ul>
         <a href="profile.jsp"><li>Profile</li></a>
-        <a href="userlist"><li class="marked">UserList</li></a>
-        <a href="curriculum"><li>Curriculum</li></a>
+        <a href="userlist"><li>UserList</li></a>
+        <a href="curriculum"><li class="marked">Curriculum</li></a>
         <c:choose>
             <c:when test="${user.getClass().simpleName == 'Student'}">
                  <a href="assignments"><li>Assignments</li></a>
@@ -39,32 +38,17 @@
     <div class="content">
         <div class="container">
             <div class="containerhead">
-                <div class="title"><a href="">Registered Users</a></div>
+                <div class="title"><a href="">Assignment</a></div>
             </div>
-                <table>
-                    <tr>
-                        <td>Name</td>
-                        <td>E-mail</td>
-                        <td>Role</td>
-                    </tr>
-                    <c:forEach var="u" items="${userList}">
-                        <tr>
-                            <td><c:out value="${u.name}"/> </td>
-                            <td><c:out value="${u.email}"/></td>
-                            <c:choose>
-                                  <c:when test="${u.getClass().simpleName == 'Student'}">
-                                        <td>Student</td>
-                                  </c:when>
-                                  <c:otherwise>
-                                        <td>Mentor</td>
-                                  </c:otherwise>
-                            </c:choose>
-                        </tr>
-                    </c:forEach>
-                </table>
+
+                <h1>${page.getTitle()}</h1>
+                <p>Question: </p>
+                <p>${page.getQuestion()}</p>
+
             <div class="containerfoot"></div>
         </div>
     </div>
+
 
     <div class="sidebar">
         <div class="sbcontainer">

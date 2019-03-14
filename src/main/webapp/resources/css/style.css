@@ -51,7 +51,7 @@ img {
     border-bottom:4px solid #ffffff;
     border-top:4px solid #ffffff;
     display:inline-block;
-    font-family:'Brutal Type', sans-serif;
+    font-family:sans-serif;
     font-weight:bold;
     padding:8px 16px;
     text-transform:uppercase;
@@ -165,7 +165,7 @@ nav li:hover {
 }
 
 .desc {
-    text-align:left;
+    text-align:center;
 }
 
 ul.links {
@@ -263,5 +263,15 @@ select {
   background-color: #f1f1f1;
 }
 
+table {
+    margin-top: 20px;
+    width: 100%;
+}
+
+td p {
+    position: relative;
+    text-align: center;
+    z-index: 0;
+}
 
 

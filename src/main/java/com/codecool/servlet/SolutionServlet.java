@@ -1,9 +1,5 @@
 package com.codecool.servlet;
 
-
-import com.codecool.database.PageList;
-import com.codecool.model.curriculum.AssignmentPage;
-import com.codecool.model.curriculum.Page;
 import com.codecool.model.curriculum.Solution;
 import com.codecool.model.user.Student;
 import com.codecool.model.user.User;
@@ -24,37 +20,40 @@ public class SolutionServlet extends HttpServlet {
         HttpSession session = req.getSession(false);
         Student user = (Student) session.getAttribute("user");
 
-        resp.setContentType("text/html;charset=UTF-8");
         String name = req.getParameter("title");
         String question = req.getParameter("question");
         String answer = req.getParameter("solution");
         Solution solution = new Solution(name, question, answer);
         user.addSolution(solution);
-        System.out.println(solution.getTitle() + "1");
-        System.out.println(user.getSolutionList().get(0).getTitle() + "2");
-        req.getRequestDispatcher("student.html").forward(req, resp);
-
-
+        req.getRequestDispatcher("curriculum").forward(req, resp);
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession(false);
         Student user = (Student) session.getAttribute("user");
 
         String title = request.getParameter("title");
-        System.out.println(title + "3");
 
+        Solution solution = findUserSolutionByTitle(user, title);
+        if (solution != null) {
+            request.setAttribute("solution", solution);
+            request.getRequestDispatcher("seesolution.jsp").forward(request, response);
 
-        for (Solution solution : user.getSolutionList()) {
-            if (solution.getTitle().equals(title)) {
-                System.out.println(title + "4");
-                request.setAttribute("solution", solution);
-                request.getRequestDispatcher("seesolution.jsp").forward(request, response);
-                return;
+        } else {
+            request.getRequestDispatcher("404.html").forward(request, response);
+        }
+    }
+
+    private Solution findUserSolutionByTitle(User user, String title) {
+        Student student = (Student) user;
+        if (!student.getSolutionList().isEmpty()) {
+            for (Solution solution : student.getSolutionList()) {
+                if (solution.getTitle().equals(title)) {
+                    return solution;
+                }
             }
         }
-        request.getRequestDispatcher("404.html").forward(request, response);
+        return null;
     }
 }

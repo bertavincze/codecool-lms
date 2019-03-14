@@ -18,13 +18,14 @@
 
 <nav>
     <ul>
-        <a href="curriculum"><li>Curriculum</li></a>
-        <a href="userlist"><li>UserList</li></a>
-        <a href="assignment.html"><li>Assignments</li></a>
         <a href="profile.jsp"><li>Profile</li></a>
-        <a href="stats"><li>Stats</li></a>
+        <a href="userlist"><li>UserList</li></a>
+        <a href="curriculum"><li class="marked">Curriculum</li></a>
+        <a href="attendance"><li>Attendance</li></a>
+        <a href="solutions"><li>Student Solutions</li></a>
     </ul>
 </nav>
+
 
 <div class="wrapper">
     <div class="content">
@@ -32,15 +33,38 @@
             <div class="containerhead">
                 <div class="title">Curriculum</div>
             </div>
+            <h1>Published pages</h1>
+            <p>Check the box to unpublish the selected page.</p>
+            <form action="publishservlet" method="post">
             <ul>
-            <c:forEach var="page" items="${PageList.getInstance().getPageList()}">
-                 <c:choose>
-                 <c:when test="${page.isPublished()}">
-                        <a href=""><li>${page.getTitle()}</li></a>
-                  </c:when>
-            </c:choose>
+            <c:forEach var="page" items="${pageList}">
+                <c:choose>
+                <c:when test="${page.isPublished()}">
+                <li><input type="checkbox" name="unpublish" value="${page.getTitle()}" />Published: <a href="handlepage?title=${page.getTitle()}">${page.getTitle()}</a></li>
+                </c:when>
+                </c:choose>
             </c:forEach>
             </ul>
+            <br>
+            <input type="submit" value="Submit changes">
+            <br>
+            </form>
+            <h1>Unpublished pages</h1>
+            <p>Check the box to publish the selected page.</p>
+            <form action="publishservlet" method="post">
+            <ul>
+            <c:forEach var="page" items="${pageList}">
+                <c:choose>
+                <c:when test="${!page.isPublished()}">
+                <li><input type="checkbox" name="publish" value="${page.getTitle()}" />Unpublished: <a href="handlepage?title=${page.getTitle()}">${page.getTitle()}</a></li>
+                </c:when>
+                </c:choose>
+            </c:forEach>
+            </ul>
+            <br>
+            <input type="submit" value="Submit changes">
+            <br>
+            </form>
             <div class="containerfoot"></div>
         </div>
     </div>
@@ -48,7 +72,7 @@
     <div class="sidebar">
         <div class="sbcontainer">
             <div class="containerhead">
-                <div class="title">Logged in user</div>
+                <div class="title">Current user</div>
             </div>
 
             <div class="desc">
@@ -66,10 +90,10 @@
 
             <ul class="links">
                 <div class="linktitle">Favourites</div>
-                <li><a href="/">Sidebar link 1</a></li>
-                <li><a href="/">Sidebar link 2</a></li>
-                <li><a href="/">Sidebar link 3</a></li>
-                <li><a href="/">Sidebar link 4</a></li>
+                <li><a href="addassignment.jsp">Add new assignment page</a></li>
+                <li><a href="addtextpage.jsp">Add new text page</a></li>
+                <li><a href="">Sidebar link 3</a></li>
+                <li><a href="">Sidebar link 4</a></li>
             </ul>
 
         </div>
