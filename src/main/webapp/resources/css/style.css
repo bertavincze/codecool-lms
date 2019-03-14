@@ -155,6 +155,7 @@ nav li:hover {
     background:#ffffff;
     margin:0 0 5% 0;
     padding:20% 8% 10% 10%;
+    border-radius: 25px;
 }
 
 .sbcontainer h2 {
@@ -193,6 +194,7 @@ ul.links li {
     background:#ffffff;
     margin:0 0 5% 0;
     padding:8%;
+    border-radius: 25px;
 }
 
 .containerhead{
@@ -235,6 +237,7 @@ input[type=text], input[type=datetime-local]  {
   box-sizing: border-box;
   border: 2px solid #ccc;
   background-color: #f8f8f8;
+  border-radius: 15px;
 }
 
 input[type=password], input[type=datetime-local] {
@@ -244,6 +247,7 @@ input[type=password], input[type=datetime-local] {
   box-sizing: border-box;
   border: 2px solid #ccc;
   background-color: #f8f8f8;
+  border-radius: 15px;
 }
 
 textarea {
@@ -254,6 +258,7 @@ textarea {
   border: 2px solid #ccc;
   background-color: #f8f8f8;
   resize: none;
+  border-radius: 15px;
 }
 
 select {

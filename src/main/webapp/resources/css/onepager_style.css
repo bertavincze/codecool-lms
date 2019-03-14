@@ -123,6 +123,7 @@ input[type=text], input[type=datetime-local] {
   box-sizing: border-box;
   border: 2px solid #ccc;
   background-color: #f8f8f8;
+  border-radius: 15px;
 }
 
 input[type=password], input[type=datetime-local] {
@@ -132,6 +133,7 @@ input[type=password], input[type=datetime-local] {
   box-sizing: border-box;
   border: 2px solid #ccc;
   background-color: #f8f8f8;
+  border-radius: 15px;
 }
 
 textarea {
@@ -142,6 +144,7 @@ textarea {
   border: 2px solid #ccc;
   background-color: #f8f8f8;
   resize: none;
+  border-radius: 15px;
 }
 
 select {
