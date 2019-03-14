@@ -37,10 +37,10 @@
             </div>
             <h2>You are now logged in as ${user.getClass().simpleName} ${user.getName()}.</h2>
             <p>
-                Text Text Text Text Text Text Text Text Text Text Text Text
-                Text Text Text Text Text Text Text Text Text Text Text Text
-                Text Text Text Text Text Text Text Text Text Text Text Text
+                Here is a random goat for you:
+
             </p>
+                <iframe src='//randomgoat.com/embed.php' width='480' height='360' frameBorder='0' id='random-goat-embed' allowFullScreen></iframe>
             <div class="containerfoot"></div>
         </div>
     </div>
