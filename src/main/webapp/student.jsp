@@ -37,12 +37,10 @@
             </div>
             <h2>You are now logged in as ${user.getClass().simpleName} ${user.getName()}.</h2>
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et massa in dui finibus malesuada sed
-                at mi. Ut ultricies mi sed ligula dapibus, pulvinar congue leo mattis. Morbi ornare tempor porttitor.
-                Praesent dignissim rutrum dui, quis venenatis lectus pellentesque id. Aliquam viverra accumsan enim id
-                porta. Morbi fermentum scelerisque eleifend. Aenean placerat accumsan purus, eu scelerisque nisi congue at.
-                Pellentesque ac tempor felis.
+
+                Here is a random goat for you:
             </p>
+            <iframe src='//randomgoat.com/embed.php' width='480' height='360' frameBorder='0' id='random-goat-embed' allowFullScreen></iframe>
             <div class="containerfoot"></div>
         </div>
         <div class="container">
