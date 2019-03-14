@@ -14,16 +14,14 @@ public final class WebappContextListener implements ServletContextListener {
 
     private PageList pageList = PageList.getInstance();
     private UserList userList = UserList.getInstance();
-
+    private String homeDir = System.getenv("CATALINA_HOME");
+    private String directory = homeDir + "/webapps/";
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         System.out.println("This method is invoked once when the webapp gets deployed.");
         try {
-            pageList.loadPageList(sce.getServletContext().getRealPath("/") + "pagelist.ser");
-            userList.loadUserList(sce.getServletContext().getRealPath("/") + "userlist.ser");
-            for (User user: userList.getUsers()) {
-                System.out.println(user.getName());
-            }
+            pageList.loadPageList(directory + "pagelist.ser");
+            userList.loadUserList(directory + "userlist.ser");
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -33,8 +31,8 @@ public final class WebappContextListener implements ServletContextListener {
     public void contextDestroyed(ServletContextEvent sce) {
         System.out.println("This method is invoked once when the webapp gets undeployed.");
         try {
-            pageList.savePageList(pageList.getPageList(), sce.getServletContext().getRealPath("/") + "pagelist.ser");
-            userList.saveUserList(userList.getUsers(), sce.getServletContext().getRealPath("/") + "userlist.ser");
+            pageList.savePageList(pageList.getPageList(), directory + "pagelist.ser");
+            userList.saveUserList(userList.getUsers(), directory + "userlist.ser");
         } catch (IOException e) {
             e.printStackTrace();
         }
