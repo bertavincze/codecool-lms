@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="resources/css/reset.css">
     <link rel="stylesheet" type="text/css" href="resources/css/onepager_style.css">
+    <link href="https://fonts.googleapis.com/css?family=Aladin|Merienda+One|Walter+Turncoat" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="resources/css/text.css">
     <title>GoatCool</title>
 </head>
 <body>
@@ -16,7 +18,7 @@
     <div class="wrapper">
         <div class="log-in-content">
             <div class="thankyou">
-                <h1>Thank you for registering ${user.getName()}.</h1>
+                <h2>Thank you for registering ${user.getName()}.</h2>
                 <p>You can <a href="index.html">log in</a> now!</p>
             </div>
         </div>

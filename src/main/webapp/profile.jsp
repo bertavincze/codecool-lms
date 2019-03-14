@@ -9,6 +9,8 @@
     <link rel="stylesheet" type="text/css" href="resources/css/reset.css">
     <link rel="stylesheet" type="text/css" href="resources/css/style.css">
     <link rel="stylesheet" type="text/css" href="resources/css/profile.css">
+    <link href="https://fonts.googleapis.com/css?family=Aladin|Merienda+One|Walter+Turncoat" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="resources/css/text.css">
     <title>GoatCool</title>
 </head>
 <body>

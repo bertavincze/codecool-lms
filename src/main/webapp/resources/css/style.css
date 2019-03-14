@@ -46,21 +46,6 @@ img {
 
 }
 
-
-h1 {
-    border-bottom:4px solid #ffffff;
-    border-top:4px solid #ffffff;
-    display:inline-block;
-    font-family:sans-serif;
-    font-weight:bold;
-    padding:8px 16px;
-    text-transform:uppercase;
-}
-
-.header a {
-    color:#ffffff;
-}
-
 nav {
     background:#ffffff;
     margin:0px;
@@ -70,31 +55,6 @@ nav {
     width:100%;
 }
 
-nav a, nav a:hover {
-    color:#444444
-}
-
-nav ul {
-    font-weight:bold;
-    list-style:none;
-    margin:0px auto;
-    padding:0px;
-    text-transform:uppercase;
-}
-
-nav li {
-    border-bottom:3px solid #ffffff;
-    display:inline-block;
-    font-size:16px;
-    margin:0px auto;
-    padding:16px 24px;
-}
-
-nav p{
-    font-size:16px;
-    margin:0px auto;
-    padding:16px 24px;
-}
 
 .marked{
     border-bottom:3px solid rgba(227, 0, 65, 0.7);

@@ -8,6 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="resources/css/reset.css">
     <link rel="stylesheet" type="text/css" href="resources/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Aladin|Merienda+One|Walter+Turncoat" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="resources/css/text.css">
     <title>GoatCool</title>
 </head>
 <body>
@@ -33,7 +35,7 @@
             <div class="containerhead">
                 <div class="title">Curriculum</div>
             </div>
-            <h1>Published pages</h1>
+            <h2>Published pages</h2>
             <p>Check the box to unpublish the selected page.</p>
             <form action="publishservlet" method="post">
             <ul>
@@ -49,7 +51,7 @@
             <input type="submit" value="Submit changes">
             <br>
             </form>
-            <h1>Unpublished pages</h1>
+            <h2>Unpublished pages</h2>
             <p>Check the box to publish the selected page.</p>
             <form action="publishservlet" method="post">
             <ul>

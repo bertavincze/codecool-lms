@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="resources/css/reset.css">
     <link rel="stylesheet" type="text/css" href="resources/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Aladin|Merienda+One|Walter+Turncoat" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="resources/css/text.css">
 </head>
 
 <body>
@@ -33,7 +35,7 @@
             <div class="containerhead">
                 <div class="title"><a href="">Welcome</a></div>
             </div>
-            <h1>You are now logged in as ${user.getClass().simpleName} ${user.getName()}.</h1>
+            <h2>You are now logged in as ${user.getClass().simpleName} ${user.getName()}.</h2>
             <p>
                 Text Text Text Text Text Text Text Text Text Text Text Text
                 Text Text Text Text Text Text Text Text Text Text Text Text
