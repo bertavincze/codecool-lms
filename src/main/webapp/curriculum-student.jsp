@@ -34,10 +34,22 @@
             <div class="containerhead">
                 <div class="title">Curriculum</div>
             </div>
+            <h2>Assignment Pages</h2>
             <ul>
             <c:forEach var="page" items="${pageList}">
                  <c:choose>
-                 <c:when test="${page.isPublished()}">
+                 <c:when test="${page.isPublished() && page.getClass().simpleName == 'AssignmentPage'}">
+                        <a href="handlepage?title=${page.getTitle()}"><li>${page.getTitle()}</li></a>
+                  </c:when>
+            </c:choose>
+            </c:forEach>
+            </ul>
+            <br>
+            <h2>Text Pages</h2>
+            <ul>
+            <c:forEach var="page" items="${pageList}">
+                 <c:choose>
+                 <c:when test="${page.isPublished() && page.getClass().simpleName == 'TextPage'}">
                         <a href="handlepage?title=${page.getTitle()}"><li>${page.getTitle()}</li></a>
                   </c:when>
             </c:choose>
