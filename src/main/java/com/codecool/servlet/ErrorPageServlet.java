@@ -18,23 +18,24 @@ public class ErrorPageServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        authUser(request, response);
+        distributeUser(request, response);
 
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("index.html").forward(request, response);
+        request.getRequestDispatcher("error.html").forward(request, response);
+
     }
 
-    private void authUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void distributeUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(false);
         User currentUser = (User) session.getAttribute("user");
         if (currentUser != null) {
             if (currentUser instanceof Mentor) {
-                request.getRequestDispatcher("mentor.html").forward(request, response);
+                request.getRequestDispatcher("mentor.jsp").forward(request, response);
             } else if (currentUser instanceof Student) {
-                request.getRequestDispatcher("student.html").forward(request, response);
+                request.getRequestDispatcher("student.jsp").forward(request, response);
             }
         } else {
             request.getRequestDispatcher("index.html").forward(request, response);

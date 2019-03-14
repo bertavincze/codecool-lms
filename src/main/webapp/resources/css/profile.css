@@ -24,6 +24,16 @@ table{
     clear: both;
     }
 
+    h1 {
+        border-bottom:4px solid #ffffff;
+        border-top:4px solid #ffffff;
+        display:inline-block;
+        font-family:sans-serif;
+        font-weight:bold;
+        padding:8px 16px;
+        text-transform:uppercase;
+    }
+
 .icon{
     width: 20px;
     height: 20px;

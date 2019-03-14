@@ -24,7 +24,7 @@ a img {
     border:none;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h2, h3, h4, h5, h6 {
     font-weight:normal;
     margin:0px;
     padding:0px;
@@ -47,7 +47,7 @@ img {
 }
 
 
-.header h1 {
+h1 {
     border-bottom:4px solid #ffffff;
     border-top:4px solid #ffffff;
     display:inline-block;
