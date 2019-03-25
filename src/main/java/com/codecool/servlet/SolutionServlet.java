@@ -39,10 +39,12 @@ public class SolutionServlet extends HttpServlet {
         Student user = (Student) session.getAttribute("user");
 
         String title = request.getParameter("title");
+        AssignmentPage assignmentPage = (AssignmentPage) request.getAttribute("assignmentPage");
 
         Solution solution = findUserSolutionByTitle(user, title);
         if (solution != null) {
             request.setAttribute("solution", solution);
+            request.setAttribute("assignmentPage", assignmentPage);
             request.getRequestDispatcher("seesolution.jsp").forward(request, response);
 
         } else {
