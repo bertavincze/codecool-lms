@@ -1,6 +1,5 @@
 package com.codecool.servlet;
 
-import com.codecool.database.UserList;
 import com.codecool.model.user.Mentor;
 import com.codecool.model.user.Student;
 import com.codecool.model.user.User;

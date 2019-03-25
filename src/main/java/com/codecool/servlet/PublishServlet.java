@@ -1,6 +1,6 @@
 package com.codecool.servlet;
 
-import com.codecool.database.PageList;
+import com.codecool.dao.database.PageList;
 import com.codecool.model.curriculum.Page;
 
 import javax.servlet.ServletException;

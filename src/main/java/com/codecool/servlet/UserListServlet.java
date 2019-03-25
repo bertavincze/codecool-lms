@@ -1,6 +1,6 @@
 package com.codecool.servlet;
 
-import com.codecool.database.UserList;
+import com.codecool.dao.database.UserList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

@@ -1,8 +1,12 @@
 package com.codecool.servlet;
 
 
+<<<<<<< HEAD
 import com.codecool.database.PageList;
 import com.codecool.database.UserList;
+=======
+import com.codecool.dao.database.PageList;
+>>>>>>> Andi
 import com.codecool.model.curriculum.AssignmentPage;
 import com.codecool.model.curriculum.Page;
 import com.codecool.model.curriculum.Solution;
