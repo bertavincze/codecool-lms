@@ -74,6 +74,14 @@
                         <p>Role: Mentor</p>
                     </c:otherwise>
                 </c:choose>
+                 <c:choose>
+                    <c:when test="${user.getClass().simpleName == 'Student'}">
+                        <p>Attendance: ${user.getAttendanceRate()}%</p>
+                    </c:when>
+                    <c:otherwise>
+                        <p></p>
+                    </c:otherwise>
+                </c:choose>
                 <br>
             </div>
 

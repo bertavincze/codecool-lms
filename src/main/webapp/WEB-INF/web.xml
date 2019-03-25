@@ -11,7 +11,7 @@
         can be defined instead with annotations. For more search for information on
         "differences between java servlet api 2 and 3", etc.
     -->
-    <error-page>
+    <!--<error-page>
         <location>/error.html</location>
-    </error-page>
+    </error-page>-->
 </web-app>
