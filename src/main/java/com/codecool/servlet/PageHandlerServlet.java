@@ -65,7 +65,7 @@ public class PageHandlerServlet extends HttpServlet {
                 }
 
             } else if (user instanceof Mentor) {
-                request.getRequestDispatcher("seeassignment.jsp").forward(request, response);
+                request.getRequestDispatcher("seesolution.jsp").forward(request, response);
             }
 
         } else if (isTextPage(requestedPage)) {

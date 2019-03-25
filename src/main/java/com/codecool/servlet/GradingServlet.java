@@ -22,7 +22,7 @@ public class GradingServlet extends HttpServlet {
         String title = req.getParameter("title");
         for (Page page : PageList.getInstance().getPageList()) {
             if (page instanceof AssignmentPage) {
-                for (Solution solution : page.getSolutionMap().values()) {
+                for (Solution solution : ((AssignmentPage) page).getSolutionMap().values()) {
                     if (title.equals(solution.getTitle())) {
                         solution.setGrade(grade);
                     }

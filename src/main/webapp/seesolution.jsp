@@ -58,8 +58,8 @@
 
                                <p>Grade: </p>
                                <select name="grade">
-                                   <c:forEach var = "i" begin = "1" end = "{assignmentPage.getMaxScore()">
-                                        <option value="<c:out value="${i}"/>"><c:out value="${i}"/></option>
+                                   <c:forEach var = "i" begin = "1" end = "${solution.getMaxScore()}">
+                                        <option value=<c:out value='"${i}"'/>><c:out value="${i}"/></option>
                                    </c:forEach>
                                </select>
                                <br><br>
