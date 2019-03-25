@@ -1,17 +1,26 @@
 package com.codecool.model.curriculum;
 
+import com.codecool.model.user.Student;
+
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
 public class AssignmentPage extends Page implements Serializable {
 
     private String question;
     private int maxScore;
-    private int actualScore;
+    private Map<Student, Solution> studentSolutionMap;
 
     public AssignmentPage(String title, String question, int maxScore) {
         super(title);
         this.question = question;
         this.maxScore = maxScore;
+        this.studentSolutionMap = new HashMap<>();
+    }
+
+    public void addToSolutionMap(Student student, Solution solution) {
+        studentSolutionMap.put(student, solution);
     }
 
     public String getQuestion() {
@@ -22,7 +31,8 @@ public class AssignmentPage extends Page implements Serializable {
         return maxScore;
     }
 
-    public void setActualScore(int actualScore) {
-        this.actualScore = actualScore;
+    public Map<Student, Solution> getSolutionMap() {
+        return studentSolutionMap;
     }
+
 }

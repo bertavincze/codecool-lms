@@ -43,4 +43,13 @@ public class PageList implements Serializable {
         in.close();
         fileIn.close();
     }
+
+    public Page findPageByTitle(String title) {
+        for (Page page : pageList) {
+            if (page.getTitle().equals(title)) {
+                return page;
+            }
+        }
+        return null;
+    }
 }
