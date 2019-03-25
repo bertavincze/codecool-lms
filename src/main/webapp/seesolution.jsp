@@ -21,11 +21,19 @@
 
 <nav>
     <ul>
-        <a href="profile.jsp"><li>Profile</li></a>
+        <a href="profile.jsp"><li class="marked">Profile</li></a>
         <a href="userlist"><li>UserList</li></a>
-        <a href="curriculum"><li class="marked">Curriculum</li></a>
-        <a href="assignments"><li>Assignments</li></a>
-        <a href="stats"><li>Stats</li></a>
+        <a href="curriculum"><li>Curriculum</li></a>
+        <c:choose>
+            <c:when test="${user.getClass().simpleName == 'Student'}">
+                 <a href="assignments"><li>Assignments</li></a>
+                 <a href="stats"><li>Stats</li></a>
+            </c:when>
+            <c:otherwise>
+                <a href="attendance"><li>Attendance</li></a>
+                <a href="solutions"><li>Student Solutions</li></a>
+            </c:otherwise>
+        </c:choose>
     </ul>
 </nav>
 
@@ -39,7 +47,7 @@
                 <p>Question: </p>
                 <p>${assignmentPage.getQuestion()}</p>
 
-                <p>Your answer: </p>
+                <p>Solution: </p>
                 <p>${solution.getAnswer()}</p>
 
 
@@ -48,18 +56,18 @@
                     <p>The solution has not been graded yet!</p>
                   </c:when>
                   <c:otherwise>
-                        <p>Current grade: "${solution.getGrade()}"</p>
+                    <p>Current grade: ${solution.getGrade()}</p>
                   </c:otherwise>
                 </c:choose>
 
                 <c:choose>
                       <c:when test="${user.getClass().simpleName == 'Mentor'}">
                            <form action="grader" method="post">
-
+                               <input type="hidden" name="title" value="${assignmentPage.getTitle()}">
                                <p>Grade: </p>
                                <select name="grade">
-                                   <c:forEach var = "i" begin = "1" end = "${solution.getMaxScore()}">
-                                        <option value=<c:out value='"${i}"'/>><c:out value="${i}"/></option>
+                                   <c:forEach var = "i" begin = "1" end = "${assignmentPage.getMaxScore()}">
+                                        <option value="${i}">${i}</option>
                                    </c:forEach>
                                </select>
                                <br><br>

@@ -33,30 +33,17 @@
     <div class="content">
         <div class="container">
             <div class="containerhead">
-                <div class="title"><a href="">Assignments</a></div>
+                <div class="title"><a href="">Solutions</a></div>
             </div>
                 <ul>
                 <c:forEach var="entry" items="${assignmentList}">
                     <c:forEach var="entry2" items="${entry.getSolutionMap()}">
-                        <li> <a href="handlepage?title=${entry2.value.getTitle()}">${entry2.key.getName()} : ${entry2.value.getTitle()} </a></li>
+                        <li> <a href="handlepage?title=${entry2.value.getTitle()}&name=${entry2.key.getName()}&edit=true">${entry2.key.getName()} : ${entry2.value.getTitle()} </a></li>
                         <br>
                     </c:forEach>
                 </c:forEach>
                 </ul>
 
-            <div class="containerfoot"></div>
-        </div>
-         <div class="container">
-            <div class="containerhead">
-                <div class="title"><a href="">News</a></div>
-            </div>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et massa in dui finibus malesuada sed
-                    at mi. Ut ultricies mi sed ligula dapibus, pulvinar congue leo mattis. Morbi ornare tempor porttitor.
-                    Praesent dignissim rutrum dui, quis venenatis lectus pellentesque id. Aliquam viverra accumsan enim id
-                    porta. Morbi fermentum scelerisque eleifend. Aenean placerat accumsan purus, eu scelerisque nisi congue at.
-                    Pellentesque ac tempor felis.
-                </p>
             <div class="containerfoot"></div>
         </div>
     </div>
