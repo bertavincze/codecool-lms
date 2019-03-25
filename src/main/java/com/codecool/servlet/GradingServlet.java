@@ -29,7 +29,7 @@ public class GradingServlet extends HttpServlet {
                 }
             }
         }
-        req.getRequestDispatcher("studentSolution.jsp").forward(req, resp);
+        req.getRequestDispatcher("solutions").forward(req, resp);
     }
 
 }
