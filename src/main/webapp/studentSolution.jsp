@@ -38,7 +38,7 @@
                 <ul>
                 <c:forEach var="entry" items="${assignmentList}">
                     <c:forEach var="entry2" items="${entry.getSolutionMap()}">
-                        <li> <a href="grader?title=${entry2.value.getTitle()}">${entry2.key.getName()} : ${entry2.value.getTitle()} </a></li>
+                        <li> <a href="handlepage?title=${entry2.value.getTitle()}">${entry2.key.getName()} : ${entry2.value.getTitle()} </a></li>
                         <br>
                     </c:forEach>
                 </c:forEach>
