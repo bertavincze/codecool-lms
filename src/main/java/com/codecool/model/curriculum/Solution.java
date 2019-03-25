@@ -6,11 +6,10 @@ import java.util.Objects;
 public class Solution implements Serializable {
    private String title;
     private String answer;
-    private String question;
+    private int grade;
 
     public Solution(String title, String question, String answer) {
         this.title = title;
-        this.question = question;
         this.answer = answer;
     }
 
@@ -35,7 +34,12 @@ public class Solution implements Serializable {
         return answer;
     }
 
-    public String getQuestion() {
-        return question;
+
+    public int getGrade() {
+        return grade;
+    }
+
+    public void setGrade(int grade) {
+        this.grade = grade;
     }
 }

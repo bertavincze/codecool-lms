@@ -35,16 +35,42 @@
             <div class="containerhead">
                 <div class="title"><a href=""></a>Solution</div>
             </div>
-                <h2>${solution.getTitle()}</h2>
+                <h2>${assignmentPage.getTitle()}</h2>
                 <p>Question: </p>
-                <p>${solution.getQuestion()}</p>
+                <p>${assignmentPage.getQuestion()}</p>
 
                 <p>Your answer: </p>
                 <p>${solution.getAnswer()}</p>
+
+
+                <c:choose>
+                  <c:when test="${solution.getGrade() == null}">
+                    <p>The solution has not been graded yet!</p>
+                  </c:when>
+                  <c:otherwise>
+                        <p>Current grade: "${solution.getGrade()}"</p>
+                  </c:otherwise>
+                </c:choose>
+
+                <c:choose>
+                      <c:when test="${user.getClass().simpleName == 'Mentor'}">
+                           <form action="grader" method="post">
+
+                               <p>Grade: </p>
+                               <select name="grade">
+                                   <c:forEach var = "i" begin = "1" end = "{assignmentPage.getMaxScore()">
+                                        <option value="<c:out value="${i}"/>"><c:out value="${i}"/></option>
+                                   </c:forEach>
+                               </select>
+                               <br><br>
+                               <p><input type="submit"></p>
+                           </form>
+                      </c:when>
+                </c:choose>
+                <br>
             <div class="containerfoot"></div>
         </div>
     </div>
-
 
     <div class="sidebar">
         <div class="sbcontainer">
@@ -64,6 +90,9 @@
                     </c:choose>
                 <br>
             </div>
+
+
+
 
             <ul class="links">
                 <div class="linktitle">Favourites</div>
