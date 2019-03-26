@@ -1,14 +1,14 @@
 package com.codecool.service;
 
-import com.codecool.dao.database.DatabaseMentorDao;
+import com.codecool.dao.database.DatabaseUserDao;
 
 import java.sql.SQLException;
 
 public class UserService {
 
-    private final DatabaseMentorDao mentorDao;
+    private final DatabaseUserDao mentorDao;
 
-    public UserService(DatabaseMentorDao mentorDao) {
+    public UserService(DatabaseUserDao mentorDao) {
         this.mentorDao = mentorDao;
     }
 
