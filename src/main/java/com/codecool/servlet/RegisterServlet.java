@@ -33,7 +33,11 @@ public class RegisterServlet extends AbstractServlet {
             String password = req.getParameter("password");
             String userRoleString = req.getParameter("status");
             String generatedID = idService.generateID();
-            userService.addMentor(generatedID,"mentor", name, email,password);
+            if (userRoleString.equals("mentor")) {
+                userService.addUser(generatedID,"mentor", name, email,password);
+            } else {
+                userService.addUser(generatedID,"student", name, email,password);
+            }
             validateUserData(name, email, password, userRoleString);
 
             if (isValidUserData) {
