@@ -20,35 +20,22 @@ DROP TABLE IF EXISTS userBase CASCADE;
 
 CREATE TABLE userBase(
 	userID varchar(6) NOT NULL,
+	role varchar(10) NOT NULL,
 	email varchar(254) UNIQUE NOT NULL,
 	name varchar(15),
 	password varchar(15),
 	PRIMARY KEY(userID)
 );
 
-CREATE TABLE mentor(
-	mentorID varchar(6) NOT NULL,
-	userID varchar(6) NOT NULL,
-	PRIMARY KEY(mentorID),
-	FOREIGN KEY (userID) REFERENCES userBase(userID)
-);
-
-CREATE TABLE student(
-	studentID varchar(6),
-	userID varchar(6),
-	PRIMARY KEY (studentID),
-	FOREIGN KEY (userID) REFERENCES userBase(userID)
-);
-
 CREATE TABLE solution(
 	solutionID varchar(6),
-	studentID varchar(6),
+	userID varchar(6),
 	title varchar(100) NOT NULL,
 	answer varchar(300),
 	question varchar(300),
 	time date,
 	PRIMARY KEY (solutionID),
-	FOREIGN KEY (studentID) REFERENCES student(studentID)
+	FOREIGN KEY (userID) REFERENCES userBase(userID)
 );
 
 CREATE TABLE page(
@@ -73,9 +60,10 @@ CREATE TABLE assignment(
 );
 
 CREATE TABLE solutionmap(
-	studentID varchar(6),
+	userID varchar(6),
 	solutionID varchar(6),
-	FOREIGN KEY (studentID) REFERENCES student(studentID),
+	FOREIGN KEY (userID) REFERENCES userBase(userID),
 	FOREIGN KEY (solutionID) REFERENCES solution(solutionID)
 );
+
 
