@@ -19,16 +19,17 @@ import java.sql.Connection;
 
 @WebListener
 public final class WebappContextListener implements ServletContextListener {
-
     private PageList pageList = PageList.getInstance();
     private UserList userList = UserList.getInstance();
     private String homeDir = System.getenv("CATALINA_HOME");
     private String directory = homeDir + "/webapps/";
+
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         registerCharacterEncodingFilter(sce);
         DataSource dataSource = putDataSourceToServletContext(sce);
         runDatabaseInitScript(dataSource, "/goatcool.sql");
+
         System.out.println("This method is invoked once when the webapp gets deployed.");
         try {
             pageList.loadPageList(directory + "pagelist.ser");
@@ -69,6 +70,7 @@ public final class WebappContextListener implements ServletContextListener {
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
         System.out.println("This method is invoked once when the webapp gets undeployed.");
+
         try {
             pageList.savePageList(pageList.getPageList(), directory + "pagelist.ser");
             userList.saveUserList(userList.getUsers(), directory + "userlist.ser");
