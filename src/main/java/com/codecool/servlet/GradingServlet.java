@@ -17,7 +17,6 @@ public class GradingServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
         int grade = Integer.parseInt(req.getParameter("grade"));
         String title = req.getParameter("title");
         for (Page page : PageList.getInstance().getPageList()) {
@@ -29,7 +28,7 @@ public class GradingServlet extends HttpServlet {
                 }
             }
         }
-        req.getRequestDispatcher("solutions").forward(req, resp);
+        resp.sendRedirect("solutions");
     }
 
 }
