@@ -16,8 +16,8 @@ public class Student extends User implements Serializable {
     private ArrayList<LocalDate> attendance;
 
 
-    public Student(String name, String email, String password) {
-        super(name, email, password);
+    public Student(String id, String name, String email, String password) {
+        super(id, name, email, password);
         solutionList = new ArrayList<>();
         attendance = new ArrayList<>();
     }

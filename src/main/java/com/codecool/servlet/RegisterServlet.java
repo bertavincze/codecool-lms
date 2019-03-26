@@ -1,44 +1,58 @@
 package com.codecool.servlet;
 
+import com.codecool.dao.database.DatabaseMentorDao;
 import com.codecool.model.user.Mentor;
 import com.codecool.model.user.Student;
 import com.codecool.model.user.User;
 import com.codecool.dao.database.UserList;
+import com.codecool.service.IDGeneratorService;
+import com.codecool.service.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
 
 @WebServlet("/register")
-public class RegisterServlet extends HttpServlet {
+public class RegisterServlet extends AbstractServlet {
 
     private boolean isValidUserData = true;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String name = req.getParameter("name");
-        String email = req.getParameter("email");
-        String password = req.getParameter("password");
-        String userRoleString = req.getParameter("status");
+        try (Connection connection = getConnection(req.getServletContext())) {
+            DatabaseMentorDao mentorDao = new DatabaseMentorDao(connection);
+            UserService userService = new UserService(mentorDao);
+            IDGeneratorService idService = new IDGeneratorService();
 
-        validateUserData(name, email, password, userRoleString);
+            String name = req.getParameter("name");
+            String email = req.getParameter("email");
+            String password = req.getParameter("password");
+            String userRoleString = req.getParameter("status");
+            String generatedID = idService.generateID();
+            userService.addMentor(generatedID,"mentor", name, email,password);
+            validateUserData(name, email, password, userRoleString);
 
-        if (isValidUserData) {
-            User user = null;
-            if (userRoleString.equals("mentor")) {
-                user = new Mentor(name, email, password);
-            } else if (userRoleString.equals("student")){
-                user = new Student(name, email, password);
+            if (isValidUserData) {
+                User user = null;
+                if (userRoleString.equals("mentor")) {
+                    user = new Mentor(generatedID, name, email, password);
+                } else if (userRoleString.equals("student")){
+                    user = new Student(generatedID, name, email, password);
+                }
+                UserList.getInstance().addUser(user);
+                req.setAttribute("user", user);
+                req.getRequestDispatcher("succesfulregist.jsp").forward(req, resp);
+            } else {
+                resp.sendRedirect("registration.html");
             }
-            UserList.getInstance().addUser(user);
-            req.setAttribute("user", user);
-            req.getRequestDispatcher("succesfulregist.jsp").forward(req, resp);
-        } else {
-            resp.sendRedirect("registration.html");
+        } catch (SQLException ex) {
+            throw new ServletException(ex);
         }
+
     }
 
     @Override
