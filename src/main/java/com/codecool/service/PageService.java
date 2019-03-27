@@ -20,4 +20,12 @@ public class PageService {
             System.out.println(ex.getMessage());
         }
     }
+
+    public void updatePagePublishedState(Page page, boolean isPublished) throws SQLException {
+        try {
+            pageDao.updatePagePublishedState(page, isPublished);
+        } catch (NumberFormatException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
 }

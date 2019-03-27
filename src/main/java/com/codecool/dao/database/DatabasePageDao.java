@@ -65,4 +65,39 @@ public class DatabasePageDao extends AbstractDao {
             }
         }
     }
+
+    public void updatePagePublishedState(Page page, boolean isPublished) throws SQLException {
+        boolean autoCommit = connection.getAutoCommit();
+        connection.setAutoCommit(false);
+        String sql = "UPDATE page SET isPublished=? WHERE page_id=?";
+        try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            statement.setBoolean(1, isPublished);
+            statement.setString(2, page.getId());
+            executeInsert(statement);
+            connection.commit();
+        } catch (SQLException ex) {
+            connection.rollback();
+            throw ex;
+        } finally {
+            connection.setAutoCommit(autoCommit);
+        }
+
+        if (page instanceof AssignmentPage) {
+            sql = "UPDATE assignment_page SET isPublished=? WHERE page_id=?";
+        } else if (page instanceof TextPage) {
+            sql = "UPDATE text_page SET isPublished=? WHERE page_id=?";
+        }
+        connection.setAutoCommit(false);
+        try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            statement.setBoolean(1, isPublished);
+            statement.setString(2, page.getId());
+            executeInsert(statement);
+            connection.commit();
+        } catch (SQLException ex) {
+            connection.rollback();
+            throw ex;
+        } finally {
+            connection.setAutoCommit(autoCommit);
+        }
+    }
 }
