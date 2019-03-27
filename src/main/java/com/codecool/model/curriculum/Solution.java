@@ -43,7 +43,13 @@ public class Solution implements Serializable {
         return grade;
     }
 
+    public LocalDateTime getSubmissionDate() {
+        return submissionDate;
+    }
+
     public void setGrade(int grade) {
         this.grade = grade;
     }
+
+
 }
