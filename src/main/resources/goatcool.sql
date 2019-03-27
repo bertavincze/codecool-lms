@@ -19,51 +19,40 @@ DROP TABLE IF EXISTS assignment CASCADE;
 DROP TABLE IF EXISTS userBase CASCADE;
 
 CREATE TABLE userBase(
-	userID varchar(6) NOT NULL,
-	role varchar(10) NOT NULL,
+	user_id varchar(6) NOT NULL,
+	user_role varchar(10) NOT NULL,
 	email varchar(254) UNIQUE NOT NULL,
-	name varchar(15),
+	user_name varchar(15) NOT NULL,
 	password varchar(15),
-	PRIMARY KEY(userID)
+	PRIMARY KEY(user_id)
 );
 
 CREATE TABLE solution(
-	solutionID varchar(6),
-	userID varchar(6),
+	solution_id varchar(6) NOT NULL,
+	user_id varchar(6) NOT NULL,
 	title varchar(100) NOT NULL,
-	answer varchar(300),
-	question varchar(300),
-	time date,
-	PRIMARY KEY (solutionID),
-	FOREIGN KEY (userID) REFERENCES userBase(userID)
+	answer varchar(300) NOT NULL,
+	grade integer,
+	submission_date timestamp NOT NULL,
+	PRIMARY KEY (solution_id),
+	FOREIGN KEY (user_id) REFERENCES userBase(user_id)
 );
 
 CREATE TABLE page(
-	pageID varchar(6),
+	page_id varchar(6) NOT NULL,
 	title varchar(100) NOT NULL,
+	page_type varchar(15) NOT NULL,
 	isPublished boolean,
-	PRIMARY KEY(pageID)
-);
-
-CREATE TABLE curriculum(
-	curriculumID varchar(6),
-	pageID varchar(6),
-	PRIMARY KEY (curriculumID),
-	FOREIGN KEY (pageID) REFERENCES page(pageID)
-);
-
-CREATE TABLE assignment(
-	assignmentID varchar(6),
-	pageID varchar(6),
-	PRIMARY KEY (assignmentID),
-	FOREIGN KEY (pageID) REFERENCES page(pageID)
+	PRIMARY KEY(page_id)
 );
 
 CREATE TABLE solutionmap(
-	userID varchar(6),
-	solutionID varchar(6),
-	FOREIGN KEY (userID) REFERENCES userBase(userID),
-	FOREIGN KEY (solutionID) REFERENCES solution(solutionID)
+	user_id varchar(6),
+	solution_id varchar(6),
+	FOREIGN KEY (user_id) REFERENCES userBase(user_id),
+	FOREIGN KEY (solution_id) REFERENCES solution(solution_id)
 );
+
+
 
 
