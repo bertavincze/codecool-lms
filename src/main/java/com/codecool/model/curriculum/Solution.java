@@ -1,16 +1,20 @@
 package com.codecool.model.curriculum;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Solution implements Serializable {
    private String title;
     private String answer;
     private int grade;
+    private LocalDateTime submissionDate;
 
-    public Solution(String title, String question, String answer) {
+    public Solution(String title, String answer) {
         this.title = title;
         this.answer = answer;
+        this.submissionDate = LocalDateTime.now();
     }
 
     @Override
