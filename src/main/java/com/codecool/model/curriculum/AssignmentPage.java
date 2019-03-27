@@ -12,8 +12,8 @@ public class AssignmentPage extends Page implements Serializable {
     private int maxScore;
     private Map<Student, Solution> studentSolutionMap;
 
-    public AssignmentPage(String title, String question, int maxScore) {
-        super(title);
+    public AssignmentPage(String title, String id, String question, int maxScore) {
+        super(title, id);
         this.question = question;
         this.maxScore = maxScore;
         this.studentSolutionMap = new HashMap<>();
