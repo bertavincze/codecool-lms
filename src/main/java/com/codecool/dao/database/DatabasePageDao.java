@@ -95,12 +95,17 @@ public class DatabasePageDao extends AbstractDao {
             "JOIN assignment_page ON page.page_id = assignment_page.page_id";
         try (Statement statement = connection.createStatement(); ResultSet resultSet = statement.executeQuery(sql)) {
             while (resultSet.next()) {
-                assignments.add(new AssignmentPage(
+                Page page = new AssignmentPage(
                     resultSet.getString("page_id"),
                     resultSet.getString("title"),
                     resultSet.getString("question"),
-                    resultSet.getInt("max_score"))
-                );
+                    resultSet.getInt("max_score"));
+                if (resultSet.getBoolean("ispublished")) {
+                    page.publish();
+                } else {
+                    page.unpublish();
+                }
+                assignments.add(page);
             }
         }
         return assignments;
@@ -108,14 +113,19 @@ public class DatabasePageDao extends AbstractDao {
 
     private List<Page> loadTextPages() throws SQLException {
         List<Page> textPages = new ArrayList<>();
-        String sql = "SELECT page.page_id, title, content FROM page JOIN text_page ON page.page_id = text_page.page_id";
+        String sql = "SELECT page.page_id, title, ispublished, content FROM page JOIN text_page ON page.page_id = text_page.page_id";
         try (Statement statement = connection.createStatement(); ResultSet resultSet = statement.executeQuery(sql)) {
             while (resultSet.next()) {
-                textPages.add(new TextPage(
+                Page page = new TextPage(
                     resultSet.getString("page_id"),
                     resultSet.getString("title"),
-                    resultSet.getString("content")
-                ));
+                    resultSet.getString("content"));
+                if (resultSet.getBoolean("ispublished")) {
+                    page.publish();
+                } else {
+                    page.unpublish();
+                }
+                textPages.add(page);
             }
         }
         return textPages;

@@ -1,10 +1,12 @@
 package com.codecool.listener;
 
+import com.codecool.dao.database.DatabasePageDao;
 import com.codecool.dao.database.DatabaseUserDao;
 import com.codecool.dao.database.PageList;
 import com.codecool.dao.database.UserList;
 
 import com.codecool.model.user.User;
+import com.codecool.service.PageService;
 import com.codecool.service.UserService;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.jdbc.datasource.init.ScriptUtils;
@@ -43,6 +45,7 @@ public final class WebappContextListener implements ServletContextListener {
         //    e.printStackTrace();
         //}
         loadUsersFromInit(dataSource);
+        loadPagesFromInit(dataSource);
     }
 
     private void registerCharacterEncodingFilter(ServletContextEvent sce) {
@@ -90,6 +93,16 @@ public final class WebappContextListener implements ServletContextListener {
             DatabaseUserDao mentorDao = new DatabaseUserDao(connection);
             UserService userService = new UserService(mentorDao);
             userService.putUsersToList();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    private void loadPagesFromInit(DataSource dataSource) {
+        try (Connection connection = dataSource.getConnection()) {
+            DatabasePageDao pageDao = new DatabasePageDao(connection);
+            PageService pageService = new PageService(pageDao);
+            PageList.getInstance().getPageList().addAll(pageService.loadPages());
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }

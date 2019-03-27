@@ -71,5 +71,9 @@ CREATE TABLE solutionmap(
 INSERT INTO userBase VALUES('12ab#.', 'mentor', 'm', 'm', 'm');
 INSERT INTO userBase VALUES('34cd#.', 'student', 's', 's', 's');
 
+INSERT INTO page VALUES('56ef#.', 'Kecske Text', true);
+INSERT INTO text_page VALUES('56ef#.', 'Kecske!!!!!');
+INSERT INTO page VALUES('78gh#.', 'Kecske Assignment', false);
+INSERT INTO assignment_page VALUES('78gh#.', 'Kecske????', 5);
 
 
