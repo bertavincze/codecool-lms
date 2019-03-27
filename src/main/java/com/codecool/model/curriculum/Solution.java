@@ -6,12 +6,14 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Solution implements Serializable {
-   private String title;
+    private String title;
+    private String id;
     private String answer;
     private int grade;
     private LocalDateTime submissionDate;
 
-    public Solution(String title, String answer) {
+    public Solution(String id, String title, String answer) {
+        this.id = id;
         this.title = title;
         this.answer = answer;
         this.submissionDate = LocalDateTime.now();

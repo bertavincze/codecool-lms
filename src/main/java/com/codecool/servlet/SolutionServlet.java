@@ -39,7 +39,7 @@ public class SolutionServlet extends AbstractServlet {
             String title = req.getParameter("title");
             //String question = req.getParameter("question");
             String answer = req.getParameter("solution");
-            Solution solution = new Solution(title, answer);
+            Solution solution = new Solution(idService.generateID(), title, answer);
             user.addSolution(solution);
             String generatedID = idService.generateID();
             solutionService.addSolution(generatedID, user.getId(), title, answer, solution.getSubmissionDate());
