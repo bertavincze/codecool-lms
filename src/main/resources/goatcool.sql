@@ -41,9 +41,23 @@ CREATE TABLE solution(
 CREATE TABLE page(
 	page_id varchar(6) NOT NULL,
 	title varchar(100) NOT NULL,
-	page_type varchar(15) NOT NULL,
 	isPublished boolean,
 	PRIMARY KEY(page_id)
+);
+
+CREATE TABLE text_page(
+	page_id varchar(6) NOT NULL,
+	content text NOT NULL,
+	PRIMARY KEY(page_id),
+	FOREIGN KEY (page_id) REFERENCES page(page_id)
+);
+
+CREATE TABLE assignment_page(
+	page_id varchar(6) NOT NULL,
+    question text NOT NULL,
+    max_score integer NOT NULL,
+	PRIMARY KEY(page_id),
+    FOREIGN KEY (page_id) REFERENCES page(page_id)
 );
 
 CREATE TABLE solutionmap(
