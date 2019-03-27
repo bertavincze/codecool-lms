@@ -4,10 +4,9 @@ import com.codecool.model.curriculum.AssignmentPage;
 import com.codecool.model.curriculum.Page;
 import com.codecool.model.curriculum.TextPage;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DatabasePageDao extends AbstractDao {
 
@@ -81,5 +80,44 @@ public class DatabasePageDao extends AbstractDao {
         } finally {
             connection.setAutoCommit(autoCommit);
         }
+    }
+
+    public List<Page> loadAllPages() throws SQLException {
+        List<Page> allPages = new ArrayList<>();
+        allPages.addAll(loadAssignmentPages());
+        allPages.addAll(loadTextPages());
+        return allPages;
+    }
+
+    private List<Page> loadAssignmentPages() throws SQLException {
+        List<Page> assignments = new ArrayList<>();
+        String sql = "SELECT page.page_id, title, ispublished, question, max_score FROM page " +
+            "JOIN assignment_page ON page.page_id = assignment_page.page_id";
+        try (Statement statement = connection.createStatement(); ResultSet resultSet = statement.executeQuery(sql)) {
+            while (resultSet.next()) {
+                assignments.add(new AssignmentPage(
+                    resultSet.getString("page_id"),
+                    resultSet.getString("title"),
+                    resultSet.getString("question"),
+                    resultSet.getInt("max_score"))
+                );
+            }
+        }
+        return assignments;
+    }
+
+    private List<Page> loadTextPages() throws SQLException {
+        List<Page> textPages = new ArrayList<>();
+        String sql = "SELECT page.page_id, title, content FROM page JOIN text_page ON page.page_id = text_page.page_id";
+        try (Statement statement = connection.createStatement(); ResultSet resultSet = statement.executeQuery(sql)) {
+            while (resultSet.next()) {
+                textPages.add(new TextPage(
+                    resultSet.getString("page_id"),
+                    resultSet.getString("title"),
+                    resultSet.getString("content")
+                ));
+            }
+        }
+        return textPages;
     }
 }

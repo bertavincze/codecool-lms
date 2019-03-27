@@ -4,6 +4,7 @@ import com.codecool.dao.database.DatabasePageDao;
 import com.codecool.model.curriculum.Page;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class PageService {
 
@@ -14,18 +15,15 @@ public class PageService {
     }
 
     public void addPage(Page page) throws SQLException {
-        try {
-            pageDao.addPage(page);
-        } catch (NumberFormatException ex) {
-            System.out.println(ex.getMessage());
-        }
+        pageDao.addPage(page);
     }
 
     public void updatePagePublishedState(Page page, boolean isPublished) throws SQLException {
-        try {
-            pageDao.updatePagePublishedState(page, isPublished);
-        } catch (NumberFormatException ex) {
-            System.out.println(ex.getMessage());
-        }
+        pageDao.updatePagePublishedState(page, isPublished);
+
+    }
+
+    public List<Page> loadPages() throws SQLException {
+        return pageDao.loadAllPages();
     }
 }
