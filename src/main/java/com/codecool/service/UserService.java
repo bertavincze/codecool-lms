@@ -42,7 +42,7 @@ public class UserService {
 
     public void updateEmail(String id, String email) {
         try {
-            userDao.updateName(id, email); // Insert data here);
+            userDao.updateEmail(id, email); // Insert data here);
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
@@ -50,7 +50,7 @@ public class UserService {
 
     public void updatePassword(String id, String password) {
         try {
-            userDao.updateName(id, password); // Insert data here);
+            userDao.updatePassword(id, password); // Insert data here);
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
