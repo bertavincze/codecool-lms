@@ -52,7 +52,7 @@
                     </tr>
                     <c:forEach var="u" items="${userList}">
                         <tr>
-                            <td><c:out value="${u.name}"/>${u.getName()}</td>
+                            <td><c:out value="${u.name}"/></td>
                             <td><c:out value="${u.email}"/></td>
                             <c:choose>
                                   <c:when test="${u.getClass().simpleName == 'Student'}">

@@ -1,5 +1,6 @@
 package com.codecool.listener;
 
+import com.codecool.dao.database.DatabaseUserDao;
 import com.codecool.dao.database.PageList;
 import com.codecool.dao.database.UserList;
 
@@ -15,6 +16,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
+import javax.servlet.http.HttpServletRequest;
 import javax.sql.DataSource;
 import java.io.IOException;
 import java.sql.Connection;
@@ -34,12 +36,13 @@ public final class WebappContextListener implements ServletContextListener {
         runDatabaseInitScript(dataSource, "/goatcool.sql");
 
         System.out.println("This method is invoked once when the webapp gets deployed.");
-        try {
-            pageList.loadPageList(directory + "pagelist.ser");
-            userList.loadUserList(directory + "userlist.ser");
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+        //try {
+            //pageList.loadPageList(directory + "pagelist.ser");
+           // userList.loadUserList(directory + "userlist.ser");
+        //} catch (IOException | ClassNotFoundException e) {
+        //    e.printStackTrace();
+        //}
+        loadUsersFromInit(dataSource);
     }
 
     private void registerCharacterEncodingFilter(ServletContextEvent sce) {
@@ -79,6 +82,16 @@ public final class WebappContextListener implements ServletContextListener {
             userList.saveUserList(userList.getUsers(), directory + "userlist.ser");
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    private void loadUsersFromInit(DataSource dataSource) {
+        try (Connection connection = dataSource.getConnection()) {
+            DatabaseUserDao mentorDao = new DatabaseUserDao(connection);
+            UserService userService = new UserService(mentorDao);
+            userService.putUsersToList();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
         }
     }
 

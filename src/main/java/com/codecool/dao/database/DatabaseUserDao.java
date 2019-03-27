@@ -16,7 +16,7 @@ public final class DatabaseUserDao extends AbstractDao {
 
     public List<User> findUsers() throws SQLException {
         List<User> users = new ArrayList<>();
-        String sqlMentor = "SELECT user_id, user_name, email, password FROM users WHERE user_role='mentor'";
+        String sqlMentor = "SELECT user_id, user_name, email, password FROM userBase WHERE user_role='mentor'";
         try (Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(sqlMentor)) {
             while (resultSet.next()) {
@@ -24,7 +24,7 @@ public final class DatabaseUserDao extends AbstractDao {
             }
         }
 
-        String sqlStudent = "SELECT user_id, user_name, email, password FROM users WHERE user_role='student'";
+        String sqlStudent = "SELECT user_id, user_name, email, password FROM userBase WHERE user_role='student'";
         try (Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(sqlStudent)) {
             while (resultSet.next()) {
