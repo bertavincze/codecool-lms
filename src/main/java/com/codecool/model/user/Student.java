@@ -9,17 +9,18 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.TreeSet;
 
 public class Student extends User implements Serializable {
 
     private List<Solution> solutionList;
-    private ArrayList<LocalDate> attendance;
+    private TreeSet<LocalDate> attendance;
 
 
     public Student(String id, String name, String email, String password) {
         super(id, name, email, password);
         solutionList = new ArrayList<>();
-        attendance = new ArrayList<>();
+        attendance = new TreeSet<>();
     }
 
     public void addSolution(Solution solution) {
@@ -54,11 +55,8 @@ public class Student extends User implements Serializable {
         } return attendanceList;
     }
 
-    public ArrayList<LocalDate> getAttendanceDates(){
-        ArrayList<LocalDate> attendanceDateList = new ArrayList<>();
-        for(LocalDate date : attendance){
-            attendanceDateList.add(date);
-        } return attendanceDateList;
+    public TreeSet<LocalDate> getAttendanceDates(){
+        return attendance;
     }
 
 
