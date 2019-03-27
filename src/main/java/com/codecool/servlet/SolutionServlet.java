@@ -1,21 +1,16 @@
 package com.codecool.servlet;
 
 import com.codecool.dao.database.DataBaseSolutionDao;
-import com.codecool.dao.database.DatabaseUserDao;
 import com.codecool.dao.database.PageList;
-import com.codecool.dao.database.UserList;
 import com.codecool.model.curriculum.AssignmentPage;
 import com.codecool.model.curriculum.Solution;
-import com.codecool.model.user.Mentor;
 import com.codecool.model.user.Student;
 import com.codecool.model.user.User;
 import com.codecool.service.IDGeneratorService;
 import com.codecool.service.SolutionService;
-import com.codecool.service.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;

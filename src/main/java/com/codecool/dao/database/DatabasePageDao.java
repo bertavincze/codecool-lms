@@ -11,7 +11,7 @@ import java.sql.Statement;
 
 public class DatabasePageDao extends AbstractDao {
 
-    public DatabasePageDao(Connection connection) {
+    DatabasePageDao(Connection connection) {
         super(connection);
     }
 
@@ -34,7 +34,6 @@ public class DatabasePageDao extends AbstractDao {
         }
 
         if (page instanceof AssignmentPage) {
-            connection.setAutoCommit(false);
             sql = "INSERT INTO assignment_page (page_id, question, max_score) VALUES (?, ?, ?)";
             try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
                 statement.setString(1, page.getId());
@@ -50,7 +49,6 @@ public class DatabasePageDao extends AbstractDao {
             }
 
         } else if (page instanceof TextPage) {
-            connection.setAutoCommit(false);
             sql = "INSERT INTO text_page (page_id, content) VALUES (?, ?)";
             try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
                 statement.setString(1, page.getId());
