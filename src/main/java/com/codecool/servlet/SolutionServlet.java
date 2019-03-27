@@ -39,11 +39,10 @@ public class SolutionServlet extends AbstractServlet {
             String title = req.getParameter("title");
             //String question = req.getParameter("question");
             String answer = req.getParameter("solution");
-            Solution solution = new Solution(title, answer);
-            user.addSolution(solution);
             String generatedID = idService.generateID();
+            Solution solution = new Solution(generatedID, title, answer);
+            user.addSolution(solution);
             solutionService.addSolution(generatedID, user.getId(), title, answer, solution.getSubmissionDate());
-
             AssignmentPage assignmentPage = (AssignmentPage) PageList.getInstance().findPageByTitle(title);
             assignmentPage.addToSolutionMap(user, solution);
             req.getRequestDispatcher("curriculum").forward(req, resp);

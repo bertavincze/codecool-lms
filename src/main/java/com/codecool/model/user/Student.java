@@ -5,7 +5,7 @@ import com.codecool.model.curriculum.Solution;
 
 
 import java.io.Serializable;
-import java.time.Month;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.time.LocalDate;
 import java.util.List;
@@ -44,5 +44,23 @@ public class Student extends User implements Serializable {
             return (int) ((attendance.size()/(totalDays))*100);
         }
     }
+
+    public ArrayList<String> getAttendance(){
+        ArrayList<String> attendanceList = new ArrayList<>();
+        SimpleDateFormat myFormat = new SimpleDateFormat("dd MM yyyy");
+        for(LocalDate date : attendance){
+            String stringDate = myFormat.format(date);
+            attendanceList.add(stringDate);
+        } return attendanceList;
+    }
+
+    public ArrayList<LocalDate> getAttendanceDates(){
+        ArrayList<LocalDate> attendanceDateList = new ArrayList<>();
+        for(LocalDate date : attendance){
+            attendanceDateList.add(date);
+        } return attendanceDateList;
+    }
+
+
 }
 
