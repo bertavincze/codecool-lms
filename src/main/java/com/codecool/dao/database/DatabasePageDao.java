@@ -11,7 +11,7 @@ import java.sql.Statement;
 
 public class DatabasePageDao extends AbstractDao {
 
-    DatabasePageDao(Connection connection) {
+    public DatabasePageDao(Connection connection) {
         super(connection);
     }
 
