@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="java.util.List" %>
+<%@ page import="java.util.Date" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!doctype html>
 <html lang="en">
@@ -11,23 +12,11 @@
     <link href="https://fonts.googleapis.com/css?family=Aladin|Merienda+One|Walter+Turncoat" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="resources/css/text.css">
     <title>GoatCool</title>
+    <script>
+        document.getElementById('datefield').valueAsDate = new Date();
+    </script>
 </head>
 <body>
-<script>
-    var today = new Date();
-    var dd = today.getDate();
-    var mm = today.getMonth()+1;
-    var yyyy = today.getFullYear();
-     if(dd<10){
-            dd='0'+dd
-        }
-        if(mm<10){
-            mm='0'+mm
-        }
-
-    today = dd+'-'+mm+'-'+yyyy;
-    document.getElementById("datefield").setAttribute("max", today);
-</script>
 
 <div class="header">
     <a href="index.html"><h1>GoatCool</h1></a>
@@ -50,7 +39,23 @@
                 <div class="title">Attendance</div>
             </div>
             <form method="post" action="attendance">
-                <input id="datefield" type='date' name="date" min='2017-01-01' max=''></input>
+                <input id="datefield" type='date' min='1899-01-01' max='2000-13-13'/>
+                <script>
+                    var today = new Date();
+                    var dd = today.getDate();
+                    var mm = today.getMonth()+1;
+                    var yyyy = today.getFullYear();
+                    if(dd<10){
+                        dd='0'+dd
+                    }
+                    if(mm<10){
+                        mm='0'+mm
+                    }
+
+                    var currentDate = yyyy+'-'+mm+'-'+dd;
+                    document.getElementById("datefield").setAttribute("min", currentDate);
+                    document.getElementById("datefield").setAttribute("max", currentDate);
+                </script>
                 <table>
                 <tr>
                     <td>Name</td>
@@ -64,16 +69,7 @@
                             <td><c:out value="${u.email}"/></td>
                             <td><c:out value="${u.getAttendanceRate()}"/>%</td>
                             <c:set var="date" value="${param.id1}"/>
-                            <c:forEach var="d" items="u.getAttendance()">
-                                <c:choose>
-                                    <c:when test="u.getAttendance() == d">
-                                        <td><input type="checkbox" name="attending" value="${u.name}" checked></td>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <td><input type="checkbox" name="attending" value="${u.name}"></td>
-                                    </c:otherwise>
-                                </c:choose>
-                            </c:forEach>
+                            <td><input type="checkbox" name="attending" value="${u.name}"></td>
                         </tr>
                     </c:if>
                 </c:forEach>

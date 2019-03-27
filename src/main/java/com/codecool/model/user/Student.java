@@ -48,12 +48,19 @@ public class Student extends User implements Serializable {
     public ArrayList<String> getAttendance(){
         ArrayList<String> attendanceList = new ArrayList<>();
         SimpleDateFormat myFormat = new SimpleDateFormat("dd MM yyyy");
-        for(Date date : attendance){
+        for(LocalDate date : attendance){
             String stringDate = myFormat.format(date);
             attendanceList.add(stringDate);
         } return attendanceList;
     }
-    
+
+    public ArrayList<LocalDate> getAttendanceDates(){
+        ArrayList<LocalDate> attendanceDateList = new ArrayList<>();
+        for(LocalDate date : attendance){
+            attendanceDateList.add(date);
+        } return attendanceDateList;
+    }
+
 
 }
 
