@@ -27,17 +27,17 @@ public class PageHandlerServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (request.getParameter("question") != null) {
-            String name = request.getParameter("title");
+            String title = request.getParameter("title");
             String question = request.getParameter("question");
             String maxScore = request.getParameter("maxScore");
             String id = idGeneratorService.generateID();
-            AssignmentPage assignmentPage = new AssignmentPage(id, name, question, Integer.parseInt(maxScore));
+            AssignmentPage assignmentPage = new AssignmentPage(title, id, question, Integer.parseInt(maxScore));
             PageList.getInstance().addPage(assignmentPage);
         } else {
-            String name = request.getParameter("title");
+            String title = request.getParameter("title");
             String content = request.getParameter("text");
             String id = idGeneratorService.generateID();
-            TextPage textPage = new TextPage(id, name, content);
+            TextPage textPage = new TextPage(title, id, content);
             PageList.getInstance().addPage(textPage);
         }
         request.getRequestDispatcher("curriculum").forward(request, response);
