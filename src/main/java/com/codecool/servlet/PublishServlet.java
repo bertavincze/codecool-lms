@@ -27,7 +27,6 @@ public class PublishServlet extends AbstractServlet {
             if (published != null) {
                 for (Page page : PageList.getInstance().getPageList()) {
                     for (String name : published) {
-                        System.out.println(name);
                         if (page.getTitle().equals(name)) {
                             page.publish();
                             pageService.updatePagePublishedState(page, true);
