@@ -14,9 +14,16 @@ public class UserService {
 
 
     public void addUser(String userID, String role, String name, String email, String password) throws SQLException {
-
         try {
             mentorDao.addUser(userID, role, name, email, password); // Insert data here);
+        } catch (NumberFormatException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    public void updateName(String id, String name) {
+        try {
+            mentorDao.
         } catch (NumberFormatException ex) {
             System.out.println(ex.getMessage());
         }
