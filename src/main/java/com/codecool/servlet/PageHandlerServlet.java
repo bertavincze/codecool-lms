@@ -9,6 +9,7 @@ import com.codecool.model.curriculum.TextPage;
 import com.codecool.model.user.Mentor;
 import com.codecool.model.user.Student;
 import com.codecool.model.user.User;
+import com.codecool.service.IDGeneratorService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,18 +22,22 @@ import java.io.IOException;
 @WebServlet("/handlepage")
 public class PageHandlerServlet extends HttpServlet {
 
+    IDGeneratorService idGeneratorService = new IDGeneratorService();
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (request.getParameter("question") != null) {
             String name = request.getParameter("title");
             String question = request.getParameter("question");
             String maxScore = request.getParameter("maxScore");
-            AssignmentPage assignmentPage = new AssignmentPage(name, question, Integer.parseInt(maxScore));
+            String id = idGeneratorService.generateID();
+            AssignmentPage assignmentPage = new AssignmentPage(id, name, question, Integer.parseInt(maxScore));
             PageList.getInstance().addPage(assignmentPage);
         } else {
             String name = request.getParameter("title");
             String content = request.getParameter("text");
-            TextPage textPage = new TextPage(name, content);
+            String id = idGeneratorService.generateID();
+            TextPage textPage = new TextPage(id, name, content);
             PageList.getInstance().addPage(textPage);
         }
         request.getRequestDispatcher("curriculum").forward(request, response);
