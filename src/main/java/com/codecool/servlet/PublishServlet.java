@@ -57,5 +57,3 @@ public class PublishServlet extends AbstractServlet {
         request.getRequestDispatcher("curriculum.jsp").forward(request, response);
     }
 }
-
-

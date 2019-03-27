@@ -3,6 +3,8 @@ package com.codecool.listener;
 import com.codecool.dao.database.PageList;
 import com.codecool.dao.database.UserList;
 
+import com.codecool.model.user.User;
+import com.codecool.service.UserService;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.jdbc.datasource.init.ScriptUtils;
 
@@ -16,6 +18,7 @@ import javax.servlet.annotation.WebListener;
 import javax.sql.DataSource;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.SQLException;
 
 @WebListener
 public final class WebappContextListener implements ServletContextListener {
@@ -78,4 +81,6 @@ public final class WebappContextListener implements ServletContextListener {
             e.printStackTrace();
         }
     }
+
+
 }
