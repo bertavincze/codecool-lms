@@ -1,31 +1,14 @@
 package com.codecool.model.user;
 
-import java.util.Date;
-import java.text.SimpleDateFormat;
-import java.util.concurrent.TimeUnit;
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.temporal.ChronoUnit;
 
 public class DateCounter {
 
-    float days;
-    final String dayOne = "01 10 2018";
+    private final LocalDate STARTDATE = LocalDate.of(2019, Month.MARCH, 1);
 
-    DateCounter(){
-        SimpleDateFormat myFormat = new SimpleDateFormat("dd MM yyyy");
-        String dateAfterString = myFormat.format(new Date());
-
-
-        try {
-            Date dateBefore = myFormat.parse(dayOne);
-            Date dateAfter = myFormat.parse(dateAfterString);
-            long difference = dateAfter.getTime() - dateBefore.getTime();
-            days = TimeUnit.DAYS.convert(difference, TimeUnit.MILLISECONDS);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public float getDaysDifference(){
-        return days;
+    public long getDifferenceInDays() {
+        return ChronoUnit.DAYS.between(STARTDATE, LocalDate.now());
     }
 }

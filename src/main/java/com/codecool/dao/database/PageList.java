@@ -1,4 +1,4 @@
-package com.codecool.database;
+package com.codecool.dao.database;
 
 import com.codecool.model.curriculum.Page;
 
@@ -42,5 +42,14 @@ public class PageList implements Serializable {
         pageList = (List<Page>) in.readObject();
         in.close();
         fileIn.close();
+    }
+
+    public Page findPageByTitle(String title) {
+        for (Page page : pageList) {
+            if (page.getTitle().equals(title)) {
+                return page;
+            }
+        }
+        return null;
     }
 }

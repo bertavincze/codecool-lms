@@ -1,5 +1,7 @@
 package com.codecool.servlet;
 
+import com.codecool.dao.database.PageList;
+import com.codecool.model.curriculum.AssignmentPage;
 import com.codecool.model.curriculum.Solution;
 import com.codecool.model.user.Student;
 import com.codecool.model.user.User;
@@ -15,16 +17,19 @@ import java.io.IOException;
 @WebServlet("/solution")
 public class SolutionServlet extends HttpServlet {
 
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession(false);
         Student user = (Student) session.getAttribute("user");
 
-        String name = req.getParameter("title");
+        String title = req.getParameter("title");
         String question = req.getParameter("question");
         String answer = req.getParameter("solution");
-        Solution solution = new Solution(name, question, answer);
+        Solution solution = new Solution(title, question, answer);
         user.addSolution(solution);
+        AssignmentPage assignmentPage = (AssignmentPage) PageList.getInstance().findPageByTitle(title);
+        assignmentPage.addToSolutionMap(user, solution);
         req.getRequestDispatcher("curriculum").forward(req, resp);
     }
 
@@ -34,10 +39,12 @@ public class SolutionServlet extends HttpServlet {
         Student user = (Student) session.getAttribute("user");
 
         String title = request.getParameter("title");
+        AssignmentPage assignmentPage = (AssignmentPage) request.getAttribute("assignmentPage");
 
         Solution solution = findUserSolutionByTitle(user, title);
         if (solution != null) {
             request.setAttribute("solution", solution);
+            request.setAttribute("assignmentPage", assignmentPage);
             request.getRequestDispatcher("seesolution.jsp").forward(request, response);
 
         } else {

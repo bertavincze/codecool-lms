@@ -10,8 +10,10 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.9</java.version>
+        <spring.jdbc.version>5.0.5.RELEASE</spring.jdbc.version>
         <servlet.api.version>4.0.0</servlet.api.version>
         <jstl.version>1.2</jstl.version>
+        <postgresql.jdbc.version>42.2.2</postgresql.jdbc.version>
         <junit.jupiter.version>5.0.1</junit.jupiter.version>
         <junit.platform.version>1.0.3</junit.platform.version>
     </properties>
@@ -24,9 +26,21 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
+            <!-- Only using ScriptUtils class. -->
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>${spring.jdbc.version}</version>
+        </dependency>
+        <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
             <version>${jstl.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${postgresql.jdbc.version}</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>

@@ -1,6 +1,6 @@
 package com.codecool.model.curriculum;
 
-import com.codecool.database.PageList;
+import com.codecool.dao.database.PageList;
 
 public class Curriculum {
 

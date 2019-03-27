@@ -1,7 +1,7 @@
 package com.codecool.servlet;
 
-
-import com.codecool.database.PageList;
+import com.codecool.dao.database.PageList;
+import com.codecool.dao.database.UserList;
 import com.codecool.model.curriculum.AssignmentPage;
 import com.codecool.model.curriculum.Page;
 import com.codecool.model.curriculum.Solution;
@@ -41,6 +41,7 @@ public class PageHandlerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String title = request.getParameter("title");
+        String name = request.getParameter("name");
         HttpSession session = request.getSession(false);
         User user = (User) session.getAttribute("user");
 
@@ -57,6 +58,7 @@ public class PageHandlerServlet extends HttpServlet {
             if (user instanceof Student) {
                 Solution solution = findUserSolutionByTitle(user, requestedPage.getTitle());
                 if (solution != null) {
+                    request.setAttribute("assignmentPage", requestedPage);
                     request.setAttribute("solution", solution);
                     request.getRequestDispatcher("solution?title=" + solution.getTitle()).forward(request, response);
 
@@ -65,7 +67,19 @@ public class PageHandlerServlet extends HttpServlet {
                 }
 
             } else if (user instanceof Mentor) {
-                request.getRequestDispatcher("seeassignment.jsp").forward(request, response);
+                boolean isEditRequest = Boolean.parseBoolean(request.getParameter("edit"));
+                if (isEditRequest) {
+                    for (User u: UserList.getInstance().getUsers()){
+                        if (u instanceof Student && u.getName().equals(name)) {
+                            Solution solution = findUserSolutionByTitle(u, requestedPage.getTitle());
+                            request.setAttribute("solution", solution);
+                        }
+                    }
+                    request.setAttribute("assignmentPage", requestedPage);
+                    request.getRequestDispatcher("seesolution.jsp").forward(request, response);
+                } else {
+                    request.getRequestDispatcher("seeassignment.jsp").forward(request, response);
+                }
             }
 
         } else if (isTextPage(requestedPage)) {

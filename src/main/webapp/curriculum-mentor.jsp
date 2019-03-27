@@ -42,7 +42,7 @@
             <c:forEach var="page" items="${pageList}">
                 <c:choose>
                 <c:when test="${page.isPublished()}">
-                <li><input type="checkbox" name="unpublish" value="${page.getTitle()}" />Published: <a href="handlepage?title=${page.getTitle()}">${page.getTitle()}</a></li>
+                <li><input type="checkbox" name="unpublish" value="${page.getTitle()}" />Published: <a href="handlepage?title=${page.getTitle()}&edit=false">${page.getTitle()}</a></li>
                 </c:when>
                 </c:choose>
             </c:forEach>
@@ -58,7 +58,7 @@
             <c:forEach var="page" items="${pageList}">
                 <c:choose>
                 <c:when test="${!page.isPublished()}">
-                <li><input type="checkbox" name="publish" value="${page.getTitle()}" />Unpublished: <a href="handlepage?title=${page.getTitle()}">${page.getTitle()}</a></li>
+                <li><input type="checkbox" name="publish" value="${page.getTitle()}" />Unpublished: <a href="handlepage?title=${page.getTitle()}&edit=false">${page.getTitle()}</a></li>
                 </c:when>
                 </c:choose>
             </c:forEach>

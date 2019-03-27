@@ -7,18 +7,19 @@ import com.codecool.model.curriculum.Solution;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 public class Student extends User implements Serializable {
 
     private List<Solution> solutionList;
-    private ArrayList<Date> attendance = new ArrayList<>();
+    private ArrayList<LocalDate> attendance;
 
 
-    public Student(String name, String email, String password) {
-        super(name, email, password);
+    public Student(String id, String name, String email, String password) {
+        super(id, name, email, password);
         solutionList = new ArrayList<>();
+        attendance = new ArrayList<>();
     }
 
     public void addSolution(Solution solution) {
@@ -31,15 +32,16 @@ public class Student extends User implements Serializable {
         return solutionList;
     }
 
-    public void setAttendance(Date date){
+    public void setAttendance(LocalDate date) {
         attendance.add(date);
     }
 
-    public int getAttendanceRate(){
-        if (attendance.isEmpty()){
+    public int getAttendanceRate() {
+        if (attendance.isEmpty()) {
             return 0;
         } else {
-            return (int) ((attendance.size()/(new DateCounter().getDaysDifference()))*100);
+            float totalDays = ((float)new DateCounter().getDifferenceInDays());
+            return (int) ((attendance.size()/(totalDays))*100);
         }
     }
 
