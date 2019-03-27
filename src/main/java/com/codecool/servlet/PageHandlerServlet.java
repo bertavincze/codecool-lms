@@ -39,7 +39,7 @@ public class PageHandlerServlet extends AbstractServlet {
                 String question = request.getParameter("question");
                 String maxScore = request.getParameter("maxScore");
                 String id = idGeneratorService.generateID();
-                AssignmentPage assignmentPage = new AssignmentPage(title, id, question, Integer.parseInt(maxScore));
+                AssignmentPage assignmentPage = new AssignmentPage(id, title, question, Integer.parseInt(maxScore));
                 PageList.getInstance().addPage(assignmentPage);
                 pageService.addPage(assignmentPage);
 
@@ -47,7 +47,7 @@ public class PageHandlerServlet extends AbstractServlet {
                 String title = request.getParameter("title");
                 String content = request.getParameter("text");
                 String id = idGeneratorService.generateID();
-                TextPage textPage = new TextPage(title, id, content);
+                TextPage textPage = new TextPage(id, title, content);
                 PageList.getInstance().addPage(textPage);
                 pageService.addPage(textPage);
             }
