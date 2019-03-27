@@ -1,5 +1,6 @@
 package com.codecool.servlet;
 
+import com.codecool.dao.database.DatabasePageDao;
 import com.codecool.dao.database.PageList;
 import com.codecool.dao.database.UserList;
 import com.codecool.model.curriculum.AssignmentPage;
@@ -10,6 +11,7 @@ import com.codecool.model.user.Mentor;
 import com.codecool.model.user.Student;
 import com.codecool.model.user.User;
 import com.codecool.service.IDGeneratorService;
+import com.codecool.service.PageService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,29 +20,42 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
 
 @WebServlet("/handlepage")
-public class PageHandlerServlet extends HttpServlet {
+public class PageHandlerServlet extends AbstractServlet {
 
     IDGeneratorService idGeneratorService = new IDGeneratorService();
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if (request.getParameter("question") != null) {
-            String title = request.getParameter("title");
-            String question = request.getParameter("question");
-            String maxScore = request.getParameter("maxScore");
-            String id = idGeneratorService.generateID();
-            AssignmentPage assignmentPage = new AssignmentPage(title, id, question, Integer.parseInt(maxScore));
-            PageList.getInstance().addPage(assignmentPage);
-        } else {
-            String title = request.getParameter("title");
-            String content = request.getParameter("text");
-            String id = idGeneratorService.generateID();
-            TextPage textPage = new TextPage(title, id, content);
-            PageList.getInstance().addPage(textPage);
+        try (Connection connection = getConnection(request.getServletContext())) {
+            DatabasePageDao databasePageDao = new DatabasePageDao(connection);
+            PageService pageService = new PageService(databasePageDao);
+
+            if (request.getParameter("question") != null) {
+                String title = request.getParameter("title");
+                String question = request.getParameter("question");
+                String maxScore = request.getParameter("maxScore");
+                String id = idGeneratorService.generateID();
+                AssignmentPage assignmentPage = new AssignmentPage(title, id, question, Integer.parseInt(maxScore));
+                PageList.getInstance().addPage(assignmentPage);
+                pageService.addPage(assignmentPage);
+
+            } else {
+                String title = request.getParameter("title");
+                String content = request.getParameter("text");
+                String id = idGeneratorService.generateID();
+                TextPage textPage = new TextPage(title, id, content);
+                PageList.getInstance().addPage(textPage);
+                pageService.addPage(textPage);
+            }
+            request.getRequestDispatcher("curriculum").forward(request, response);
+
+        } catch (SQLException e) {
+            throw new ServletException (e);
         }
-        request.getRequestDispatcher("curriculum").forward(request, response);
     }
 
     @Override
