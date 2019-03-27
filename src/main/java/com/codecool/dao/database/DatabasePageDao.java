@@ -34,6 +34,7 @@ public class DatabasePageDao extends AbstractDao {
         }
 
         if (page instanceof AssignmentPage) {
+
             sql = "INSERT INTO assignment_page (page_id, question, max_score) VALUES (?, ?, ?)";
             try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
                 statement.setString(1, page.getId());

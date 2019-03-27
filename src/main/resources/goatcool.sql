@@ -68,6 +68,8 @@ CREATE TABLE solutionmap(
 	FOREIGN KEY (solution_id) REFERENCES solution(solution_id)
 );
 
+INSERT INTO userBase VALUES('12ab#.', 'mentor', 'm', 'm', 'm');
+INSERT INTO userBase VALUES('34cd#.', 'student', 's', 's', 's');
 
 
 
