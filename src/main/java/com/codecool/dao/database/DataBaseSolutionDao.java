@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 
 public class DataBaseSolutionDao extends AbstractDao {
 
-    DataBaseSolutionDao(Connection connection) {
+    public DataBaseSolutionDao(Connection connection) {
         super(connection);
     }
 
