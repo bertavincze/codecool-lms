@@ -49,18 +49,12 @@
             <div class="containerhead">
                 <div class="title"><a href="">Unsolved Assignments</a></div>
             </div>
-            <c:choose>
-                 <c:when test="${assignments == null}">
-                        <p> No unsolved assignments found </p>
-                 </c:when>
-             </c:choose>
+            <c:if test="${fn:length(assignments) == 0}">
+                  <p> No unsolved assignments found </p>
+            </c:if>
             <ul>
             <c:forEach var="a" items="${assignments}">
-                 <c:choose>
-                     <c:when test="${a.isPublished()}">
-                            <a href="handlepage?title=${a.getTitle()}"><li>${a.getTitle()}</li></a>
-                     </c:when>
-                </c:choose>
+                <a href="handlepage?title=${a.getTitle()}"><li>${a.getTitle()}</li></a>
             </c:forEach>
             </ul>
             <div class="containerfoot"></div>

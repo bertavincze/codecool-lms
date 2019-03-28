@@ -40,7 +40,7 @@ public class AssignmentServlet extends HttpServlet {
         List<AssignmentPage> assignments = new ArrayList<>();
         if (solutions == null) {
             for (Page page : PageList.getInstance().getPageList()) {
-                if (page instanceof AssignmentPage) {
+                if (page instanceof AssignmentPage && page.isPublished() == true) {
                         assignments.add((AssignmentPage)page);
                     }
                 }
@@ -51,7 +51,7 @@ public class AssignmentServlet extends HttpServlet {
             }
             for (Page page : PageList.getInstance().getPageList()) {
                 if (page instanceof AssignmentPage) {
-                    if (!titleList.contains(((AssignmentPage)page).getTitle())) {
+                    if (!titleList.contains(((AssignmentPage)page).getTitle()) && page.isPublished() == true) {
                         assignments.add((AssignmentPage)page);
                     }
                 }
