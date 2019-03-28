@@ -41,4 +41,17 @@ public abstract class User implements Serializable {
         this.email = mail;
     }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getPasswordDisplay() {
+        String hiddenPassword ="";
+        for (int i = 0; i < password.length(); i++){
+            hiddenPassword = hiddenPassword+"*";
+        }
+        return hiddenPassword;
+    }
+
+
 }

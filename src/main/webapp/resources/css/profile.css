@@ -27,21 +27,18 @@ table{
 .icon{
     width: 20px;
     height: 20px;
-    background:url('../pics/edit_icon.png');
-    background-attachment: center top;
+    background:url('../pics/edit_icon.png') center top no-repeat;
     background-size: cover;
-    background-repeat: no-repeat;
     display: inline-block;
     float: right;
     position: relative;
-    display: inline-block;
     cursor: pointer;
 }
 
 form{
     visibility: hidden;
     position: relative;
-    top: -35px;
+    top: -20px;
     float: right;
     padding-left: 20px;
     width: 95%;
