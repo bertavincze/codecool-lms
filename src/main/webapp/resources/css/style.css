@@ -77,30 +77,9 @@ nav li:hover {
     text-align: center;
     }
 
-
-
 .content-middle{
     margin: 0 auto;
     size: 50%;
-}
-
-.attendance-button{
-    float: right;
-}
-
-#datefield{
-    margin-top: 8px;
-    float: left;
-}
-
-#datefield2{
-    margin-top: 8px;
-    margin-right: 5px;
-    float: right;
-}
-
-#setNewDate{
-    float:right;
 }
 
 /* MEDIA QUERIES FOR RESPONSIVE LAYOUT */
@@ -282,6 +261,8 @@ input[type="date"] {
     border:1px solid #ecf0f1;
     background:#ecf0f1;
     padding:5px;
+    align: center;
+    width: 100%;
     display: inline-block !important;
     visibility: visible !important;
 }
