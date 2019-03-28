@@ -6,8 +6,8 @@ public class TextPage extends Page implements Serializable {
 
     private String content;
 
-    public TextPage(String title, String id, String content) {
-        super(title, id);
+    public TextPage(String id, String title, String content) {
+        super(id, title);
         this.content = content;
     }
 

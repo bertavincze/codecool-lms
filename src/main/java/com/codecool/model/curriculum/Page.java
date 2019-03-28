@@ -8,7 +8,7 @@ public abstract class Page implements Serializable {
     private String id;
     protected boolean isPublished;
 
-    public Page(String title, String id) {
+    public Page(String id, String title) {
         this.id = id;
         this.title = title;
         this.isPublished = false;
