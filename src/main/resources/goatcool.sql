@@ -68,6 +68,15 @@ CREATE TABLE solutionmap(
 	FOREIGN KEY (solution_id) REFERENCES solution(solution_id)
 );
 
+CREATE TABLE attendance(
+    attendance_id varchar(6) NOT NULL,
+    user_id varchar(6) NOT NULL,
+    attended_day date,
+    attendance_day boolean,
+    PRIMARY KEY (attendance_id),
+    FOREIGN KEY (user_id) REFERENCES userBase(user_id)
+);
+
 INSERT INTO userBase VALUES('12ab#.', 'mentor', 'm', 'm', 'm');
 INSERT INTO userBase VALUES('34cd#.', 'student', 's', 's', 's');
 
