@@ -40,7 +40,7 @@
                 <div class="title">Attendance</div>
             </div>
             <form action="attendance" method="post">
-                <input id="datefield" name="datefield" type="date" max="2000-13-13">
+                <input id="datefield" name="datefield" type="date" min="2019-03-01" max="2000-13-13">
                 <script>
                     var today = new Date();
                     var dd = today.getDate();
