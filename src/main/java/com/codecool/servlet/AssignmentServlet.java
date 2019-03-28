@@ -49,8 +49,6 @@ public class AssignmentServlet extends HttpServlet {
             for (Solution solution : solutions) {
                 titleList.add(solution.getTitle());
             }
-
-
             for (Page page : PageList.getInstance().getPageList()) {
                 if (page instanceof AssignmentPage) {
                     if (!titleList.contains(((AssignmentPage)page).getTitle())) {

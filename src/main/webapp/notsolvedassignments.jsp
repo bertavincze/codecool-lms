@@ -24,10 +24,10 @@
     <ul>
         <a href="profile.jsp"><li>Profile</li></a>
         <a href="userlist"><li>UserList</li></a>
-        <a href="curriculum"><li class="marked">Curriculum</li></a>
+        <a href="curriculum"><li>Curriculum</li></a>
         <c:choose>
             <c:when test="${user.getClass().simpleName == 'Student'}">
-                 <a href="assignments"><li>Assignments</li></a>
+                 <a href="assignments"><li class="marked">Assignments</li></a>
                  <a href="stats"><li>Stats</li></a>
             </c:when>
             <c:otherwise>
@@ -42,9 +42,14 @@
     <div class="content">
         <div class="container">
             <div class="containerhead">
-                <div class="title"><a href="">Assignment</a></div>
+                <div class="title"><a href="">Unsolved Assignments</a></div>
             </div>
-
+            <c:choose>
+                 <c:when test="${assignments == null}">
+                        <p> No unsolved assignments found </p>
+                 </c:when>
+             </c:choose>
+            <ul>
             <c:forEach var="a" items="${assignments}">
                  <c:choose>
                      <c:when test="${a.isPublished()}">
@@ -52,7 +57,7 @@
                      </c:when>
                 </c:choose>
             </c:forEach>
-
+            </ul>
             <div class="containerfoot"></div>
         </div>
     </div>
