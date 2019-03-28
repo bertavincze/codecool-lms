@@ -1,9 +1,7 @@
 package com.codecool.servlet;
 
 import com.codecool.dao.database.DatabaseUserDao;
-import com.codecool.model.user.Student;
 import com.codecool.model.user.User;
-import com.codecool.service.IDGeneratorService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,8 +16,6 @@ import java.sql.SQLException;
 @WebServlet("/editedMail")
 public class EditEmailServlet extends AbstractServlet {
 
-    private User currentUser;
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("profile.jsp").forward(request, response);
@@ -30,9 +26,9 @@ public class EditEmailServlet extends AbstractServlet {
         try (Connection connection = getConnection(request.getServletContext())) {
             DatabaseUserDao userDao = new DatabaseUserDao(connection);
             User user =  getCurrentUser(request);
-            String newMail = request.getParameter("email");
-            user.setEmail(newMail);
-            userDao.updateEmail(user.getId(), newMail);
+            String newEmail = request.getParameter("email");
+            user.setEmail(newEmail);
+            userDao.updateEmail(user.getId(), newEmail);
             request.getRequestDispatcher("profile.jsp").forward(request, response);
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -41,7 +37,6 @@ public class EditEmailServlet extends AbstractServlet {
 
     private User getCurrentUser(HttpServletRequest request){
         HttpSession session = request.getSession(false);
-        currentUser = (User) session.getAttribute("user");
-        return currentUser;
+        return (User) session.getAttribute("user");
     }
 }

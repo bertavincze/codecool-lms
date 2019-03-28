@@ -88,6 +88,20 @@ nav li:hover {
     float: right;
 }
 
+#datefield{
+    margin-top: 8px;
+    float: left;
+}
+
+#datefield2{
+    margin-top: 8px;
+    margin-right: 5px;
+    float: right;
+}
+
+#setNewDate{
+    float:right;
+}
 
 /* MEDIA QUERIES FOR RESPONSIVE LAYOUT */
 @media (min-width:1020px) {
