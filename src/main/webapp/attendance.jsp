@@ -26,11 +26,12 @@
     <ul>
         <a href="profile.jsp"><li>Profile</li></a>
         <a href="userlist"><li>UserList</li></a>
-        <a href="curriculum"><li class="marked">Curriculum</li></a>
-        <a href="assignments"><li>Assignments</li></a>
-        <a href="stats"><li>Stats</li></a>
+        <a href="curriculum"><li>Curriculum</li></a>
+        <a href="attendance"><li class="marked">Attendance</li></a>
+        <a href="solutions"><li>Student Solutions</li></a>
     </ul>
 </nav>
+
 
 <div class="wrapper">
     <div class="content">
@@ -38,9 +39,9 @@
             <div class="containerhead">
                 <div class="title">Attendance</div>
             </div>
-            <form method="post" action="setDate">
-                <input id="setNewDate" type="submit" value="Set date">
-                <input id="datefield2" type='date' min='1899-01-01' max='2000-13-13'/>
+            <h2>Attendance: </h2>
+            <form action="attendance" method="post">
+                <input id="datefield" name="datefield" type="date" max="2000-13-13">
                 <script>
                     var today = new Date();
                     var dd = today.getDate();
@@ -53,34 +54,27 @@
                         mm='0'+mm
                     }
                     var currentDate = yyyy+'-'+mm+'-'+dd;
-                    document.getElementById("datefield2").setAttribute("max", currentDate);
-                </script>
-            </form>
-            <form method="post" action="attendance">
-                <input id="datefield" type='date' min='1899-01-01' max='2000-13-13'/>
-                <script>
                     document.getElementById("datefield").setAttribute("max", currentDate);
                     document.getElementById("datefield").value = currentDate;
                 </script>
+                <p>Check the box to add attendance record for the selected date.</p>
                 <table>
                 <tr>
-                    <td>Name</td>
-                    <td>E-mail</td>
-                    <td>Attendance rate</td>
+                    <td><p>Name</p></td>
+                    <td><p>Attendance rate</p></td>
+                    <td><p>Current Attendance</p></td>
                 </tr>
-                <c:forEach var="u" items="${attendance}">
-                    <c:if test="${u.getClass().simpleName == 'Student'}">
-                        <tr>
-                            <td><c:out value="${u.name}"/></td>
-                            <td><c:out value="${u.email}"/></td>
-                            <td><c:out value="${u.getAttendanceRate()}"/>%</td>
-                            <c:set var="date" value="${param.id1}"/>
-                            <td><input type="checkbox" name="attending" value="${u.name}"></td>
-                        </tr>
-                    </c:if>
+                <c:forEach var="u" items="${students}">
+                    <tr>
+                        <td><p>${u.getName()}</p></td>
+                        <td><p>${u.getAttendanceRate()}%</p></td>
+                        <td><p><input type="checkbox" name="attending" value="${u.getName()}"><p></td>
+                    </tr>
                 </c:forEach>
                 </table>
-                <input class="attendance-button" type="submit" value="Save!">
+                <br>
+                <input type="submit" value="Set attendance">
+                <br>
             </form>
             <div class="containerfoot"></div>
         </div>
@@ -89,7 +83,7 @@
     <div class="sidebar">
         <div class="sbcontainer">
             <div class="containerhead">
-                <div class="title">Logged in user</div>
+                <div class="title">Current user</div>
             </div>
 
             <div class="desc">
