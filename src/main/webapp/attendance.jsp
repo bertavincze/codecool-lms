@@ -38,8 +38,9 @@
             <div class="containerhead">
                 <div class="title">Attendance</div>
             </div>
-            <form method="post" action="attendance">
-                <input id="datefield" type='date' min='1899-01-01' max='2000-13-13'/>
+            <form method="post" action="setDate">
+                <input id="setNewDate" type="submit" value="Set date">
+                <input id="datefield2" type='date' min='1899-01-01' max='2000-13-13'/>
                 <script>
                     var today = new Date();
                     var dd = today.getDate();
@@ -51,10 +52,15 @@
                     if(mm<10){
                         mm='0'+mm
                     }
-
                     var currentDate = yyyy+'-'+mm+'-'+dd;
-                    document.getElementById("datefield").setAttribute("min", currentDate);
+                    document.getElementById("datefield2").setAttribute("max", currentDate);
+                </script>
+            </form>
+            <form method="post" action="attendance">
+                <input id="datefield" type='date' min='1899-01-01' max='2000-13-13'/>
+                <script>
                     document.getElementById("datefield").setAttribute("max", currentDate);
+                    document.getElementById("datefield").value = currentDate;
                 </script>
                 <table>
                 <tr>
