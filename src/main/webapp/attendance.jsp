@@ -39,7 +39,6 @@
             <div class="containerhead">
                 <div class="title">Attendance</div>
             </div>
-            <h2>Attendance: </h2>
             <form action="attendance" method="post">
                 <input id="datefield" name="datefield" type="date" max="2000-13-13">
                 <script>
@@ -57,7 +56,6 @@
                     document.getElementById("datefield").setAttribute("max", currentDate);
                     document.getElementById("datefield").value = currentDate;
                 </script>
-                <p>Check the box to add attendance record for the selected date.</p>
                 <table>
                 <tr>
                     <td><p>Name</p></td>
@@ -72,8 +70,8 @@
                     </tr>
                 </c:forEach>
                 </table>
-                <br>
-                <p><input type="submit" value="Set attendance"></p>
+                <p align="center">Check the box to add attendance record for the selected date.</p>
+                <center><input type="submit" value="Set attendance"></center>
                 <br>
             </form>
             <div class="containerfoot"></div>
