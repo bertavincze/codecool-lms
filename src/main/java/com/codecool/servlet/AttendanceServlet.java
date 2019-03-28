@@ -6,13 +6,11 @@ import com.codecool.model.user.Student;
 import com.codecool.model.user.User;
 import com.codecool.service.AttendanceService;
 import com.codecool.service.IDGeneratorService;
-import com.codecool.service.SolutionService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -39,8 +37,6 @@ public class AttendanceServlet extends AbstractServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try (Connection connection = getConnection(request.getServletContext())) {
-            HttpSession session = request.getSession(false);
-            User user = (User) session.getAttribute("user");
             DatabaseAttendanceDao attendanceDao = new DatabaseAttendanceDao(connection);
             AttendanceService attendanceService = new AttendanceService(attendanceDao);
             IDGeneratorService idGeneratorService = new IDGeneratorService();
@@ -52,14 +48,22 @@ public class AttendanceServlet extends AbstractServlet {
             String[] attending = request.getParameterValues("attending");
 
             List<User> students = new ArrayList<>();
-            for (String name : attending) {
-                Student student = findStudentByName(name);
-                if (student != null) {
-                    student.setAttendance(localDate, true);
-                    students.add(student);
-                    attendanceService.addAttendance(generatedID, student.getId(), localDate, student.getAttendance().get(localDate));
+            for (User user : UserList.getInstance().getUsers()) {
+                if (user instanceof Student) {
+                    students.add(user);
                 }
             }
+
+            if (attending != null) {
+                for (String name : attending) {
+                    Student student = findStudentByName(name);
+                    if (student != null) {
+                        student.setAttendance(localDate, true);
+                        attendanceService.addAttendance(generatedID, student.getId(), localDate, student.getAttendance().get(localDate));
+                    }
+                }
+            }
+
             request.setAttribute("students", students);
             request.getRequestDispatcher("attendance.jsp").forward(request, response);
         } catch (SQLException ex) {
