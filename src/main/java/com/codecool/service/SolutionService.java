@@ -1,16 +1,15 @@
 package com.codecool.service;
 
-import com.codecool.dao.database.DataBaseSolutionDao;
-import com.codecool.dao.database.DatabaseUserDao;
+import com.codecool.dao.database.DatabaseSolutionDao;
 
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 
 public class SolutionService {
 
-    private final DataBaseSolutionDao solutionDao;
+    private final DatabaseSolutionDao solutionDao;
 
-    public SolutionService(DataBaseSolutionDao solutionDao) {
+    public SolutionService(DatabaseSolutionDao solutionDao) {
         this.solutionDao = solutionDao;
     }
 

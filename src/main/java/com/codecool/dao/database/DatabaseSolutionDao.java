@@ -6,9 +6,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDateTime;
 
-public class DataBaseSolutionDao extends AbstractDao {
+public class DatabaseSolutionDao extends AbstractDao {
 
-    public DataBaseSolutionDao(Connection connection) {
+    public DatabaseSolutionDao(Connection connection) {
         super(connection);
     }
 
