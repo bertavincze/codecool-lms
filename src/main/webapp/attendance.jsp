@@ -73,7 +73,7 @@
                 </c:forEach>
                 </table>
                 <br>
-                <input type="submit" value="Set attendance">
+                <p><input type="submit" value="Set attendance"></p>
                 <br>
             </form>
             <div class="containerfoot"></div>
