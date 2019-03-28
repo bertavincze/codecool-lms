@@ -102,7 +102,10 @@
                           </c:otherwise>
                     </c:choose>
                 <br>
-            </div>
+                <form action="logout" method="post">
+                    <input type="submit" value="Log out">
+                </form>
+                <br></div>
 
 
 

@@ -123,6 +123,11 @@
         <div class="sbcontainer">
             <div class="desc">
                 <p>Welcome ${user.getName()}! You can see and edit your basic data and track your progress here.</p> <br>
+
+                <form action="logout" method="post">
+                    <input type="submit" value="Log out">
+                </form>
+                <br>
             </div>
             <div class="containerhead">
                 <div class="title"></div>

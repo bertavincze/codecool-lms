@@ -88,6 +88,10 @@
                           </c:otherwise>
                     </c:choose>
                 <br>
+                <form action="logout" method="post">
+                    <input type="submit" value="Log out">
+                </form>
+                <br>
             </div>
 
             <ul class="links">

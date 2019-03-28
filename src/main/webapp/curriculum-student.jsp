@@ -81,7 +81,10 @@
                           </c:otherwise>
                     </c:choose>
                 <br>
-            </div>
+                <form action="logout" method="post">
+                    <input type="submit" value="Log out">
+                </form>
+                <br></div>
 
             <ul class="links">
                 <div class="linktitle">Favourites</div>
