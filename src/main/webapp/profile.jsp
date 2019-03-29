@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="resources/css/reset.css">
     <link rel="stylesheet" type="text/css" href="resources/css/style.css">
     <link rel="stylesheet" type="text/css" href="resources/css/profile.css">
-    <link href="https://fonts.googleapis.com/css?family=Aladin|Merienda+One|Walter+Turncoat" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="resources/css/text.css">
     <title>GoatCool</title>
 </head>
@@ -30,7 +30,12 @@
 </script>
 
 <div class="header">
-    <a href="index.html"><h1>GoatCool</h1></a>
+    <div class="svg-wrapper">
+  <svg height="60" width="320" xmlns="http://www.w3.org/2000/svg">
+    <rect class="shape" height="60" width="320" />
+    <div class="headertext">GoatCool LMS</div>
+  </svg>
+</div>
 </div>
 
 <nav>
@@ -118,6 +123,11 @@
         <div class="sbcontainer">
             <div class="desc">
                 <p>Welcome ${user.getName()}! You can see and edit your basic data and track your progress here.</p> <br>
+
+                <form action="logout" method="post">
+                    <input type="submit" value="Log out">
+                </form>
+                <br>
             </div>
             <div class="containerhead">
                 <div class="title"></div>

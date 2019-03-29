@@ -9,14 +9,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="resources/css/reset.css">
     <link rel="stylesheet" type="text/css" href="resources/css/style.css">
-    <link href="https://fonts.googleapis.com/css?family=Aladin|Merienda+One|Walter+Turncoat" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="resources/css/text.css">
 </head>
 
 <body>
 
 <div class="header">
-    <a href="index.html"><h1>GoatCool</h1></a>
+    <div class="svg-wrapper">
+  <svg height="60" width="320" xmlns="http://www.w3.org/2000/svg">
+    <rect class="shape" height="60" width="320" />
+    <div class="headertext">GoatCool LMS</div>
+  </svg>
+</div>
 </div>
 
 <nav>
@@ -97,7 +102,10 @@
                           </c:otherwise>
                     </c:choose>
                 <br>
-            </div>
+                <form action="logout" method="post">
+                    <input type="submit" value="Log out">
+                </form>
+                <br></div>
 
 
 
