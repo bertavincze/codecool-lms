@@ -48,7 +48,9 @@
                             <td><a href="handlepage?title=${a.key.getTitle()}"><c:out value="${a.key.getTitle()}"/></a></td>
                             <td><c:out value="${a.key.getSubmissionDate().toLocalDate()}"/></td>
                             <td><c:out value="${a.value}"/></td>
+                            <c:if test="${a.key.getGrade() != 0}">
                             <td><c:out value="${a.key.getGrade()}"/> </td>
+                            </c:if>
                         </tr>
                     </c:forEach>
                 </table>
