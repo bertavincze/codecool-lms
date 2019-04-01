@@ -4,14 +4,13 @@ import com.codecool.model.curriculum.AssignmentPage;
 import com.codecool.model.curriculum.Page;
 import com.codecool.model.curriculum.TextPage;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DatabasePageDao extends AbstractDao {
 
-    DatabasePageDao(Connection connection) {
+    public DatabasePageDao(Connection connection) {
         super(connection);
     }
 
@@ -34,6 +33,7 @@ public class DatabasePageDao extends AbstractDao {
         }
 
         if (page instanceof AssignmentPage) {
+            connection.setAutoCommit(false);
             sql = "INSERT INTO assignment_page (page_id, question, max_score) VALUES (?, ?, ?)";
             try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
                 statement.setString(1, page.getId());
@@ -49,6 +49,7 @@ public class DatabasePageDao extends AbstractDao {
             }
 
         } else if (page instanceof TextPage) {
+            connection.setAutoCommit(false);
             sql = "INSERT INTO text_page (page_id, content) VALUES (?, ?)";
             try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
                 statement.setString(1, page.getId());
@@ -62,5 +63,71 @@ public class DatabasePageDao extends AbstractDao {
                 connection.setAutoCommit(autoCommit);
             }
         }
+    }
+
+    public void updatePagePublishedState(Page page, boolean isPublished) throws SQLException {
+        boolean autoCommit = connection.getAutoCommit();
+        connection.setAutoCommit(false);
+        String sql = "UPDATE page SET isPublished=? WHERE page_id=?";
+        try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            statement.setBoolean(1, isPublished);
+            statement.setString(2, page.getId());
+            executeInsert(statement);
+            connection.commit();
+        } catch (SQLException ex) {
+            connection.rollback();
+            throw ex;
+        } finally {
+            connection.setAutoCommit(autoCommit);
+        }
+    }
+
+    public List<Page> loadAllPages() throws SQLException {
+        List<Page> allPages = new ArrayList<>();
+        allPages.addAll(loadAssignmentPages());
+        allPages.addAll(loadTextPages());
+        return allPages;
+    }
+
+    private List<Page> loadAssignmentPages() throws SQLException {
+        List<Page> assignments = new ArrayList<>();
+        String sql = "SELECT page.page_id, title, ispublished, question, max_score FROM page " +
+            "JOIN assignment_page ON page.page_id = assignment_page.page_id";
+        try (Statement statement = connection.createStatement(); ResultSet resultSet = statement.executeQuery(sql)) {
+            while (resultSet.next()) {
+                Page page = new AssignmentPage(
+                    resultSet.getString("page_id"),
+                    resultSet.getString("title"),
+                    resultSet.getString("question"),
+                    resultSet.getInt("max_score"));
+                if (resultSet.getBoolean("ispublished")) {
+                    page.publish();
+                } else {
+                    page.unpublish();
+                }
+                assignments.add(page);
+            }
+        }
+        return assignments;
+    }
+
+    private List<Page> loadTextPages() throws SQLException {
+        List<Page> textPages = new ArrayList<>();
+        String sql = "SELECT page.page_id, title, ispublished, content FROM page JOIN text_page ON page.page_id = text_page.page_id";
+        try (Statement statement = connection.createStatement(); ResultSet resultSet = statement.executeQuery(sql)) {
+            while (resultSet.next()) {
+                Page page = new TextPage(
+                    resultSet.getString("page_id"),
+                    resultSet.getString("title"),
+                    resultSet.getString("content"));
+                if (resultSet.getBoolean("ispublished")) {
+                    page.publish();
+                } else {
+                    page.unpublish();
+                }
+                textPages.add(page);
+            }
+        }
+        return textPages;
     }
 }

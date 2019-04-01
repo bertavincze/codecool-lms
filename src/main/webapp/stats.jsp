@@ -43,18 +43,12 @@
                         <td>Max Score</td>
                         <td>Student Score</td>
                     </tr>
-                     <c:forEach var="s" items="${user.getSolutionList()}">
+                    <c:forEach var="a" items="${assignmentMap}">
                         <tr>
-                            <td><c:out value="${s.title}"/> </td>
-                            <td><c:out value="${s.answer}"/></td>
-                            <c:choose>
-                                  <c:when test="${u.getClass().simpleName == 'Student'}">
-                                        <td>Student</td>
-                                  </c:when>
-                                  <c:otherwise>
-                                        <td>Mentor</td>
-                                  </c:otherwise>
-                            </c:choose>
+                            <td><a href="handlepage?title=${a.key.getTitle()}"><c:out value="${a.key.getTitle()}"/></a></td>
+                            <td><c:out value="${a.key.getSubmissionDate().toLocalDate()}"/></td>
+                            <td><c:out value="${a.value}"/></td>
+                            <td><c:out value="${a.key.getGrade()}"/> </td>
                         </tr>
                     </c:forEach>
                 </table>

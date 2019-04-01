@@ -23,6 +23,14 @@
          var popup = document.getElementById("editMail");
          popup.classList.toggle("show");
         }
+    function editPassword() {
+        var popup = document.getElementById("editPassword");
+        popup.classList.toggle("show");
+    }
+
+    function changePic() {
+        document.documentElement.style.setProperty("--default-img", "url('../pics/girly.jpg')");
+    }
 </script>
 
 <div class="header">
@@ -53,7 +61,7 @@
             <div class="containerhead">
                 <div class="title">Profile</div>
             </div>
-            <div class="one-third">
+            <div class="one-third" onclick="changePic()">
             </div>
                 <div class="two-third">
                      <table>
@@ -79,6 +87,17 @@
                         <td class="icon" onclick="editMail()">
                         </td>
                       </tr>
+                     <tr>
+                         <td>Password: </td>
+                         <td><p>${user.getPasswordDisplay()}</p>
+                             <form id="editPassword" action = "editedPassword" method = "post">
+                                 <input  class="popupbox" type = "text" name = "password">
+                                 <input  class="popupbutton" type = "submit" value = "Save" />
+                             </form>
+                         </td>
+                         <td class="icon" onclick="editPassword()">
+                         </td>
+                     </tr>
                       <tr>
                         <td>Role: </td>
                         <td>

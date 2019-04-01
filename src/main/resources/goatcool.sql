@@ -14,9 +14,11 @@ DROP TABLE IF EXISTS page CASCADE;
 DROP TABLE IF EXISTS solution CASCADE;
 DROP TABLE IF EXISTS student CASCADE;
 DROP TABLE IF EXISTS mentor CASCADE;
-DROP TABLE IF EXISTS curriculum CASCADE;
-DROP TABLE IF EXISTS assignment CASCADE;
+DROP TABLE IF EXISTS page CASCADE;
+DROP TABLE IF EXISTS assignment_page CASCADE;
+DROP TABLE IF EXISTS text_page CASCADE;
 DROP TABLE IF EXISTS userBase CASCADE;
+DROP TABLE IF EXISTS attendance CASCADE;
 
 CREATE TABLE userBase(
 	user_id varchar(6) NOT NULL,
@@ -67,6 +69,21 @@ CREATE TABLE solutionmap(
 	FOREIGN KEY (solution_id) REFERENCES solution(solution_id)
 );
 
+CREATE TABLE attendance(
+    attendance_id varchar(6) NOT NULL,
+    user_id varchar(6) NOT NULL,
+    attended_day date,
+    attendance_day boolean,
+    PRIMARY KEY (attendance_id),
+    FOREIGN KEY (user_id) REFERENCES userBase(user_id)
+);
 
+INSERT INTO userBase VALUES('12ab#.', 'mentor', 'm', 'm', 'm');
+INSERT INTO userBase VALUES('34cd#.', 'student', 's', 's', 's');
+
+INSERT INTO page VALUES('56ef#.', 'Kecske Text', true);
+INSERT INTO text_page VALUES('56ef#.', 'Kecske!!!!!');
+INSERT INTO page VALUES('78gh#.', 'Kecske Assignment', false);
+INSERT INTO assignment_page VALUES('78gh#.', 'Kecske????', 5);
 
 

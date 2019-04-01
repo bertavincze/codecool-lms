@@ -43,7 +43,7 @@ public class AttendanceServlet extends HttpServlet {
     }
 
     private LocalDate getAttendanceDate(HttpServletRequest request) throws ServletException, IOException{
-        SimpleDateFormat myFormat = new SimpleDateFormat("dd MM yyyy");
+        SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-mm-dd");
         LocalDate date = null;
         try {
             date = convertToLocalDateViaInstant(myFormat.parse(request.getParameter("date")));
@@ -62,8 +62,10 @@ public class AttendanceServlet extends HttpServlet {
             for (User user : UserList.getInstance().getUsers()) {
                 if (user instanceof Student){
                     for (String nameList : attendings){
-                        if (nameList.equals(user.getName())){
-                            ((Student)user).setAttendance(date);
+                        if (nameList.equals(user.getName())) {
+                            if (!((Student) user).getAttendanceDates().contains(date)) {
+                                ((Student) user).setAttendance(date);
+                            }
                         }
                     }
                 }

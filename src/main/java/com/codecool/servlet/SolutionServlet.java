@@ -1,21 +1,16 @@
 package com.codecool.servlet;
 
 import com.codecool.dao.database.DataBaseSolutionDao;
-import com.codecool.dao.database.DatabaseUserDao;
 import com.codecool.dao.database.PageList;
-import com.codecool.dao.database.UserList;
 import com.codecool.model.curriculum.AssignmentPage;
 import com.codecool.model.curriculum.Solution;
-import com.codecool.model.user.Mentor;
 import com.codecool.model.user.Student;
 import com.codecool.model.user.User;
 import com.codecool.service.IDGeneratorService;
 import com.codecool.service.SolutionService;
-import com.codecool.service.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -39,11 +34,10 @@ public class SolutionServlet extends AbstractServlet {
             String title = req.getParameter("title");
             //String question = req.getParameter("question");
             String answer = req.getParameter("solution");
-            Solution solution = new Solution(title, answer);
-            user.addSolution(solution);
             String generatedID = idService.generateID();
+            Solution solution = new Solution(generatedID, title, answer);
+            user.addSolution(solution);
             solutionService.addSolution(generatedID, user.getId(), title, answer, solution.getSubmissionDate());
-
             AssignmentPage assignmentPage = (AssignmentPage) PageList.getInstance().findPageByTitle(title);
             assignmentPage.addToSolutionMap(user, solution);
             req.getRequestDispatcher("curriculum").forward(req, resp);

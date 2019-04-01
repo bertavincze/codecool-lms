@@ -1,20 +1,26 @@
 package com.codecool.model.curriculum;
 
+import com.codecool.model.user.Student;
+import com.codecool.model.user.User;
+
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 public class Solution implements Serializable {
-   private String title;
+    private String title;
     private String answer;
     private int grade;
     private LocalDateTime submissionDate;
+    private String solution_id;
 
-    public Solution(String title, String answer) {
+
+    public Solution(String solution_id, String title, String answer) {
         this.title = title;
         this.answer = answer;
         this.submissionDate = LocalDateTime.now();
+        this.solution_id = solution_id;
     }
 
     @Override
@@ -49,6 +55,10 @@ public class Solution implements Serializable {
 
     public void setGrade(int grade) {
         this.grade = grade;
+    }
+
+    public String getSolution_id() {
+        return solution_id;
     }
 
 

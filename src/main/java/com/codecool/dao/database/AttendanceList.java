@@ -23,7 +23,11 @@ public class AttendanceList implements Serializable {
         allTimeAttendanceList.add(attendance);
     }
 
-    public List<Attendance> getUsers() {
+    public List<Attendance> getAllTimeAttendanceList() {
+        return allTimeAttendanceList;
+    }
+
+    public List<Attendance> getAttendanceInstance(String date){
         return allTimeAttendanceList;
     }
 
