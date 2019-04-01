@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,10 +29,10 @@
     <ul>
         <a href="profile.jsp"><li>Profile</li></a>
         <a href="userlist"><li>UserList</li></a>
-        <a href="curriculum"><li class="marked">Curriculum</li></a>
+        <a href="curriculum"><li>Curriculum</li></a>
         <c:choose>
             <c:when test="${user.getClass().simpleName == 'Student'}">
-                 <a href="assignments"><li>Assignments</li></a>
+                 <a href="assignments"><li class="marked">Assignments</li></a>
                  <a href="stats"><li>Stats</li></a>
             </c:when>
             <c:otherwise>
@@ -46,13 +47,16 @@
     <div class="content">
         <div class="container">
             <div class="containerhead">
-                <div class="title"><a href="">Study material</a></div>
+                <div class="title"><a href="">Unsolved Assignments</a></div>
             </div>
-
-                <h2>${page.getTitle()}</h2>
-
-                <p>${page.getContent()}</p>
-
+            <c:if test="${fn:length(assignments) == 0}">
+                  <p> No unsolved assignments found </p>
+            </c:if>
+            <ul>
+            <c:forEach var="a" items="${assignments}">
+                <a href="handlepage?title=${a.getTitle()}"><li>${a.getTitle()}</li></a>
+            </c:forEach>
+            </ul>
             <div class="containerfoot"></div>
         </div>
     </div>

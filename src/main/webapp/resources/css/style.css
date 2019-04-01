@@ -19,7 +19,6 @@ a:hover {
 }
 
 
-
 a img {
     border:none;
 }
@@ -37,13 +36,49 @@ img {
 
 
 .header {
-    padding:150px 0px;
+    padding:100px 0px;
     text-align:center;
     width:100%;
     background:url('../pics/goatcool.jpg');
     background-position: center;
     background-size: cover;
 
+}
+
+.svg-wrapper {
+  position: relative;
+  top: 50px;
+  transform: translateY(-50%);
+  margin:0 auto;
+  width: 320px;
+}
+
+.shape {
+  stroke-dasharray: 140 540;
+  stroke-dashoffset: -474;
+  stroke-width: 8px;
+  fill: transparent;
+  stroke: #ffffff;
+  border-bottom: 5px solid black;
+  transition: stroke-width 1s, stroke-dashoffset 1s, stroke-dasharray 1s;
+}
+
+.headertext {
+  font-family: 'Roboto Condensed';
+  font-weight: 800;
+  font-size: 28px;
+  line-height: 32px;
+  letter-spacing: 8px;
+  color: #fff;
+  top: -50px;
+  position: relative;
+  text-transform: uppercase;
+}
+
+.svg-wrapper:hover .shape {
+  stroke-width: 2px;
+  stroke-dashoffset: 0;
+  stroke-dasharray: 760;
 }
 
 nav {
@@ -55,12 +90,10 @@ nav {
     width:100%;
 }
 
-
 .marked{
     border-bottom:3px solid rgba(227, 0, 65, 0.7);
     color: rgba(227, 0, 65, 0.7);
 }
-
 
 
 nav li:hover {
@@ -76,8 +109,6 @@ nav li:hover {
     border-radius: 25px;
     text-align: center;
     }
-
-
 
 .content-middle{
     margin: 0 auto;
@@ -255,6 +286,44 @@ td p {
     position: relative;
     text-align: center;
     z-index: 0;
+}
+
+/* Removes the clear button from date inputs */
+input[type="date"]::-webkit-clear-button {
+    display: none;
+}
+
+/* Removes the spin button */
+input[type="date"]::-webkit-inner-spin-button {
+    display: none;
+}
+
+/* Always display the drop down caret */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    color: #2c3e50;
+}
+
+/* A few custom styles for date inputs */
+input[type="date"] {
+    appearance: none;
+    -webkit-appearance: none;
+    color: #95a5a6;
+    font-family: "Helvetica", arial, sans-serif;
+    font-size: 18px;
+    border:1px solid #ecf0f1;
+    background:#ecf0f1;
+    padding:5px;
+    align: center;
+    width: 100%;
+    display: inline-block !important;
+    visibility: visible !important;
+}
+
+input[type="date"], focus {
+    color: #95a5a6;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
 }
 
 

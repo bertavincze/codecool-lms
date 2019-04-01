@@ -1,25 +1,21 @@
 package com.codecool.model.user;
 
-
 import com.codecool.model.curriculum.Solution;
-
+import com.codecool.service.DateUtilService;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+import java.util.*;
 import java.time.LocalDate;
-import java.util.List;
 
 public class Student extends User implements Serializable, Comparable {
 
     private List<Solution> solutionList;
-    private ArrayList<LocalDate> attendance;
-
+    private Map<LocalDate, Boolean> attendance;
 
     public Student(String id, String name, String email, String password) {
         super(id, name, email, password);
         solutionList = new ArrayList<>();
-        attendance = new ArrayList<>();
+        attendance = new HashMap<>();
     }
 
     public void addSolution(Solution solution) {
@@ -32,19 +28,26 @@ public class Student extends User implements Serializable, Comparable {
         return solutionList;
     }
 
-    public void setAttendance(LocalDate date) {
-        attendance.add(date);
+    public void setAttendance(LocalDate date, boolean isPresent) {
+        attendance.put(date, isPresent);
     }
 
     public int getAttendanceRate() {
         if (attendance.isEmpty()) {
             return 0;
         } else {
-            float totalDays = ((float)new DateCounter().getDifferenceInDays());
-            return (int) ((attendance.size()/(totalDays))*100);
+            int daysAttended = 0;
+            for (Map.Entry<LocalDate, Boolean> entry : attendance.entrySet()) {
+                if (entry.getValue()) {
+                    daysAttended ++;
+                }
+            }
+            float totalDays = ((float)new DateUtilService().getNumOfDaysSinceStart());
+            return (int) ((daysAttended/(totalDays))*100);
         }
     }
 
+<<<<<<< HEAD
     public ArrayList<String> getAttendance(){
         ArrayList<String> attendanceList = new ArrayList<>();
         SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-mm-dd");
@@ -66,5 +69,11 @@ public class Student extends User implements Serializable, Comparable {
 
 
 
+=======
+    public Map<LocalDate, Boolean> getAttendance() {
+        return attendance;
+    }
+
+>>>>>>> master
 }
 

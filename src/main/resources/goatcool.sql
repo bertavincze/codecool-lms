@@ -73,7 +73,7 @@ CREATE TABLE attendance(
     attendance_id varchar(6) NOT NULL,
     user_id varchar(6) NOT NULL,
     attended_day date,
-    attendance_day boolean,
+    is_present boolean,
     PRIMARY KEY (attendance_id),
     FOREIGN KEY (user_id) REFERENCES userBase(user_id)
 );

@@ -1,6 +1,7 @@
 package com.codecool.servlet;
 
-import com.codecool.dao.database.DataBaseSolutionDao;
+
+import com.codecool.dao.database.DatabaseSolutionDao;
 import com.codecool.dao.database.PageList;
 import com.codecool.model.curriculum.AssignmentPage;
 import com.codecool.model.curriculum.Page;
@@ -9,7 +10,6 @@ import com.codecool.service.SolutionService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -22,7 +22,9 @@ public class GradingServlet extends AbstractServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try (Connection connection = getConnection(req.getServletContext())) {
-            DataBaseSolutionDao solutionDao = new DataBaseSolutionDao(connection);
+
+            DatabaseSolutionDao solutionDao = new DatabaseSolutionDao(connection);
+
             SolutionService solutionService = new SolutionService(solutionDao);
 
             int grade = Integer.parseInt(req.getParameter("grade"));

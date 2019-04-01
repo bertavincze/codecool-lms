@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="resources/css/reset.css">
     <link rel="stylesheet" type="text/css" href="resources/css/style.css">
-    <link href="https://fonts.googleapis.com/css?family=Aladin|Merienda+One|Walter+Turncoat" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="resources/css/text.css">
     <title>GoatCool</title>
     <script>
@@ -19,18 +19,24 @@
 <body>
 
 <div class="header">
-    <a href="index.html"><h1>GoatCool</h1></a>
+    <div class="svg-wrapper">
+  <svg height="60" width="320" xmlns="http://www.w3.org/2000/svg">
+    <rect class="shape" height="60" width="320" />
+    <div class="headertext">GoatCool LMS</div>
+  </svg>
+</div>
 </div>
 
 <nav>
     <ul>
         <a href="profile.jsp"><li>Profile</li></a>
         <a href="userlist"><li>UserList</li></a>
-        <a href="curriculum"><li class="marked">Curriculum</li></a>
-        <a href="assignments"><li>Assignments</li></a>
-        <a href="stats"><li>Stats</li></a>
+        <a href="curriculum"><li>Curriculum</li></a>
+        <a href="attendance"><li class="marked">Attendance</li></a>
+        <a href="solutions"><li>Student Solutions</li></a>
     </ul>
 </nav>
+
 
 <div class="wrapper">
     <div class="content">
@@ -41,6 +47,7 @@
             <form method="post" action="setDate">
                 <input id="setNewDate" type="submit" value="Set date">
                 <input id="datefield2" type='date' min='1899-01-01' max='2000-13-13'/>
+
                 <script>
                     var today = new Date();
                     var dd = today.getDate();
@@ -64,23 +71,21 @@
                 </script>
                 <table>
                 <tr>
-                    <td>Name</td>
-                    <td>E-mail</td>
-                    <td>Attendance rate</td>
+                    <td><p>Name</p></td>
+                    <td><p>Attendance rate</p></td>
+                    <td><p>Current Attendance</p></td>
                 </tr>
-                <c:forEach var="u" items="${attendance}">
-                    <c:if test="${u.getClass().simpleName == 'Student'}">
-                        <tr>
-                            <td><c:out value="${u.name}"/></td>
-                            <td><c:out value="${u.email}"/></td>
-                            <td><c:out value="${u.getAttendanceRate()}"/>%</td>
-                            <c:set var="date" value="${param.id1}"/>
-                            <td><input type="checkbox" name="attending" value="${u.name}"></td>
-                        </tr>
-                    </c:if>
+                <c:forEach var="u" items="${students}">
+                    <tr>
+                        <td><p>${u.getName()}</p></td>
+                        <td><p>${u.getAttendanceRate()}%</p></td>
+                        <td><p><input type="checkbox" name="attending" value="${u.getName()}"><p></td>
+                    </tr>
                 </c:forEach>
                 </table>
-                <input class="attendance-button" type="submit" value="Save!">
+                <p align="center">Check the box to add attendance record for the selected date.</p>
+                <input type="submit" value="Set attendance">
+                <br>
             </form>
             <div class="containerfoot"></div>
         </div>
@@ -89,7 +94,7 @@
     <div class="sidebar">
         <div class="sbcontainer">
             <div class="containerhead">
-                <div class="title">Logged in user</div>
+                <div class="title">Current user</div>
             </div>
 
             <div class="desc">
@@ -103,7 +108,10 @@
                           </c:otherwise>
                     </c:choose>
                 <br>
-            </div>
+                <form action="logout" method="post">
+                    <input type="submit" value="Log out">
+                </form>
+                <br></div>
 
             <ul class="links">
                 <div class="linktitle">Favourites</div>
