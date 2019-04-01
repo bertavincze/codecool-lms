@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.*;
 import java.time.LocalDate;
 
-public class Student extends User implements Serializable, Comparable {
+public class Student extends User implements Serializable {
 
     private List<Solution> solutionList;
     private Map<LocalDate, Boolean> attendance;
@@ -47,33 +47,10 @@ public class Student extends User implements Serializable, Comparable {
         }
     }
 
-<<<<<<< HEAD
-    public ArrayList<String> getAttendance(){
-        ArrayList<String> attendanceList = new ArrayList<>();
-        SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-mm-dd");
-        for(LocalDate date : attendance){
-            String stringDate = myFormat.format(date);
-            attendanceList.add(stringDate);
-        } return attendanceList;
-    }
 
-    public ArrayList<LocalDate> getAttendanceDates(){
-        return attendance;
-    }
-
-
-    @Override
-    public int compareTo(Object o) {
-        return this.getName().compareTo(((Student) o).getName());
-    }
-
-
-
-=======
     public Map<LocalDate, Boolean> getAttendance() {
         return attendance;
     }
 
->>>>>>> master
 }
 
