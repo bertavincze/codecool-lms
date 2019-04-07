@@ -1,28 +1,17 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GoatCool</title>
-    <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="resources/css/reset.css">
-    <link rel="stylesheet" type="text/css" href="resources/css/style.css">
-    <link rel="stylesheet" type="text/css" href="resources/css/text.css">
+    <link rel="stylesheet" type="text/css" href="resources/css/finalstyle.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto|Megrim' rel='stylesheet' type='text/css'>
 </head>
 
-<body>
-
-<div class="header">
-    <div class="svg-wrapper">
-  <svg height="60" width="320" xmlns="http://www.w3.org/2000/svg">
-    <rect class="shape" height="60" width="320" />
-    <div class="headertext">GoatCool LMS</div>
-  </svg>
-</div>
-</div>
+<body class="two_div">
 
 <nav>
     <ul>
@@ -34,12 +23,17 @@
     </ul>
 </nav>
 
+<jsp:include page="snippets/header.jsp" />
+
 <div class="wrapper">
     <div class="content">
         <div class="container">
             <div class="containerhead">
                 <div class="title"><a href="">Solutions</a></div>
             </div>
+            <c:if test="${fn:length(assignmentList) == 0}">
+              <p>No unchecked solutions found.</p>
+            </c:if>
                 <ul>
                 <c:forEach var="entry" items="${assignmentList}">
                     <c:forEach var="entry2" items="${entry.getSolutionMap()}">

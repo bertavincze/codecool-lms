@@ -6,14 +6,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="resources/css/reset.css">
-    <link rel="stylesheet" type="text/css" href="resources/css/style.css">
-    <link rel="stylesheet" type="text/css" href="resources/css/profile.css">
-    <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="resources/css/text.css">
     <title>GoatCool</title>
+    <link rel="stylesheet" type="text/css" href="resources/css/finalstyle.css">
+    <link rel="stylesheet" type="text/css" href="resources/css/profile.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto|Megrim' rel='stylesheet' type='text/css'>
 </head>
-<body>
+
+<body class="two_div">
 <script type="text/javascript">
     function editName() {
         var popup = document.getElementById("editName");
@@ -28,15 +27,6 @@
         popup.classList.toggle("show");
     }
 </script>
-
-<div class="header">
-    <div class="svg-wrapper">
-  <svg height="60" width="320" xmlns="http://www.w3.org/2000/svg">
-    <rect class="shape" height="60" width="320" />
-    <div class="headertext">GoatCool LMS</div>
-  </svg>
-</div>
-</div>
 
 <nav>
     <ul>
@@ -55,6 +45,8 @@
         </c:choose>
     </ul>
 </nav>
+
+<jsp:include page="snippets/header.jsp" />
 
 <div class="wrapper">
     <div class="content">
