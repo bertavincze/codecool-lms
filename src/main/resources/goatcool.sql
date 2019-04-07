@@ -78,12 +78,20 @@ CREATE TABLE attendance(
     FOREIGN KEY (user_id) REFERENCES userBase(user_id)
 );
 
-INSERT INTO userBase VALUES('12ab#.', 'mentor', 'm', 'm', 'm');
-INSERT INTO userBase VALUES('34cd#.', 'student', 's', 's', 's');
+INSERT INTO userBase VALUES('12ab#.', 'mentor', 'mentor', 'm', 'm');
+INSERT INTO userBase VALUES('34cd#.', 'student', 'student', 's', 's');
+INSERT INTO userBase VALUES('56ab#.', 'mentor', 'Berta', 'berta', 'berta');
+INSERT INTO userBase VALUES('34ef#.', 'student', 'Andi', 'andi', 'andi');
+INSERT INTO userBase VALUES('12gb#.', 'mentor', 'Attila', 'attila', 'attila');
+INSERT INTO userBase VALUES('34ch#.', 'student', 'Tamy', 'tamy', 'tamy');
 
 INSERT INTO page VALUES('56ef#.', 'Kecske Text', true);
 INSERT INTO text_page VALUES('56ef#.', 'Kecske!!!!!');
-INSERT INTO page VALUES('78gh#.', 'Kecske Assignment', false);
-INSERT INTO assignment_page VALUES('78gh#.', 'Kecske????', 5);
+INSERT INTO page VALUES('78zh#.', 'Kecske Assignment', false);
+INSERT INTO assignment_page VALUES('78zh#.', 'Kecske????', 5);
+INSERT INTO page VALUES('78uh#.', 'New Assignment', true);
+INSERT INTO assignment_page VALUES('78uh#.', 'Tomcat?', 5);
+INSERT INTO page VALUES('78jh#.', 'Database Assignment', true);
+INSERT INTO assignment_page VALUES('78jh#.', 'SQL?', 5);
 
 

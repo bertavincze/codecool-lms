@@ -40,8 +40,7 @@ public class AttendanceServlet extends AbstractServlet {
             DatabaseAttendanceDao attendanceDao = new DatabaseAttendanceDao(connection);
             AttendanceService attendanceService = new AttendanceService(attendanceDao);
             IDGeneratorService idGeneratorService = new IDGeneratorService();
-            String generatedID = idGeneratorService.generateID();
-
+            
             String date = request.getParameter("datefield");
             DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("uuuu-MM-dd");
             LocalDate localDate = LocalDate.parse(date, dateTimeFormatter);
@@ -59,7 +58,7 @@ public class AttendanceServlet extends AbstractServlet {
                     Student student = findStudentByName(name);
                     if (student != null) {
                         student.setAttendance(localDate, true);
-                        attendanceService.addAttendance(generatedID, student.getId(), localDate, student.getAttendance().get(localDate));
+                        attendanceService.addAttendance(idGeneratorService.generateID(), student.getId(), localDate, student.getAttendance().get(localDate));
                     }
                 }
             }
