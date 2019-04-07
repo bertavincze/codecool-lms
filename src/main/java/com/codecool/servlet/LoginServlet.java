@@ -30,7 +30,7 @@ public class LoginServlet extends AbstractServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("index.html").forward(request, response);
+        request.getRequestDispatcher("index.jsp").forward(request, response);
 
     }
 
@@ -56,7 +56,7 @@ public class LoginServlet extends AbstractServlet {
                 request.getRequestDispatcher("student.jsp").forward(request, response);
             }
         } else {
-            request.getRequestDispatcher("index.html").forward(request, response);
+            request.getRequestDispatcher("index.jsp").forward(request, response);
         }
     }
 

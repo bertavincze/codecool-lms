@@ -37,7 +37,7 @@ public class ErrorPageServlet extends HttpServlet {
                 request.getRequestDispatcher("student.jsp").forward(request, response);
             }
         } else {
-            request.getRequestDispatcher("index.html").forward(request, response);
+            request.getRequestDispatcher("index.jsp").forward(request, response);
         }
 
     }
