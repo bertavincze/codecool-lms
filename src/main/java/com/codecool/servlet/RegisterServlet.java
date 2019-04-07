@@ -33,21 +33,18 @@ public class RegisterServlet extends AbstractServlet {
             String password = req.getParameter("password");
             String userRoleString = req.getParameter("status");
             String generatedID = idService.generateID();
-            if (userRoleString.equals("mentor")) {
-                userService.addUser(generatedID,"mentor", name, email,password);
-            } else {
-                userService.addUser(generatedID,"student", name, email,password);
-            }
-            validateUserData(name, email, password, userRoleString);
+
+            validateUserData(name, email, password, userRoleString, userService);
 
             if (isValidUserData) {
                 User user = null;
                 if (userRoleString.equals("mentor")) {
+                    userService.addUser(generatedID,"mentor", name, email,password);
                     user = new Mentor(generatedID, name, email, password);
-                } else if (userRoleString.equals("student")){
+                } else {
+                    userService.addUser(generatedID,"student", name, email,password);
                     user = new Student(generatedID, name, email, password);
                 }
-                UserList.getInstance().addUser(user);
                 req.setAttribute("user", user);
                 req.getRequestDispatcher("succesfulregist.jsp").forward(req, resp);
             } else {
@@ -64,8 +61,9 @@ public class RegisterServlet extends AbstractServlet {
         req.getRequestDispatcher("registration.html").forward(req, resp);
     }
 
-    private void validateUserData(String name, String email, String password, String userRoleString) {
-        for (User user: UserList.getInstance().getUsers()) {
+    private void validateUserData(String name, String email, String password, String userRoleString, UserService userService) throws SQLException {
+
+        for (User user: userService.getUsers()) {
             if (user.getName().equals(name) && user.getEmail().equals(email)) {
                 isValidUserData = false;
             } else if (user.getEmail().equals(email) || user.getName().equals(name)) {

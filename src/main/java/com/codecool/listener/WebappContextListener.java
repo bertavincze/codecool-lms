@@ -44,8 +44,8 @@ public final class WebappContextListener implements ServletContextListener {
         //} catch (IOException | ClassNotFoundException e) {
         //    e.printStackTrace();
         //}
-        loadUsersFromInit(dataSource);
-        loadPagesFromInit(dataSource);
+        //loadUsersFromInit(dataSource);
+        //loadPagesFromInit(dataSource);
     }
 
     private void registerCharacterEncodingFilter(ServletContextEvent sce) {

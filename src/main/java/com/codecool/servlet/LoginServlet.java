@@ -35,15 +35,24 @@ public class LoginServlet extends AbstractServlet {
     }
 
     private User authUser(HttpServletRequest request) {
-        String name = request.getParameter("name");
-        String password = request.getParameter("password");
         User currentUser = null;
-        for (User user : UserList.getInstance().getUsers()) {
-            if (name.equals(user.getName()) && password.equals(user.getPassword())) {
-                currentUser = user;
-                HttpSession session = request.getSession();
-                session.setAttribute("user", currentUser);
+        try (Connection connection = getConnection(request.getServletContext())) {
+            DatabaseUserDao userDao = new DatabaseUserDao(connection);
+            UserService userService = new UserService(userDao);
+
+            String name = request.getParameter("name");
+            String password = request.getParameter("password");
+
+            for (User user : userService.getUsers()) {
+                if (name.equals(user.getName()) && password.equals(user.getPassword())) {
+                    currentUser = user;
+                    HttpSession session = request.getSession();
+                    session.setAttribute("user", currentUser);
+                }
             }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
         return currentUser;
     }

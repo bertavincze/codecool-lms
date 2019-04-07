@@ -28,14 +28,14 @@ public class StatisticServlet extends HttpServlet {
         Student user = (Student) session.getAttribute("user");
         solutions = user.getSolutionList();
         Map<Solution, Integer> assignmentMap= new HashMap<>();
-        //List<AssignmentPage> assignments = new ArrayList<>();
+
         for (Solution solution : solutions) {
             AssignmentPage assignmentPage = findAssignmentsByTitle(solution.getTitle());
             if (assignmentPage != null){
                 assignmentMap.put(solution, assignmentPage.getMaxScore());
             }
         }
-        //request.setAttribute("user", user);
+
         request.setAttribute("assignmentMap", assignmentMap);
         request.getRequestDispatcher("stats.jsp").forward(request, response);
     }

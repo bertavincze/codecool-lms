@@ -1,6 +1,7 @@
 package com.codecool.servlet;
 
 import com.codecool.dao.database.DatabasePageDao;
+import com.codecool.dao.database.DatabaseUserDao;
 import com.codecool.dao.database.PageList;
 import com.codecool.dao.database.UserList;
 import com.codecool.model.curriculum.AssignmentPage;
@@ -12,6 +13,7 @@ import com.codecool.model.user.Student;
 import com.codecool.model.user.User;
 import com.codecool.service.IDGeneratorService;
 import com.codecool.service.PageService;
+import com.codecool.service.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,6 +24,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 @WebServlet("/handlepage")
 public class PageHandlerServlet extends AbstractServlet {
@@ -60,51 +63,60 @@ public class PageHandlerServlet extends AbstractServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String title = request.getParameter("title");
-        String name = request.getParameter("name");
-        HttpSession session = request.getSession(false);
-        User user = (User) session.getAttribute("user");
+        try (Connection connection = getConnection(request.getServletContext())) {
+            DatabaseUserDao userDao = new DatabaseUserDao(connection);
+            UserService userService = new UserService(userDao);
+            List<User> users = userService.getUsers();
 
-        Page requestedPage = null;
-        for (Page page : PageList.getInstance().getPageList()) {
-            if (page.getTitle().equals(title)) {
-                request.setAttribute("page", page);
-                requestedPage = page;
-                break;
-            }
-        }
+            String title = request.getParameter("title");
+            String name = request.getParameter("name");
+            HttpSession session = request.getSession(false);
+            User user = (User) session.getAttribute("user");
 
-        if (isAssignmentPage(requestedPage)) {
-            if (user instanceof Student) {
-                Solution solution = findUserSolutionByTitle(user, requestedPage.getTitle());
-                if (solution != null) {
-                    request.setAttribute("assignmentPage", requestedPage);
-                    request.setAttribute("solution", solution);
-                    request.getRequestDispatcher("solution?title=" + solution.getTitle()).forward(request, response);
-
-                } else {
-                    request.getRequestDispatcher("sendassignment.jsp").forward(request, response);
+            Page requestedPage = null;
+            for (Page page : PageList.getInstance().getPageList()) {
+                if (page.getTitle().equals(title)) {
+                    request.setAttribute("page", page);
+                    requestedPage = page;
+                    break;
                 }
+            }
 
-            } else if (user instanceof Mentor) {
-                boolean isEditRequest = Boolean.parseBoolean(request.getParameter("edit"));
-                if (isEditRequest) {
-                    for (User u: UserList.getInstance().getUsers()){
-                        if (u instanceof Student && u.getName().equals(name)) {
-                            Solution solution = findUserSolutionByTitle(u, requestedPage.getTitle());
-                            request.setAttribute("solution", solution);
-                        }
+            if (isAssignmentPage(requestedPage)) {
+                if (user instanceof Student) {
+                    Solution solution = findUserSolutionByTitle(user, requestedPage.getTitle());
+                    if (solution != null) {
+                        request.setAttribute("assignmentPage", requestedPage);
+                        request.setAttribute("solution", solution);
+                        request.getRequestDispatcher("solution?title=" + solution.getTitle()).forward(request, response);
+
+                    } else {
+                        request.getRequestDispatcher("sendassignment.jsp").forward(request, response);
                     }
-                    request.setAttribute("assignmentPage", requestedPage);
-                    request.getRequestDispatcher("seesolution.jsp").forward(request, response);
-                } else {
-                    request.getRequestDispatcher("seeassignment.jsp").forward(request, response);
-                }
-            }
 
-        } else if (isTextPage(requestedPage)) {
-            request.getRequestDispatcher("seetextpage.jsp").forward(request, response);
+                } else if (user instanceof Mentor) {
+                    boolean isEditRequest = Boolean.parseBoolean(request.getParameter("edit"));
+                    if (isEditRequest) {
+                        for (User u : users){
+                            if (u instanceof Student && u.getName().equals(name)) {
+                                Solution solution = findUserSolutionByTitle(u, requestedPage.getTitle());
+                                request.setAttribute("solution", solution);
+                            }
+                        }
+                        request.setAttribute("assignmentPage", requestedPage);
+                        request.getRequestDispatcher("seesolution.jsp").forward(request, response);
+                    } else {
+                        request.getRequestDispatcher("seeassignment.jsp").forward(request, response);
+                    }
+                }
+
+            } else if (isTextPage(requestedPage)) {
+                request.getRequestDispatcher("seetextpage.jsp").forward(request, response);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
+
     }
 
     private boolean isAssignmentPage(Page page) {
