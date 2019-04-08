@@ -11,7 +11,7 @@
     <div class="container">
         <div class="containerhead">
             <div class="title"><a href="">${news.getTitle()}</a></div>
-            <p class="display_date">${news.getDate()}</p>
+            <p class="display_date">${news.getPublishingTime()}</p>
             <p class="display_news">${news.getContent()}</p>
         </div>
         <div class="containerfoot"></div>

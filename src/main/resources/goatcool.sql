@@ -9,6 +9,8 @@ SET default_tablespace = '';
 
 SET default_with_oids = false;
 
+SET TIME ZONE 'GMT';
+
 DROP TABLE IF EXISTS solutionmap CASCADE;
 DROP TABLE IF EXISTS page CASCADE;
 DROP TABLE IF EXISTS solution CASCADE;
@@ -84,7 +86,7 @@ CREATE TABLE newsfeed(
     news_id varchar(6) NOT NULL,
     title varchar(100) NOT NULL,
     content varchar(300) NOT NULL,
-    date date NOT NULL,
+    date TIMESTAMP WITH TIME ZONE NOT NULL,
     user_id varchar(6),
     PRIMARY KEY (news_id),
     FOREIGN KEY (user_id) REFERENCES userBase(user_id)
@@ -109,8 +111,8 @@ INSERT INTO page VALUES('78jh#.', 'Database Assignment', true);
 INSERT INTO assignment_page VALUES('78jh#.', 'SQL?', 5);
 
 
-INSERT INTO newsfeed VALUES ('99gh#.', 'Test', 'Lorem ipsum dolor sit amet...', '2019/04/07', '34ch#.');
-INSERT INTO newsfeed VALUES ('89gh#.', 'Test2', 'Lorem ipsum dolor sit amet...', '2019/04/02', '34ch#.');
-INSERT INTO newsfeed VALUES ('79gh#.', 'Test3', 'Lorem ipsum dolor sit amet...', '2019/04/05', '34ch#.');
+INSERT INTO newsfeed VALUES ('99gh#.', 'Test', 'Lorem ipsum dolor sit amet...', '2019/04/07 21:45:00', '34ch#.');
+INSERT INTO newsfeed VALUES ('89gh#.', 'Test2', 'Lorem ipsum dolor sit amet...', '2019/04/02 09:01:00', '34ch#.');
+INSERT INTO newsfeed VALUES ('79gh#.', 'Test3', 'Lorem ipsum dolor sit amet...', '2019/04/05 08:55:00', '34ch#.');
 
 

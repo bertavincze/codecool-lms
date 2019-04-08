@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static java.time.LocalDate.now;
@@ -56,7 +57,7 @@ public class NewsServlet extends AbstractServlet {
             String generatedID = idService.generateID();
             User user = ((User) req.getSession().getAttribute("user"));
             String userID = user.getId();
-            LocalDate date = now();
+            LocalDateTime date = LocalDateTime.now();
 
             newsService.addNews(new News(generatedID, title, content, date, userID), user);
 
