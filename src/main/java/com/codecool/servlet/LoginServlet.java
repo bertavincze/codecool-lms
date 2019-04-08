@@ -6,20 +6,17 @@ import com.codecool.model.News;
 import com.codecool.model.user.Mentor;
 import com.codecool.model.user.Student;
 import com.codecool.model.user.User;
-import com.codecool.dao.database.UserList;
 import com.codecool.service.NewsService;
 import com.codecool.service.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.sql.SQLOutput;
 import java.util.List;
 
 @WebServlet("/login")

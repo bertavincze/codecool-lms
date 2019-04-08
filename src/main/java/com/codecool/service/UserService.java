@@ -1,10 +1,8 @@
 package com.codecool.service;
+
 import com.codecool.dao.database.DatabaseUserDao;
-import com.codecool.dao.database.UserList;
 import com.codecool.model.user.User;
 
-import javax.servlet.http.HttpServletRequest;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -20,14 +18,6 @@ public class UserService {
     public List<User> getUsers() throws SQLException {
         return userDao.findUsers();
     }
-
-    public void putUsersToList() throws SQLException {
-        for (User user : getUsers()) {
-            UserList.getInstance().addUser(user);
-            System.out.println(user);
-        }
-    }
-
 
     public void addUser(String userID, String role, String name, String email, String password) throws SQLException {
         try {

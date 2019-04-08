@@ -5,7 +5,6 @@ import com.codecool.model.user.User;
 
 import java.sql.*;
 import java.time.ZoneOffset;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.time.LocalDateTime;
@@ -56,7 +55,6 @@ public class DatabaseNewsDao extends AbstractDao {
 
         String sql = "INSERT INTO newsfeed (news_id, title, content, date, user_id) VALUES (?, ?, ?, ?, ?)";
         try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
             statement.setString(1, news.getId());
             statement.setString(2, news.getTitle());
             statement.setString(3, news.getContent());
@@ -72,9 +70,8 @@ public class DatabaseNewsDao extends AbstractDao {
         }
     }
 
-    public static LocalDateTime localDateFromTimestamp(Timestamp timestamp) {
-        return LocalDateTime
-            .ofInstant(timestamp.toInstant(), ZoneOffset.ofHours(0));
+    private LocalDateTime localDateFromTimestamp(Timestamp timestamp) {
+        return LocalDateTime.ofInstant(timestamp.toInstant(), ZoneOffset.ofHours(0));
     }
 
 }

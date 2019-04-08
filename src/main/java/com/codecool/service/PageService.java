@@ -26,4 +26,13 @@ public class PageService {
     public List<Page> loadPages() throws SQLException {
         return pageDao.loadAllPages();
     }
+
+    public Page findPageByTitle(String title) throws SQLException {
+        for (Page page : loadPages()) {
+            if (page.getTitle().equals(title)) {
+                return page;
+            }
+        }
+        return null;
+    }
 }

@@ -1,13 +1,5 @@
 package com.codecool.listener;
 
-import com.codecool.dao.database.DatabasePageDao;
-import com.codecool.dao.database.DatabaseUserDao;
-import com.codecool.dao.database.PageList;
-import com.codecool.dao.database.UserList;
-
-import com.codecool.model.user.User;
-import com.codecool.service.PageService;
-import com.codecool.service.UserService;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.jdbc.datasource.init.ScriptUtils;
 
@@ -18,11 +10,8 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
-import javax.servlet.http.HttpServletRequest;
 import javax.sql.DataSource;
-import java.io.IOException;
 import java.sql.Connection;
-import java.sql.SQLException;
 
 @WebListener
 public final class WebappContextListener implements ServletContextListener {

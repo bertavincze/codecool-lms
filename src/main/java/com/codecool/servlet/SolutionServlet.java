@@ -2,7 +2,6 @@ package com.codecool.servlet;
 
 import com.codecool.dao.database.DatabasePageDao;
 import com.codecool.dao.database.DatabaseSolutionDao;
-import com.codecool.dao.database.PageList;
 import com.codecool.model.curriculum.AssignmentPage;
 import com.codecool.model.curriculum.Solution;
 import com.codecool.model.user.Student;
@@ -36,13 +35,12 @@ public class SolutionServlet extends AbstractServlet {
             PageService pageService = new PageService(pageDao);
 
             String title = req.getParameter("title");
-            //String question = req.getParameter("question");
             String answer = req.getParameter("solution");
             String generatedID = idService.generateID();
             Solution solution = new Solution(generatedID, title, answer);
             user.addSolution(solution);
             solutionService.addSolution(generatedID, user.getId(), title, answer, solution.getSubmissionDate());
-            AssignmentPage assignmentPage = (AssignmentPage) PageList.getInstance().findPageByTitle(title);
+            AssignmentPage assignmentPage = (AssignmentPage) pageService.findPageByTitle(title);
             assignmentPage.addToSolutionMap(user, solution);
             req.getRequestDispatcher("curriculum").forward(req, resp);
         } catch (SQLException ex) {
