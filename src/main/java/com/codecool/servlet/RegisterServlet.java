@@ -35,7 +35,7 @@ public class RegisterServlet extends AbstractServlet {
             String generatedID = idService.generateID();
 
             validateUserData(name, email, password, userRoleString, userService);
-
+            //
             if (isValidUserData) {
                 User user = null;
                 if (userRoleString.equals("mentor")) {
