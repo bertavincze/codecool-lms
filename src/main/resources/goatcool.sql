@@ -23,8 +23,8 @@ DROP TABLE IF EXISTS attendance CASCADE;
 CREATE TABLE userBase(
 	user_id varchar(6) NOT NULL,
 	user_role varchar(10) NOT NULL,
-	email varchar(254) UNIQUE NOT NULL,
 	user_name varchar(15) NOT NULL,
+	email varchar(254) UNIQUE NOT NULL,
 	password varchar(15),
 	PRIMARY KEY(user_id)
 );
