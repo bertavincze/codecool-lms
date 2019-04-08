@@ -31,6 +31,7 @@
             <div class="containerhead">
                 <div class="title"><a href="">Solutions</a></div>
             </div>
+
             <c:if test="${fn:length(assignmentList) == 0}">
               <p>No unchecked solutions found.</p>
             </c:if>
