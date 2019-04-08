@@ -111,27 +111,7 @@
     </div>
 
     <div class="sidebar">
-        <div class="sbcontainer">
-            <div class="desc">
-                <p>Welcome ${user.getName()}! You can see and edit your basic data and track your progress here.</p> <br>
-
-                <form action="logout" method="post">
-                    <input class="button" type="submit" value="Log out">
-                </form>
-                <br>
-            </div>
-            <div class="containerhead">
-                <div class="title"></div>
-            </div>
-            <ul class="links">
-                <div class="linktitle">Favourites</div>
-                <li><a href="">Sidebar link 1</a></li>
-                <li><a href="">Sidebar link 2</a></li>
-                <li><a href="">Sidebar link 3</a></li>
-                <li><a href="">Sidebar link 4</a></li>
-            </ul>
-
-        </div>
+        <jsp:include page="snippets/sidebar.jsp" />
     </div>
 
 </div>
