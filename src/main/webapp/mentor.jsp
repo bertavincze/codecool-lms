@@ -28,29 +28,24 @@
     <div class="content">
         <div class="container">
             <div class="containerhead">
-                <div class="title"><a href="">Welcome</a></div>
+                <div class="title"><a href="">Add news here</a></div>
             </div>
-            <h2>You are now logged in as ${user.getClass().simpleName} ${user.getName()}.</h2>
-            <p>
-                Here is a random goat for you:
-
-            </p>
-                <iframe src='//randomgoat.com/embed.php' width='480' height='360' frameBorder='0' id='random-goat-embed' allowFullScreen></iframe>
+            <form action="news" method="post">
+                <input class="box" type="text" placeholder="Title" maxlength="100" name="title"><br>
+                <textarea rows = "2" name = "content" maxlength="300" placeholder="News content required (300char max)..."></textarea><br>
+                <input class="button" type="submit" value="Send"><br>
+            </form>
             <div class="containerfoot"></div>
         </div>
-         <div class="container">
+        <jsp:include page="snippets/latestNews.jsp" />
+        <div class="container">
             <div class="containerhead">
                 <div class="title"><a href="">News</a></div>
             </div>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et massa in dui finibus malesuada sed
-                    at mi. Ut ultricies mi sed ligula dapibus, pulvinar congue leo mattis. Morbi ornare tempor porttitor.
-                    Praesent dignissim rutrum dui, quis venenatis lectus pellentesque id. Aliquam viverra accumsan enim id
-                    porta. Morbi fermentum scelerisque eleifend. Aenean placerat accumsan purus, eu scelerisque nisi congue at.
-                    Pellentesque ac tempor felis.
-                </p>
+            <!-- start feedwind code --> <script type="text/javascript" src="https://feed.mikle.com/js/fw-loader.js" data-fw-param="106479/"></script> <!-- end feedwind code -->
             <div class="containerfoot"></div>
         </div>
+        <jsp:include page="snippets/olderNews.jsp" />
     </div>
 
     <div class="sidebar">
