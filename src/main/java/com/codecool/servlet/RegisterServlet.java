@@ -48,7 +48,7 @@ public class RegisterServlet extends AbstractServlet {
                 req.setAttribute("user", user);
                 req.getRequestDispatcher("succesfulregist.jsp").forward(req, resp);
             } else {
-                resp.sendRedirect("registration.html");
+                resp.sendRedirect("registration.jsp");
             }
         } catch (SQLException ex) {
             throw new ServletException(ex);
@@ -58,7 +58,7 @@ public class RegisterServlet extends AbstractServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("registration.html").forward(req, resp);
+        req.getRequestDispatcher("registration.jsp").forward(req, resp);
     }
 
     private void validateUserData(String name, String email, String password, String userRoleString, UserService userService) throws SQLException {

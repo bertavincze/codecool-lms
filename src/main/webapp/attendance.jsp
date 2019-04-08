@@ -7,25 +7,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="resources/css/reset.css">
-    <link rel="stylesheet" type="text/css" href="resources/css/style.css">
-    <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="resources/css/text.css">
     <title>GoatCool</title>
-    <script>
-        document.getElementById('datefield').valueAsDate = new Date();
-    </script>
+    <link rel="stylesheet" type="text/css" href="resources/css/finalstyle.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto|Megrim' rel='stylesheet' type='text/css'>
+     <script>
+            document.getElementById('datefield').valueAsDate = new Date();
+     </script>
 </head>
-<body>
 
-<div class="header">
-    <div class="svg-wrapper">
-  <svg height="60" width="320" xmlns="http://www.w3.org/2000/svg">
-    <rect class="shape" height="60" width="320" />
-    <div class="headertext">GoatCool LMS</div>
-  </svg>
-</div>
-</div>
+<body class="two_div">
 
 <nav>
     <ul>
@@ -37,6 +27,7 @@
     </ul>
 </nav>
 
+<jsp:include page="snippets/header.jsp" />
 
 <div class="wrapper">
     <div class="content">
@@ -63,15 +54,15 @@
                 </script>
                 <table>
                 <tr>
-                    <td><p>Name</p></td>
-                    <td><p>Attendance rate</p></td>
-                    <td><p>Current Attendance</p></td>
+                    <th>Name</th>
+                    <th>Attendance rate</th>
+                    <th>Current Attendance</th>
                 </tr>
                 <c:forEach var="u" items="${students}">
                     <tr>
-                        <td><p>${u.getName()}</p></td>
-                        <td><p>${u.getAttendanceRate()}%</p></td>
-                        <td><p><input type="checkbox" name="attending" value="${u.getName()}"><p></td>
+                        <td>${u.getName()}</td>
+                        <td>${u.getAttendanceRate()}%</td>
+                        <td><input type="checkbox" name="attending" value="${u.getName()}"></td>
                     </tr>
                 </c:forEach>
                 </table>

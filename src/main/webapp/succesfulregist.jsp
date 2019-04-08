@@ -5,21 +5,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="resources/css/reset.css">
-    <link rel="stylesheet" type="text/css" href="resources/css/onepager_style.css">
-    <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="resources/css/text.css">
     <title>GoatCool</title>
+    <link rel="stylesheet" type="text/css" href="resources/css/finalstyle.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto|Megrim' rel='stylesheet' type='text/css'>
 </head>
-<body>
-    <header>
-        <div class="svg-wrapper">
-  <svg height="60" width="320" xmlns="http://www.w3.org/2000/svg">
-    <rect class="shape" height="60" width="320" />
-    <div class="headertext">GoatCool LMS</div>
-  </svg>
-</div>
-    </header>
+
+<body class="one_div">
+
+<jsp:include page="snippets/header.jsp" />
+
     <div class="wrapper">
         <div class="log-in-content">
             <div class="thankyou">
