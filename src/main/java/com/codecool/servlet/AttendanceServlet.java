@@ -26,14 +26,21 @@ public class AttendanceServlet extends AbstractServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<User> students = new ArrayList<>();
-        for (User user : UserList.getInstance().getUsers()) {
-            if (user instanceof Student) {
-                students.add(user);
+        try (Connection connection = getConnection(request.getServletContext())) {
+            DatabaseUserDao userDao = new DatabaseUserDao(connection);
+            UserService userService = new UserService(userDao);
+            List<User> students = new ArrayList<>();
+            for (User user : userService.getUsers()) {
+                if (user instanceof Student) {
+                    students.add(user);
+                }
             }
+            request.setAttribute("students", students);
+            request.getRequestDispatcher("attendance.jsp").forward(request, response);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
-        request.setAttribute("students", students);
-        request.getRequestDispatcher("attendance.jsp").forward(request, response);
+
     }
 
     @Override

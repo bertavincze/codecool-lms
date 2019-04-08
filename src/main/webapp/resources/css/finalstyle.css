@@ -199,6 +199,14 @@ table {
   text-transform: uppercase;
 }
 
+.headerlink {
+    color: #ffffff;
+}
+
+.headerlink:hover {
+    color: #ffffff;
+}
+
 .svg-wrapper:hover .shape {
   stroke-width: 2px;
   stroke-dashoffset: 0;

@@ -1,5 +1,6 @@
 package com.codecool.servlet;
 
+import com.codecool.dao.database.DatabasePageDao;
 import com.codecool.dao.database.DatabaseSolutionDao;
 import com.codecool.dao.database.PageList;
 import com.codecool.model.curriculum.AssignmentPage;
@@ -7,6 +8,7 @@ import com.codecool.model.curriculum.Solution;
 import com.codecool.model.user.Student;
 import com.codecool.model.user.User;
 import com.codecool.service.IDGeneratorService;
+import com.codecool.service.PageService;
 import com.codecool.service.SolutionService;
 
 import javax.servlet.ServletException;
@@ -30,6 +32,8 @@ public class SolutionServlet extends AbstractServlet {
             Student user = (Student) session.getAttribute("user");
             DatabaseSolutionDao solutionDao = new DatabaseSolutionDao(connection);
             SolutionService solutionService = new SolutionService(solutionDao);
+            DatabasePageDao pageDao = new DatabasePageDao(connection);
+            PageService pageService = new PageService(pageDao);
 
             String title = req.getParameter("title");
             //String question = req.getParameter("question");
