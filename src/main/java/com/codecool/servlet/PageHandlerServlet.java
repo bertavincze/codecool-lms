@@ -1,6 +1,7 @@
 package com.codecool.servlet;
 
 import com.codecool.dao.database.DatabasePageDao;
+import com.codecool.dao.database.DatabaseSolutionDao;
 import com.codecool.dao.database.DatabaseUserDao;
 import com.codecool.model.curriculum.AssignmentPage;
 import com.codecool.model.curriculum.Page;
@@ -11,6 +12,7 @@ import com.codecool.model.user.Student;
 import com.codecool.model.user.User;
 import com.codecool.service.IDGeneratorService;
 import com.codecool.service.PageService;
+import com.codecool.service.SolutionService;
 import com.codecool.service.UserService;
 
 import javax.servlet.ServletException;
@@ -63,6 +65,8 @@ public class PageHandlerServlet extends AbstractServlet {
             UserService userService = new UserService(userDao);
             DatabasePageDao databasePageDao = new DatabasePageDao(connection);
             PageService pageService = new PageService(databasePageDao);
+            DatabaseSolutionDao solutionDao = new DatabaseSolutionDao(connection);
+            SolutionService solutionService = new SolutionService(solutionDao);
 
             List<User> users = userService.getUsers();
 
@@ -82,7 +86,7 @@ public class PageHandlerServlet extends AbstractServlet {
 
             if (isAssignmentPage(requestedPage)) {
                 if (user instanceof Student) {
-                    Solution solution = findUserSolutionByTitle(user, requestedPage.getTitle());
+                    Solution solution = findUserSolutionByPage(user, requestedPage, solutionService);
                     if (solution != null) {
                         request.setAttribute("assignmentPage", requestedPage);
                         request.setAttribute("solution", solution);
@@ -97,7 +101,7 @@ public class PageHandlerServlet extends AbstractServlet {
                     if (isEditRequest) {
                         for (User u : users){
                             if (u instanceof Student && u.getName().equals(name)) {
-                                Solution solution = findUserSolutionByTitle(u, requestedPage.getTitle());
+                                Solution solution = findUserSolutionByPage(u, requestedPage, solutionService);
                                 request.setAttribute("solution", solution);
                             }
                         }
@@ -125,13 +129,10 @@ public class PageHandlerServlet extends AbstractServlet {
         return page instanceof TextPage;
     }
 
-    private Solution findUserSolutionByTitle(User user, String title) {
-        Student student = (Student) user;
-        if (!student.getSolutionList().isEmpty()) {
-            for (Solution solution : student.getSolutionList()) {
-                if (solution.getTitle().equals(title)) {
-                    return solution;
-                }
+    private Solution findUserSolutionByPage(User user, Page page, SolutionService solutionService) throws SQLException {
+        for (Solution solution: solutionService.loadSolutionsByPage(page)) {
+            if (solution.getUser_id().equals(user.getId())) {
+                return solution;
             }
         }
         return null;

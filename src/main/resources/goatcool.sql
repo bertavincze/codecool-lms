@@ -68,8 +68,10 @@ CREATE TABLE assignment_page(
 CREATE TABLE solutionmap(
 	user_id varchar(6),
 	solution_id varchar(6),
+	page_id varchar(6),
 	FOREIGN KEY (user_id) REFERENCES userBase(user_id),
-	FOREIGN KEY (solution_id) REFERENCES solution(solution_id)
+	FOREIGN KEY (solution_id) REFERENCES solution(solution_id),
+	FOREIGN KEY (page_id) REFERENCES assignment_page(page_id)
 );
 
 CREATE TABLE attendance(

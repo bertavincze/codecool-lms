@@ -11,31 +11,23 @@
 </head>
 
 <body class="two_div">
-<c:choose>
-    <c:when test="${User.getClass().simpleName == 'Student'}">
-        <nav>
-            <ul>
-                <a href="profile.jsp"><li>Profile</li></a>
-                <a href="userlist"><li>UserList</li></a>
-                <a href="curriculum"><li>Curriculum</li></a>
-                <a href="assignments"><li>Assignments</li></a>
-                <a href="stats"><li>Stats</li></a>
-            </ul>
-        </nav>
-    </c:when>
-    <c:otherwise>
-        <nav>
-            <ul>
-                <a href="profile.jsp"><li>Profile</li></a>
-                <a href="userlist"><li>UserList</li></a>
-                <a href="curriculum"><li>Curriculum</li></a>
+<nav>
+    <ul>
+        <a href="profile.jsp"><li class="marked">Profile</li></a>
+        <a href="userlist"><li>UserList</li></a>
+        <a href="curriculum"><li>Curriculum</li></a>
+        <c:choose>
+            <c:when test="${user.getClass().simpleName == 'Student'}">
+                 <a href="assignments"><li>Assignments</li></a>
+                 <a href="stats"><li>Stats</li></a>
+            </c:when>
+            <c:otherwise>
                 <a href="attendance"><li>Attendance</li></a>
                 <a href="solutions"><li>Student Solutions</li></a>
-            </ul>
-        </nav>
-    </c:otherwise>
-</c:choose>
-
+            </c:otherwise>
+        </c:choose>
+    </ul>
+</nav>
 
 
 <jsp:include page="snippets/header.jsp" />

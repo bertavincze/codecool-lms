@@ -3,6 +3,7 @@ package com.codecool.servlet;
 import com.codecool.dao.database.DatabasePageDao;
 import com.codecool.dao.database.DatabaseSolutionDao;
 import com.codecool.model.curriculum.AssignmentPage;
+import com.codecool.model.curriculum.Page;
 import com.codecool.model.curriculum.Solution;
 import com.codecool.model.user.Student;
 import com.codecool.model.user.User;
@@ -42,6 +43,7 @@ public class SolutionServlet extends AbstractServlet {
             solutionService.addSolution(generatedID, user.getId(), title, answer, solution.getSubmissionDate());
             AssignmentPage assignmentPage = (AssignmentPage) pageService.findPageByTitle(title);
             assignmentPage.addToSolutionMap(user, solution);
+            pageService.addToSolutionMap(solution, user, assignmentPage);
             req.getRequestDispatcher("curriculum").forward(req, resp);
         } catch (SQLException ex) {
             throw new ServletException(ex);
@@ -51,30 +53,34 @@ public class SolutionServlet extends AbstractServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession(false);
-        Student user = (Student) session.getAttribute("user");
+        try (Connection connection = getConnection(request.getServletContext())) {
+            HttpSession session = request.getSession(false);
+            Student user = (Student) session.getAttribute("user");
+            DatabaseSolutionDao solutionDao = new DatabaseSolutionDao(connection);
+            SolutionService solutionService = new SolutionService(solutionDao);
 
-        String title = request.getParameter("title");
-        AssignmentPage assignmentPage = (AssignmentPage) request.getAttribute("assignmentPage");
+            String title = request.getParameter("title");
+            AssignmentPage assignmentPage = (AssignmentPage) request.getAttribute("assignmentPage");
 
-        Solution solution = findUserSolutionByTitle(user, title);
-        if (solution != null) {
-            request.setAttribute("solution", solution);
-            request.setAttribute("assignmentPage", assignmentPage);
-            request.getRequestDispatcher("seesolution.jsp").forward(request, response);
+            Solution solution = findUserSolutionByPage(user, assignmentPage, solutionService);
+            if (solution != null) {
+                request.setAttribute("solution", solution);
+                request.setAttribute("assignmentPage", assignmentPage);
+                request.getRequestDispatcher("seesolution.jsp").forward(request, response);
 
-        } else {
-            request.getRequestDispatcher("404.html").forward(request, response);
+            } else {
+                request.getRequestDispatcher("404.html").forward(request, response);
+            }
+
+        } catch (SQLException ex) {
+            throw new ServletException(ex);
         }
     }
 
-    private Solution findUserSolutionByTitle(User user, String title) {
-        Student student = (Student) user;
-        if (!student.getSolutionList().isEmpty()) {
-            for (Solution solution : student.getSolutionList()) {
-                if (solution.getTitle().equals(title)) {
-                    return solution;
-                }
+    private Solution findUserSolutionByPage(User user, Page page, SolutionService solutionService) throws SQLException {
+        for (Solution solution: solutionService.loadSolutionsByPage(page)) {
+            if (solution.getUser_id().equals(user.getId())) {
+                return solution;
             }
         }
         return null;

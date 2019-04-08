@@ -15,6 +15,7 @@
 <nav>
     <ul>
         <a href="profile.jsp"><li>Profile</li></a>
+        <a href="userlist"><li>UserList</li></a>
         <a href="curriculum"><li class="marked">Curriculum</li></a>
         <a href="assignments"><li>Assignments</li></a>
         <a href="stats"><li>Stats</li></a>
