@@ -70,7 +70,7 @@
                     </c:choose>
                 <br>
                 <form action="logout" method="post">
-                    <input type="submit" value="Log out">
+                    <input class="button" type="submit" value="Log out">
                 </form>
                 <br></div>
 

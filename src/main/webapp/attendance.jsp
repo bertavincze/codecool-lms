@@ -67,7 +67,7 @@
                 </c:forEach>
                 </table>
                 <p align="center">Check the box to add attendance record for the selected date.</p>
-                <center><input type="submit" value="Set attendance"></center>
+                <center><input class="button" type="submit" value="Set attendance"></center>
                 <br>
             </form>
             <div class="containerfoot"></div>
@@ -92,7 +92,7 @@
                     </c:choose>
                 <br>
                 <form action="logout" method="post">
-                    <input type="submit" value="Log out">
+                    <input class="button" type="submit" value="Log out">
                 </form>
                 <br></div>
 

@@ -26,14 +26,14 @@
             <form action="register" method="post">
 
 
-                <p>Name: <input type="text" name="name" autofocus></p>
-                <p>E-mail: <input type="text" name="email"/></p>
+                <p>Name: <input class="box" type="text" name="name" autofocus></p>
+                <p>E-mail: <input class="box" type="text" name="email"/></p>
                 <p>Password: <input type="password" name="password"/></p>
                 <div id="radiobutton">
                     <p><input type="radio" name="status" value="mentor"/> Mentor
                         <input type="radio" name="status" value="student"/> Student</p>
                 </div>
-                <input type="submit" value="Register!"/>
+                <input class="button" type="submit" value="Register!"/>
 
             </form>
             <p class="redirect">Already have an account? <a href="login">Log in!</a></p>

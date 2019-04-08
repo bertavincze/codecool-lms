@@ -44,7 +44,7 @@
             </c:forEach>
             </ul>
             <br>
-            <input type="submit" value="Submit changes">
+            <input class="button" type="submit" value="Submit changes">
             <br>
             </form>
             <h2>Unpublished pages</h2>
@@ -60,7 +60,7 @@
             </c:forEach>
             </ul>
             <br>
-            <input type="submit" value="Submit changes">
+            <input class="button" type="submit" value="Submit changes">
             <br>
             </form>
             <div class="containerfoot"></div>
@@ -85,7 +85,7 @@
                     </c:choose>
                 <br>
                 <form action="logout" method="post">
-                    <input type="submit" value="Log out">
+                    <input class="button" type="submit" value="Log out">
                 </form>
                 <br></div>
 

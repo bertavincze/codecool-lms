@@ -8,7 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GoatCool</title>
     <link rel="stylesheet" type="text/css" href="resources/css/finalstyle.css">
-    <link rel="stylesheet" type="text/css" href="resources/css/profile.css">
     <link href='https://fonts.googleapis.com/css?family=Roboto|Megrim' rel='stylesheet' type='text/css'>
 </head>
 
@@ -57,11 +56,11 @@
             <div class="one-third">
             </div>
                 <div class="two-third">
-                     <table>
+                     <table class="profile">
                       <tr>
                         <td>Name: </td>
                         <td><p>${user.getName()}</p>
-                            <form id="editName" action = "editedName" method = "post">
+                            <form id="editName" action = "editedName" method = "post" class="hide_form">
                                 <input class="popupbox" type = "text" name = "name">
                                 <input class="popupbutton" type = "submit" value = "Save" />
                             </form>
@@ -72,7 +71,7 @@
                       <tr>
                         <td>E-mail: </td>
                         <td><p>${user.getEmail()}</p>
-                            <form id="editMail" action = "editedMail" method = "post">
+                            <form id="editMail" action = "editedMail" method = "post" class="hide_form">
                                 <input  class="popupbox" type = "text" name = "email">
                                 <input  class="popupbutton" type = "submit" value = "Save" />
                             </form>
@@ -83,7 +82,7 @@
                      <tr>
                          <td>Password: </td>
                          <td><p>${user.getPasswordDisplay()}</p>
-                             <form id="editPassword" action = "editedPassword" method = "post">
+                             <form id="editPassword" action = "editedPassword" method = "post" class="hide_form">
                                  <input  class="popupbox" type = "text" name = "password">
                                  <input  class="popupbutton" type = "submit" value = "Save" />
                              </form>
@@ -107,7 +106,7 @@
                     </table>
 
                 </div>
-            <div class="containerfoot"></div>
+            <div class="containerfoot" id="profile_foot"></div>
         </div>
     </div>
 
@@ -117,7 +116,7 @@
                 <p>Welcome ${user.getName()}! You can see and edit your basic data and track your progress here.</p> <br>
 
                 <form action="logout" method="post">
-                    <input type="submit" value="Log out">
+                    <input class="button" type="submit" value="Log out">
                 </form>
                 <br>
             </div>

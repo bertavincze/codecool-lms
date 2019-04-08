@@ -32,7 +32,7 @@
             <form action="handlepage" method="post">
 
                 <p>Title:</p>
-                <p><input type="text" name="title" autofocus></p>
+                <p><input class="box" type="text" name="title" autofocus></p>
 
                 <p>Question: </p>
                 <p><textarea rows="20" cols="20" name="question"></textarea></p>
@@ -52,7 +52,7 @@
                 </select>
                 <br><br>
 
-                <p><input type="submit"></p>
+                <p><input class="button" type="submit"></p>
 
             </form>
             <div class="containerfoot"></div>
@@ -77,7 +77,7 @@
                     </c:choose>
                 <br>
                 <form action="logout" method="post">
-                    <input type="submit" value="Log out">
+                    <input class="button" type="submit" value="Log out">
                 </form>
                 <br>
             </div>
