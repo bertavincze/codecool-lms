@@ -66,7 +66,7 @@
                                    </c:forEach>
                                </select>
                                <br><br>
-                               <p><input type="submit"></p>
+                               <p><input class="button" type="submit"></p>
                            </form>
                       </c:when>
                 </c:choose>
@@ -93,7 +93,7 @@
                     </c:choose>
                 <br>
                 <form action="logout" method="post">
-                    <input type="submit" value="Log out">
+                    <input class="button" type="submit" value="Log out">
                 </form>
                 <br></div>
 

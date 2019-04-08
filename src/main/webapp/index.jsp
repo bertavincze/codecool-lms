@@ -24,9 +24,9 @@
 
 
             <form action="login" method="post">
-                <p>Name:<input type="text" name ="name"></p>
+                <p>Name:<input class="box" type="text" name ="name"></p>
                 <p>Password: <input type="password" name="password"/></p>
-                    <input type="submit" value="Sign in"/>
+                    <input class="button" type="submit" value="Sign in"/>
 
             </form>
 

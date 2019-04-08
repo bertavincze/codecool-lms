@@ -41,7 +41,7 @@
 
                  <input type="hidden" name="title" value="${page.getTitle()}">
                  <input type="hidden" name="question" value="${page.getQuestion()}">
-                <p><input type="submit" value="Submit solution"></p>
+                <p><input class="button" type="submit" value="Submit solution"></p>
 
             </form>
             <div class="containerfoot"></div>
@@ -66,7 +66,7 @@
                     </c:choose>
                 <br>
                 <form action="logout" method="post">
-                    <input type="submit" value="Log out">
+                    <input class="button" type="submit" value="Log out">
                 </form>
                 <br></div>
 
