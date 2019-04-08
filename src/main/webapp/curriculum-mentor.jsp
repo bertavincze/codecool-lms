@@ -98,7 +98,7 @@
     <div class="sidebar">
         <div class="sbcontainer">
             <ul class="links">
-                <div class="linktitle">Favourites</div>
+                <div class="linktitle">Links</div>
                 <li><a href="addassignment.jsp">Add new assignment page</a></li>
                 <li><a href="addtextpage.jsp">Add new text page</a></li>
             </ul>
