@@ -33,10 +33,10 @@
             </div>
                 <table>
                     <tr>
-                        <td>Assignment title</td>
-                        <td>Submission Date</td>
-                        <td>Max Score</td>
-                        <td>Student Score</td>
+                        <th>Assignment title</th>
+                        <th>Submission Date</th>
+                        <th>Max Score</th>
+                        <th>Student Score</th>
                     </tr>
                     <c:forEach var="a" items="${assignmentMap}">
                         <tr>
