@@ -34,20 +34,29 @@
             <h2>Published pages</h2>
             <p>Check the box to unpublish the selected page.</p>
             <form action="publishservlet" method="post">
-            <ul>
+            <table>
+            <tr>
+            <th>Page title</th>
+            <th>Check to unpublish</th>
+            </tr>
             <c:forEach var="page" items="${pageList}">
                 <c:choose>
                 <c:when test="${page.isPublished()}">
-                <li>
-                    <label class="switch">
-                        <input type="checkbox" name="unpublish" value="${page.getTitle()}" />Published: <a href="handlepage?title=${page.getTitle()}&edit=false">${page.getTitle()}</a>
-                        <span class="slider"></span>
-                    </label>
-                </li>
+                <tr>
+                <td>
+                <a href="handlepage?title=${page.getTitle()}&edit=false">${page.getTitle()}</a>
+                </td>
+                <td>
+                <label class="switch">
+                <input type="checkbox" name="unpublish" value="${page.getTitle()}" />
+                <span class="slider"></span>
+                </label>
+                </td>
+                </tr>
                 </c:when>
                 </c:choose>
             </c:forEach>
-            </ul>
+            </table>
             <br>
             <input class="button" type="submit" value="Submit changes">
             <br>
@@ -55,17 +64,29 @@
             <h2>Unpublished pages</h2>
             <p>Check the box to publish the selected page.</p>
             <form action="publishservlet" method="post">
-            <ul>
+            <table>
+            <tr>
+            <th>Page title</th>
+            <th>Check to publish</th>
+            </tr>
             <c:forEach var="page" items="${pageList}">
                 <c:choose>
                 <c:when test="${!page.isPublished()}">
-                <li>
-                    <input type="checkbox" name="publish" value="${page.getTitle()}" />Unpublished: <a href="handlepage?title=${page.getTitle()}&edit=false">${page.getTitle()}</a>
-                </li>
+                <tr>
+                <td>
+                <a href="handlepage?title=${page.getTitle()}&edit=false">${page.getTitle()}</a>
+                </td>
+                <td>
+                <label class="switch">
+                <input type="checkbox" name="publish" value="${page.getTitle()}" />
+                <span class="slider"></span>
+                </label>
+                </td>
+                </tr>
                 </c:when>
                 </c:choose>
             </c:forEach>
-            </ul>
+            </table>
             <br>
             <input class="button" type="submit" value="Submit changes">
             <br>
