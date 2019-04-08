@@ -28,14 +28,9 @@
     <div class="content">
         <div class="container">
             <div class="containerhead">
-                <div class="title"><a href="">Welcome</a></div>
+                <div class="title"><a href="">News</a></div>
             </div>
-            <h2>You are now logged in as ${user.getClass().simpleName} ${user.getName()}.</h2>
-            <p>
-                Here is a random goat for you:
-
-            </p>
-                <iframe src='//randomgoat.com/embed.php' width='480' height='360' frameBorder='0' id='random-goat-embed' allowFullScreen></iframe>
+            <!-- start feedwind code --> <script type="text/javascript" src="https://feed.mikle.com/js/fw-loader.js" data-fw-param="106479/"></script> <!-- end feedwind code -->
             <div class="containerfoot"></div>
         </div>
          <div class="container">
@@ -51,6 +46,7 @@
                 </p>
             <div class="containerfoot"></div>
         </div>
+
     </div>
 
     <div class="sidebar">
