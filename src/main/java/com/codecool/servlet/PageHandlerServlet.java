@@ -43,7 +43,6 @@ public class PageHandlerServlet extends AbstractServlet {
                 String maxScore = request.getParameter("maxScore");
                 String id = idGeneratorService.generateID();
                 AssignmentPage assignmentPage = new AssignmentPage(id, title, question, Integer.parseInt(maxScore));
-                PageList.getInstance().addPage(assignmentPage);
                 pageService.addPage(assignmentPage);
 
             } else {
@@ -51,7 +50,6 @@ public class PageHandlerServlet extends AbstractServlet {
                 String content = request.getParameter("text");
                 String id = idGeneratorService.generateID();
                 TextPage textPage = new TextPage(id, title, content);
-                PageList.getInstance().addPage(textPage);
                 pageService.addPage(textPage);
             }
             request.getRequestDispatcher("curriculum").forward(request, response);
@@ -66,6 +64,9 @@ public class PageHandlerServlet extends AbstractServlet {
         try (Connection connection = getConnection(request.getServletContext())) {
             DatabaseUserDao userDao = new DatabaseUserDao(connection);
             UserService userService = new UserService(userDao);
+            DatabasePageDao databasePageDao = new DatabasePageDao(connection);
+            PageService pageService = new PageService(databasePageDao);
+
             List<User> users = userService.getUsers();
 
             String title = request.getParameter("title");
@@ -74,7 +75,7 @@ public class PageHandlerServlet extends AbstractServlet {
             User user = (User) session.getAttribute("user");
 
             Page requestedPage = null;
-            for (Page page : PageList.getInstance().getPageList()) {
+            for (Page page : pageService.loadPages()) {
                 if (page.getTitle().equals(title)) {
                     request.setAttribute("page", page);
                     requestedPage = page;

@@ -29,7 +29,7 @@ public class StudentSolutionServlet extends AbstractServlet {
                 List<Page> assignments = pageService.loadPages();
                 List<AssignmentPage> assignmentList = new ArrayList<>();
                 for (Page page : assignments) {
-                    if (page instanceof AssignmentPage) {
+                    if (page instanceof AssignmentPage && page.isPublished()) {
                         assignmentList.add((AssignmentPage) page);
                     }
                 }
