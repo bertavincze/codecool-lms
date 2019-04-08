@@ -328,9 +328,19 @@ td {
   border-bottom: 1px solid #ddd;
 }
 
+.display_date{
+    font-size: 10px;
+    text-align: right;
+}
+
+.display_news{
+    text-align: left;
+    text-transform: none;
+}
+
 /* FORM & INPUT STYLING */
 
-input[type=text] {
+input[type=text], input[type=textarea] {
   width: 100%;
   padding: 8px 8px;
   margin: 4px 0;

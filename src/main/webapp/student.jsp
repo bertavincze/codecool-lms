@@ -26,18 +26,7 @@
 
 <div class="wrapper">
     <div class="content">
-        <div class="container">
-            <div class="containerhead">
-                <div class="title"><a href="">Welcome</a></div>
-            </div>
-            <h2>You are now logged in as ${user.getClass().simpleName} ${user.getName()}.</h2>
-            <p>
-
-                Here is a random goat for you:
-            </p>
-            <iframe src='//randomgoat.com/embed.php' width='480' height='360' frameBorder='0' id='random-goat-embed' allowFullScreen></iframe>
-            <div class="containerfoot"></div>
-        </div>
+        <jsp:include page="snippets/latestNews.jsp" />
         <div class="container">
             <div class="containerhead">
                 <div class="title"><a href="">News</a></div>
@@ -51,6 +40,7 @@
                 </p>
             <div class="containerfoot"></div>
         </div>
+        <jsp:include page="snippets/olderNews.jsp" />
     </div>
 
     <div class="sidebar">

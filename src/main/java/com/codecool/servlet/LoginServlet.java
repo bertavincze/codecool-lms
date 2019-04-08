@@ -1,10 +1,13 @@
 package com.codecool.servlet;
 
+import com.codecool.dao.database.DatabaseNewsDao;
 import com.codecool.dao.database.DatabaseUserDao;
+import com.codecool.model.News;
 import com.codecool.model.user.Mentor;
 import com.codecool.model.user.Student;
 import com.codecool.model.user.User;
 import com.codecool.dao.database.UserList;
+import com.codecool.service.NewsService;
 import com.codecool.service.UserService;
 
 import javax.servlet.ServletException;
@@ -17,6 +20,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.SQLOutput;
+import java.util.List;
 
 @WebServlet("/login")
 public class LoginServlet extends AbstractServlet {
@@ -24,6 +28,20 @@ public class LoginServlet extends AbstractServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         User currentUser = authUser(request);
+        try (Connection connection = getConnection(request.getServletContext())) {
+            DatabaseNewsDao newsDao = new DatabaseNewsDao(connection);
+            NewsService newsService = new NewsService(newsDao);
+
+            List<News> getNews = newsService.getLatestNews();
+            News latestNews = newsService.getNewestOne();
+
+            request.setAttribute("Current", latestNews);
+            request.setAttribute("Older", getNews);
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
         routeUser(request, response, currentUser);
 
     }
@@ -59,6 +77,16 @@ public class LoginServlet extends AbstractServlet {
 
     private void routeUser(HttpServletRequest request, HttpServletResponse response, User currentUser) throws ServletException, IOException {
         if (currentUser != null) {
+            if (currentUser instanceof Mentor || currentUser instanceof Student) {
+                request.getRequestDispatcher("news.jsp").forward(request, response);
+            }
+        } else {
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+        }
+
+
+        /*@Deprecated
+        if (currentUser != null) {
             if (currentUser instanceof Mentor) {
                 request.getRequestDispatcher("mentor.jsp").forward(request, response);
             } else if (currentUser instanceof Student) {
@@ -66,7 +94,7 @@ public class LoginServlet extends AbstractServlet {
             }
         } else {
             request.getRequestDispatcher("index.jsp").forward(request, response);
-        }
+        }*/
     }
 
 }

@@ -19,6 +19,7 @@ DROP TABLE IF EXISTS assignment_page CASCADE;
 DROP TABLE IF EXISTS text_page CASCADE;
 DROP TABLE IF EXISTS userBase CASCADE;
 DROP TABLE IF EXISTS attendance CASCADE;
+DROP TABLE IF EXISTS newsfeed CASCADE;
 
 CREATE TABLE userBase(
 	user_id varchar(6) NOT NULL,
@@ -78,12 +79,25 @@ CREATE TABLE attendance(
     FOREIGN KEY (user_id) REFERENCES userBase(user_id)
 );
 
+
+CREATE TABLE newsfeed(
+    news_id varchar(6) NOT NULL,
+    title varchar(100) NOT NULL,
+    content varchar(300) NOT NULL,
+    date date NOT NULL,
+    user_id varchar(6),
+    PRIMARY KEY (news_id),
+    FOREIGN KEY (user_id) REFERENCES userBase(user_id)
+);
+
+
+
 INSERT INTO userBase VALUES('12ab#.', 'mentor', 'mentor', 'm', 'm');
 INSERT INTO userBase VALUES('34cd#.', 'student', 'student', 's', 's');
 INSERT INTO userBase VALUES('56ab#.', 'mentor', 'Berta', 'berta', 'berta');
 INSERT INTO userBase VALUES('34ef#.', 'student', 'Andi', 'andi', 'andi');
 INSERT INTO userBase VALUES('12gb#.', 'mentor', 'Attila', 'attila', 'attila');
-INSERT INTO userBase VALUES('34ch#.', 'student', 'Tamy', 'tamy', 'tamy');
+INSERT INTO userBase VALUES('34ch#.', 'mentor', 'Tamy', 'tamy', 'tamy');
 
 INSERT INTO page VALUES('56ef#.', 'Kecske Text', true);
 INSERT INTO text_page VALUES('56ef#.', 'Kecske!!!!!');
@@ -93,5 +107,10 @@ INSERT INTO page VALUES('78uh#.', 'New Assignment', true);
 INSERT INTO assignment_page VALUES('78uh#.', 'Tomcat?', 5);
 INSERT INTO page VALUES('78jh#.', 'Database Assignment', true);
 INSERT INTO assignment_page VALUES('78jh#.', 'SQL?', 5);
+
+
+INSERT INTO newsfeed VALUES ('99gh#.', 'Test', 'Lorem ipsum dolor sit amet...', '2019/04/07', '34ch#.');
+INSERT INTO newsfeed VALUES ('89gh#.', 'Test2', 'Lorem ipsum dolor sit amet...', '2019/04/02', '34ch#.');
+INSERT INTO newsfeed VALUES ('79gh#.', 'Test3', 'Lorem ipsum dolor sit amet...', '2019/04/05', '34ch#.');
 
 
