@@ -62,7 +62,12 @@
                     <tr>
                         <td>${u.getName()}</td>
                         <td>${u.getAttendanceRate()}%</td>
-                        <td><input type="checkbox" name="attending" value="${u.getName()}"></td>
+                        <td>
+                            <label class="switch">
+                            <input type="checkbox" name="attending" value="${u.getName()}">
+                            <span class="slider"></span>
+                            </label>
+                        </td>
                     </tr>
                 </c:forEach>
                 </table>
