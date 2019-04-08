@@ -25,7 +25,7 @@ public class PublishServlet extends AbstractServlet {
             PageService pageService = new PageService(pageDao);
 
             if (published != null) {
-                for (Page page : PageList.getInstance().getPageList()) {
+                for (Page page : pageService.loadPages()) {
                     for (String name : published) {
                         if (page.getTitle().equals(name)) {
                             page.publish();
@@ -36,7 +36,7 @@ public class PublishServlet extends AbstractServlet {
             }
 
             if (unpublished != null) {
-                for (Page page : PageList.getInstance().getPageList()) {
+                for (Page page : pageService.loadPages()) {
                     for (String name : unpublished) {
                         if (page.getTitle().equals(name)) {
                             page.unpublish();
