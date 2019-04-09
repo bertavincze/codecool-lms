@@ -1,11 +1,13 @@
 package com.codecool.servlet;
 
 import com.codecool.dao.database.DatabasePageDao;
+import com.codecool.dao.database.DatabaseSolutionDao;
 import com.codecool.model.curriculum.AssignmentPage;
 import com.codecool.model.curriculum.Page;
 import com.codecool.model.curriculum.Solution;
 import com.codecool.model.user.Student;
 import com.codecool.service.PageService;
+import com.codecool.service.SolutionService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -28,10 +30,12 @@ public class StatisticServlet extends AbstractServlet {
         try (Connection connection = getConnection(request.getServletContext()) ) {
             DatabasePageDao pageDao = new DatabasePageDao(connection);
             PageService pageService = new PageService(pageDao);
+            DatabaseSolutionDao solutionDao = new DatabaseSolutionDao(connection);
+            SolutionService solutionService = new SolutionService(solutionDao);
 
             HttpSession session = request.getSession(false);
             Student user = (Student) session.getAttribute("user");
-            solutions = user.getSolutionList();
+            solutions = solutionService.loadSolutionForUser(user);
             Map<Solution, Integer> assignmentMap= new HashMap<>();
 
             for (Solution solution : solutions) {

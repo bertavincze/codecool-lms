@@ -3,6 +3,7 @@ package com.codecool.service;
 import com.codecool.dao.database.DatabaseSolutionDao;
 import com.codecool.model.curriculum.Page;
 import com.codecool.model.curriculum.Solution;
+import com.codecool.model.user.Student;
 import com.codecool.model.user.User;
 
 import java.sql.SQLException;
@@ -38,5 +39,9 @@ public class SolutionService {
 
     public List<Solution> loadSolutionsByPage(Page page) throws SQLException {
         return solutionDao.loadSolutionsByPage(page);
+    }
+
+    public List<Solution> loadSolutionForUser(User user) throws SQLException {
+        return solutionDao.loadSolutionsForSingleUser(user);
     }
 }
