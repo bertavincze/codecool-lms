@@ -469,7 +469,7 @@ select {
     width: 100%;
 }
 
-.one-third{
+.one-third-pic{
     width: 20%;
     height: 130px;
     background-image: var(--profile1);
@@ -479,6 +479,15 @@ select {
     display: inline-block;
     float: left;
     margin-bottom: 20px;
+}
+
+.one-third{
+    position: relative;
+    float: left;
+    width: 20%;
+    display: inline-block;
+    margin: 20px 0;
+    top: -380px;
 }
 
 .two-third{
