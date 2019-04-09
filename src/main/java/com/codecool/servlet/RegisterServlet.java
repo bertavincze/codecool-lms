@@ -5,7 +5,6 @@ import com.codecool.dao.database.DatabaseUserDao;
 import com.codecool.model.user.Mentor;
 import com.codecool.model.user.Student;
 import com.codecool.model.user.User;
-import com.codecool.dao.database.UserList;
 import com.codecool.service.IDGeneratorService;
 import com.codecool.service.UserService;
 

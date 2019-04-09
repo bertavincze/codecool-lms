@@ -1,24 +1,20 @@
 package com.codecool.servlet;
 
 import com.codecool.dao.database.DatabasePageDao;
-import com.codecool.dao.database.PageList;
 import com.codecool.model.curriculum.AssignmentPage;
 import com.codecool.model.curriculum.Page;
 import com.codecool.model.curriculum.Solution;
 import com.codecool.model.user.Student;
 import com.codecool.service.PageService;
-import org.springframework.util.CommonsLogWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

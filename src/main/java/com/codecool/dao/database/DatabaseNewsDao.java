@@ -4,8 +4,10 @@ import com.codecool.model.News;
 import com.codecool.model.user.User;
 
 import java.sql.*;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.List;
+import java.time.LocalDateTime;
 
 public class DatabaseNewsDao extends AbstractDao {
     public DatabaseNewsDao(Connection connection) {
@@ -17,7 +19,7 @@ public class DatabaseNewsDao extends AbstractDao {
         String sql ="SELECT * FROM newsfeed ORDER BY date";
         try (Statement statement = connection.createStatement(); ResultSet resultSet = statement.executeQuery(sql)) {
             while (resultSet.next()) {
-                allNews.add(new News(resultSet.getString("news_id"), resultSet.getString("title"), resultSet.getString("content"), resultSet.getDate("date").toLocalDate()));
+                allNews.add(new News(resultSet.getString("news_id"), resultSet.getString("title"), resultSet.getString("content"), localDateFromTimestamp(resultSet.getTimestamp("date"))));
             }
         return allNews;
         }
@@ -28,7 +30,7 @@ public class DatabaseNewsDao extends AbstractDao {
         String sql ="SELECT * FROM newsfeed ORDER BY date DESC LIMIT 9 OFFSET 1";
         try (Statement statement = connection.createStatement(); ResultSet resultSet = statement.executeQuery(sql)) {
             while (resultSet.next()) {
-                latestNews.add(new News(resultSet.getString("news_id"), resultSet.getString("title"), resultSet.getString("content"), resultSet.getDate("date").toLocalDate()));
+                latestNews.add(new News(resultSet.getString("news_id"), resultSet.getString("title"), resultSet.getString("content"), localDateFromTimestamp(resultSet.getTimestamp("date"))));
             }
             return latestNews;
         }
@@ -41,7 +43,7 @@ public class DatabaseNewsDao extends AbstractDao {
             "ON a.date = b.latest;";
         try(Statement statement = connection.createStatement(); ResultSet resultSet = statement.executeQuery(sql)){
             while (resultSet.next()) {
-                latestNews = new News(resultSet.getString("news_id"), resultSet.getString("title"), resultSet.getString("content"), resultSet.getDate("date").toLocalDate());
+                latestNews = new News(resultSet.getString("news_id"), resultSet.getString("title"), resultSet.getString("content"), localDateFromTimestamp(resultSet.getTimestamp("date")));
                 return latestNews;
             }
         } return null;
@@ -56,7 +58,7 @@ public class DatabaseNewsDao extends AbstractDao {
             statement.setString(1, news.getId());
             statement.setString(2, news.getTitle());
             statement.setString(3, news.getContent());
-            statement.setDate(4, Date.valueOf(news.getDate()));
+            statement.setTimestamp(4, Timestamp.valueOf(news.getDate()));
             statement.setString(5, user.getId());
             executeInsert(statement);
             connection.commit();
@@ -68,6 +70,8 @@ public class DatabaseNewsDao extends AbstractDao {
         }
     }
 
-
+    private LocalDateTime localDateFromTimestamp(Timestamp timestamp) {
+        return LocalDateTime.ofInstant(timestamp.toInstant(), ZoneOffset.ofHours(0));
+    }
 
 }

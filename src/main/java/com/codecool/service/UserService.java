@@ -1,4 +1,5 @@
 package com.codecool.service;
+
 import com.codecool.dao.database.DatabaseAttendanceDao;
 import com.codecool.dao.database.DatabaseUserDao;
 import com.codecool.model.user.Student;
@@ -29,6 +30,7 @@ public class UserService {
         return userDao.findUsers();
     }
 
+
     public List<User> getUsersWithMap() throws SQLException {
         List<User> users =  new ArrayList<>();
         for (User user : userDao.findUsers()) {
@@ -42,8 +44,6 @@ public class UserService {
         }
         return users;
     }
-
-
 
     public void addUser(String userID, String role, String name, String email, String password) throws SQLException {
         try {

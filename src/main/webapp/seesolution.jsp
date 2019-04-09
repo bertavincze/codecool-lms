@@ -47,7 +47,7 @@
 
 
                 <c:choose>
-                  <c:when test="${solution.getGrade() == null}">
+                  <c:when test="${solution.getGrade() == 0}">
                     <p>The solution has not been graded yet!</p>
                   </c:when>
                   <c:otherwise>

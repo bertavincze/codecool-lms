@@ -31,16 +31,14 @@
             <div class="containerhead">
                 <div class="title"><a href="">Solutions</a></div>
             </div>
-
-            <c:if test="${fn:length(assignmentList) == 0}">
-              <p>No unchecked solutions found.</p>
+            <c:if test="${fn:length(solutionMap) == 0}">
+                 <p>No unchecked solutions found.</p>
             </c:if>
                 <ul>
-                <c:forEach var="entry" items="${assignmentList}">
-                    <c:forEach var="entry2" items="${entry.getSolutionMap()}">
-                        <li> <a href="handlepage?title=${entry2.value.getTitle()}&name=${entry2.key.getName()}&edit=true">${entry2.key.getName()} : ${entry2.value.getTitle()} </a></li>
-                        <br>
-                    </c:forEach>
+                <c:forEach var="entry" items="${solutionMap}">
+
+                    <li> <a href="handlepage?title=${entry.value.getTitle()}&name=${entry.key.getName()}&edit=true">${entry.key.getName()} : ${entry.value.getTitle()} </a></li>
+
                 </c:forEach>
                 </ul>
 

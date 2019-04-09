@@ -10,7 +10,7 @@
 <div class="container">
     <div class="containerhead">
         <div class="title"><a href="">${Current.getTitle()}</a></div>
-        <p class="display_date">${Current.getDate()}</p>
+        <p class="display_date">${Current.getPublishingTime()}</p>
         <p class="display_news">${Current.getContent()}</p>
     </div>
     <div class="containerfoot"></div>

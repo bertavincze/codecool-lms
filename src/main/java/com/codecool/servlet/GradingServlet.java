@@ -2,7 +2,6 @@ package com.codecool.servlet;
 
 import com.codecool.dao.database.DatabasePageDao;
 import com.codecool.dao.database.DatabaseSolutionDao;
-import com.codecool.dao.database.PageList;
 import com.codecool.model.curriculum.AssignmentPage;
 import com.codecool.model.curriculum.Page;
 import com.codecool.model.curriculum.Solution;
@@ -31,8 +30,8 @@ public class GradingServlet extends AbstractServlet {
             String title = req.getParameter("title");
             for (Page page : pageService.loadPages()) {
                 if (page instanceof AssignmentPage) {
-                    for (Solution solution : ((AssignmentPage) page).getSolutionMap().values()) {
-                        if (title.equals(solution.getTitle())) {
+                    for (Solution solution : solutionService.loadSolutionsByPage(page)) {
+                        if (solution.getTitle().equals(page.getTitle())) {
                             solution.setGrade(grade);
                             solutionService.updateSolution(solution.getSolution_id(), grade);
                         }

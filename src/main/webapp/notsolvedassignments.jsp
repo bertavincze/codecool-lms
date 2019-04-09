@@ -40,7 +40,7 @@
                 <div class="title"><a href="">Unsolved Assignments</a></div>
             </div>
             <c:if test="${fn:length(assignments) == 0}">
-                  <p> No unsolved assignments found </p>
+                  <p>No unsolved assignments found.</p>
             </c:if>
             <ul>
             <c:forEach var="a" items="${assignments}">
