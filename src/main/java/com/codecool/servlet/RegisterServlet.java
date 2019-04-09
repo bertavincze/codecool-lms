@@ -33,18 +33,20 @@ public class RegisterServlet extends AbstractServlet {
             String email = req.getParameter("email");
             String password = req.getParameter("password");
             String userRoleString = req.getParameter("status");
+            String image_id = "1";
             String generatedID = idService.generateID();
+
 
             validateUserData(name, email, password, userRoleString, userService);
             //
             if (isValidUserData) {
                 User user = null;
                 if (userRoleString.equals("mentor")) {
-                    userService.addUser(generatedID,"mentor", name, email,password);
-                    user = new Mentor(generatedID, name, email, password);
+                    userService.addUser(generatedID,"mentor", name, email,password, image_id);
+                    user = new Mentor(generatedID, name, email, password, image_id);
                 } else {
-                    userService.addUser(generatedID,"student", name, email,password);
-                    user = new Student(generatedID, name, email, password);
+                    userService.addUser(generatedID,"student", name, email,password, image_id);
+                    user = new Student(generatedID, name, email, password, image_id);
                 }
                 req.setAttribute("user", user);
                 req.getRequestDispatcher("succesfulregist.jsp").forward(req, resp);

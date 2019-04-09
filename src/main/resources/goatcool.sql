@@ -23,12 +23,14 @@ DROP TABLE IF EXISTS userBase CASCADE;
 DROP TABLE IF EXISTS attendance CASCADE;
 DROP TABLE IF EXISTS newsfeed CASCADE;
 
+
 CREATE TABLE userBase(
 	user_id varchar(6) NOT NULL,
 	user_role varchar(10) NOT NULL,
 	user_name varchar(15) NOT NULL,
 	email varchar(254) UNIQUE NOT NULL,
 	password varchar(15),
+	image_id text NOT NULL,
 	PRIMARY KEY(user_id)
 );
 
@@ -96,12 +98,14 @@ CREATE TABLE newsfeed(
 
 
 
-INSERT INTO userBase VALUES('12ab#.', 'mentor', 'mentor', 'm', 'm');
-INSERT INTO userBase VALUES('34cd#.', 'student', 'student', 's', 's');
-INSERT INTO userBase VALUES('56ab#.', 'mentor', 'Berta', 'berta', 'berta');
-INSERT INTO userBase VALUES('34ef#.', 'student', 'Andi', 'andi', 'andi');
-INSERT INTO userBase VALUES('12gb#.', 'mentor', 'Attila', 'attila', 'attila');
-INSERT INTO userBase VALUES('34ch#.', 'mentor', 'Tamy', 'tamy', 'tamy');
+
+
+INSERT INTO userBase VALUES('12ab#.', 'mentor', 'mentor', 'm', 'm', 'resources/pics/profile.jpg');
+INSERT INTO userBase VALUES('34cd#.', 'student', 'student', 's', 's', 'resources/pics/profile.jpg');
+INSERT INTO userBase VALUES('56ab#.', 'mentor', 'Berta', 'berta', 'berta', 'resources/pics/profile.jpg');
+INSERT INTO userBase VALUES('34ef#.', 'student', 'Andi', 'andi', 'andi', 'resources/pics/profile.jpg');
+INSERT INTO userBase VALUES('12gb#.', 'mentor', 'Attila', 'attila', 'attila', 'resources/pics/profile.jpg');
+INSERT INTO userBase VALUES('34ch#.', 'mentor', 'Tamy', 'tamy', 'tamy', 'resources/pics/profile.jpg');
 
 INSERT INTO page VALUES('56ef#.', 'Kecske Text', true);
 INSERT INTO text_page VALUES('56ef#.', 'Kecske!!!!!');
@@ -116,5 +120,7 @@ INSERT INTO assignment_page VALUES('78jh#.', 'SQL?', 5);
 INSERT INTO newsfeed VALUES ('99gh#.', 'Test', 'Lorem ipsum dolor sit amet...', '2019/04/07 21:45:00', '34ch#.');
 INSERT INTO newsfeed VALUES ('89gh#.', 'Test2', 'Lorem ipsum dolor sit amet...', '2019/04/02 09:01:00', '34ch#.');
 INSERT INTO newsfeed VALUES ('79gh#.', 'Test3', 'Lorem ipsum dolor sit amet...', '2019/04/05 08:55:00', '34ch#.');
+
+
 
 

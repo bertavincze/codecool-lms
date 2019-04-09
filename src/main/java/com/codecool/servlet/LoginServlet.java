@@ -47,8 +47,8 @@ public class LoginServlet extends AbstractServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("index.jsp").forward(request, response);
-
     }
+
 
     private User authUser(HttpServletRequest request) {
         User currentUser = null;
@@ -83,7 +83,9 @@ public class LoginServlet extends AbstractServlet {
             request.getRequestDispatcher("index.jsp").forward(request, response);
         }
 
-        
+
     }
+
+
 
 }

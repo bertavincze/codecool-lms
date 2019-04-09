@@ -7,13 +7,15 @@ public abstract class User implements Serializable {
     private String name;
     private String email;
     private String password;
+    private String image_id;
 
 
-    public User(String id, String name, String email, String password) {
+    public User(String id, String name, String email, String password, String image_id) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
+        this.image_id = image_id;
 
     }
 
@@ -53,5 +55,11 @@ public abstract class User implements Serializable {
         return hiddenPassword;
     }
 
+    public String getImage_id() {
+        return image_id;
+    }
 
+    public void setImage_id(String image_id) {
+        this.image_id = image_id;
+    }
 }

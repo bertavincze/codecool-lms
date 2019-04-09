@@ -30,6 +30,13 @@ public class UserService {
         return userDao.findUsers();
     }
 
+    public void addUser(String userID, String role, String name, String email, String password, String image_id) throws SQLException {
+        try {
+            userDao.addUser(userID, role, name, email, password, image_id); // Insert data here);
+        } catch (NumberFormatException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
 
     public List<User> getUsersWithMap() throws SQLException {
         List<User> users =  new ArrayList<>();
@@ -43,14 +50,6 @@ public class UserService {
             }
         }
         return users;
-    }
-
-    public void addUser(String userID, String role, String name, String email, String password) throws SQLException {
-        try {
-            userDao.addUser(userID, role, name, email, password); // Insert data here);
-        } catch (NumberFormatException ex) {
-            System.out.println(ex.getMessage());
-        }
     }
 
     public void updateName(String id, String name) {
@@ -77,5 +76,8 @@ public class UserService {
         }
     }
 
+    public void updatePic(String id, String imageId) throws SQLException{
+        userDao.changeProfilePic(id, imageId);
+    }
 
 }
