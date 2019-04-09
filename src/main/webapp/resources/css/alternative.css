@@ -85,7 +85,6 @@ table {
 /* ONE DIV STYLE BODY */
 
 .one_div {
-    background: url('../pics/background_img.jpg') #221c5a;
     font-family: 'Roboto', sans-serif;
 	background-position: top center;
 	background-repeat: no-repeat;
@@ -97,7 +96,6 @@ table {
 /* TWO DIV STYLE BODY */
 
 .two_div {
-    background: url('../pics/background_img.jpg') #221c5a;
     background-position: top center;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -140,7 +138,7 @@ table {
 .sbcontainer {
     background:#ffffff;
     margin:0 0 5% 0;
-    padding:20% 10% 10% 10%;
+    padding:20% 8% 10% 10%;
 }
 
 .title {
@@ -249,6 +247,8 @@ nav {
      outline: transparent;
      }
 
+
+
 nav ul {
     list-style:none;
     margin:0px auto;
@@ -277,7 +277,7 @@ nav li:hover {
 ul.links {
     border:1px solid #ccc;
     list-style:none;
-    margin:0px 0px 0px 0px;
+    margin:24px 0px 0px 0px;
     padding:0px 24px 24px;
     text-transform:uppercase;
 }
@@ -347,19 +347,9 @@ td {
   border-bottom: 1px solid #ddd;
 }
 
-.display_date{
-    font-size: 10px;
-    text-align: right;
-}
-
-.display_news{
-    text-align: left;
-    text-transform: none;
-}
-
 /* FORM & INPUT STYLING */
 
-input[type=text], input[type=textarea] {
+input[type=text] {
   width: 100%;
   padding: 8px 8px;
   margin: 4px 0;
@@ -555,56 +545,5 @@ select {
 @keyframes fadeIn {
     from {opacity: 0;}
     to {opacity:1 ;}
-}
-/* Slider */
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 50px;
-  height: 20px;
-}
-
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 12px;
-  width: 16px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-
-input:checked + .slider {
-  background-color: #6C3065;
-}
-
-input:focus + .slider {
-  box-shadow: 0 0 1px #6C3065;
-}
-
-input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
 }
 
