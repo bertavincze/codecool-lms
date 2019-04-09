@@ -19,7 +19,7 @@
         <a href="userlist"><li>UserList</li></a>
         <a href="curriculum"><li>Curriculum</li></a>
         <a href="attendance"><li>Attendance</li></a>
-        <a href="solutions"><li>Student Solutions</li></a>
+        <a href="solutions"><li class="marked">Student Solutions</li></a>
     </ul>
 </nav>
 
