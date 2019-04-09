@@ -22,15 +22,7 @@ DROP TABLE IF EXISTS text_page CASCADE;
 DROP TABLE IF EXISTS userBase CASCADE;
 DROP TABLE IF EXISTS attendance CASCADE;
 DROP TABLE IF EXISTS newsfeed CASCADE;
-DROP TABLE IF EXISTS image CASCADE;
 
-
-CREATE TABLE image(
-	  image_id varchar(6) NOT NULL,
-	  name varchar(255),
-	  image bytea,
-	  PRIMARY KEY (image_id)
-);
 
 CREATE TABLE userBase(
 	user_id varchar(6) NOT NULL,
@@ -38,9 +30,8 @@ CREATE TABLE userBase(
 	user_name varchar(15) NOT NULL,
 	email varchar(254) UNIQUE NOT NULL,
 	password varchar(15),
-	image_id varchar(6) NOT NULL,
-	PRIMARY KEY(user_id),
-	FOREIGN KEY (image_id) REFERENCES image(image_id)
+	image_id text NOT NULL,
+	PRIMARY KEY(user_id)
 );
 
 CREATE TABLE solution(
@@ -107,15 +98,14 @@ CREATE TABLE newsfeed(
 
 
 
-INSERT INTO image(image_id) VALUES ('1');
 
 
-INSERT INTO userBase VALUES('12ab#.', 'mentor', 'mentor', 'm', 'm', '1');
-INSERT INTO userBase VALUES('34cd#.', 'student', 'student', 's', 's', '1');
-INSERT INTO userBase VALUES('56ab#.', 'mentor', 'Berta', 'berta', 'berta', '1');
-INSERT INTO userBase VALUES('34ef#.', 'student', 'Andi', 'andi', 'andi', '1');
-INSERT INTO userBase VALUES('12gb#.', 'mentor', 'Attila', 'attila', 'attila', '1');
-INSERT INTO userBase VALUES('34ch#.', 'mentor', 'Tamy', 'tamy', 'tamy', '1');
+INSERT INTO userBase VALUES('12ab#.', 'mentor', 'mentor', 'm', 'm', 'resources/pics/profile.jpg');
+INSERT INTO userBase VALUES('34cd#.', 'student', 'student', 's', 's', 'resources/pics/profile.jpg');
+INSERT INTO userBase VALUES('56ab#.', 'mentor', 'Berta', 'berta', 'berta', 'resources/pics/profile.jpg');
+INSERT INTO userBase VALUES('34ef#.', 'student', 'Andi', 'andi', 'andi', 'resources/pics/profile.jpg');
+INSERT INTO userBase VALUES('12gb#.', 'mentor', 'Attila', 'attila', 'attila', 'resources/pics/profile.jpg');
+INSERT INTO userBase VALUES('34ch#.', 'mentor', 'Tamy', 'tamy', 'tamy', 'resources/pics/profile.jpg');
 
 INSERT INTO page VALUES('56ef#.', 'Kecske Text', true);
 INSERT INTO text_page VALUES('56ef#.', 'Kecske!!!!!');

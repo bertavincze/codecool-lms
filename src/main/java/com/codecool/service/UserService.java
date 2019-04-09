@@ -19,9 +19,9 @@ public class UserService {
         return userDao.findUsers();
     }
 
-    public void addUser(String userID, String role, String name, String email, String password) throws SQLException {
+    public void addUser(String userID, String role, String name, String email, String password, String image_id) throws SQLException {
         try {
-            userDao.addUser(userID, role, name, email, password); // Insert data here);
+            userDao.addUser(userID, role, name, email, password, image_id); // Insert data here);
         } catch (NumberFormatException ex) {
             System.out.println(ex.getMessage());
         }
@@ -49,5 +49,9 @@ public class UserService {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
+    }
+
+    public void updatePic(String id, String imageId) throws SQLException{
+        userDao.changeProfilePic(id, imageId);
     }
 }

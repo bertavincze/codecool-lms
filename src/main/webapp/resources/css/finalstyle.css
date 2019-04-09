@@ -51,11 +51,6 @@ table {
 	border-spacing: 0;
 }
 
-/*Set variables*/
-
-:root{
-    --profile1: url('../pics/profile.jpg');
-}
 
 /* HIDE SCROLLBAR IN CHROME & SAFARI */
 
@@ -453,7 +448,6 @@ select {
 .one-third-pic{
     width: 20%;
     height: 130px;
-    background-image: var(--profile1);
     background-attachment: center top;
     background-size: cover;
     background-repeat: no-repeat;
@@ -462,13 +456,17 @@ select {
     margin-bottom: 20px;
 }
 
+.one-third-pic img{
+    width: 100%;
+}
+
 .one-third{
     position: relative;
     float: left;
     width: 20%;
     display: inline-block;
     margin: 20px 0;
-    top: -380px;
+    top: -360px;
 }
 
 .two-third{

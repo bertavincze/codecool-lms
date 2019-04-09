@@ -47,6 +47,8 @@
 
 <jsp:include page="snippets/header.jsp" />
 
+<c:out value="${error}"></c:out>
+
 <div class="wrapper">
     <div class="content">
         <div class="container">
@@ -54,6 +56,7 @@
                 <div class="title">Profile</div>
             </div>
             <div class="one-third-pic">
+                <img src="${user.getImage_id()}">
             </div>
             <div class="two-third">
                 <table class="profile">

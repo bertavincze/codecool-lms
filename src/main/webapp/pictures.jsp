@@ -47,24 +47,24 @@
             <form action="changePic" method="post">
                 <div class="row">
                     <div class="third">
-                        <input name="pic" type="radio" value="1"><img src="resources/pics/profile.jpg"/>
+                        <input name="pic" type="radio" value="resources/pics/profile.jpg"><img src="resources/pics/profile.jpg"/>
                     </div>
                     <div class="third">
-                        <input name="pic" type="radio" value="2"><img src="resources/pics/pic2.jpg"/>
+                        <input name="pic" type="radio" value="resources/pics/pic2.jpg"><img src="resources/pics/pic2.jpg"/>
                     </div>
                     <div class="third">
-                        <input name="pic" type="radio" value="3"><img src="resources/pics/pic3.jpg"/>
+                        <input name="pic" type="radio" value="resources/pics/pic3.jpg"><img src="resources/pics/pic3.jpg"/>
                     </div>
                 </div>
                 <div class="row">
                     <div class="third">
-                        <input name="pic" type="radio" value="4"><img src="resources/pics/pic4.jpg"/>
+                        <input name="pic" type="radio" value="resources/pics/pic4.jpg"><img src="resources/pics/pic4.jpg"/>
                     </div>
                     <div class="third">
-                        <input name="pic" type="radio" value="5"><img src="resources/pics/pic5.jpg"/>
+                        <input name="pic" type="radio" value="resources/pics/pic5.jpg"><img src="resources/pics/pic5.jpg"/>
                     </div>
                     <div class="third">
-                        <input name="pic" type="radio" value="6"><img src="resources/pics/pic6.png"/>
+                        <input name="pic" type="radio" value="resources/pics/pic6.png"><img src="resources/pics/pic6.png"/>
                     </div>
                 </div>
                 <input type="submit" class="button" value="Save">
