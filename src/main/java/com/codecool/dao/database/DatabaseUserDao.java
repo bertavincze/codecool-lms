@@ -34,6 +34,7 @@ public final class DatabaseUserDao extends AbstractDao {
         return users;
     }
 
+
     public void addUser(String userID, String role, String name, String email, String password) throws SQLException {
         boolean autoCommit = connection.getAutoCommit();
         connection.setAutoCommit(false);

@@ -1,32 +1,48 @@
 package com.codecool.service;
+import com.codecool.dao.database.DatabaseAttendanceDao;
 import com.codecool.dao.database.DatabaseUserDao;
-import com.codecool.dao.database.UserList;
+import com.codecool.model.user.Student;
 import com.codecool.model.user.User;
 
-import javax.servlet.http.HttpServletRequest;
-import java.sql.Connection;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class UserService {
 
     private final DatabaseUserDao userDao;
+    private final DatabaseAttendanceDao attendanceDao;
 
 
-    public UserService(DatabaseUserDao userDao) {
+    //public UserService(DatabaseUserDao userDao) {
+     //   this.userDao = userDao;
+    //}
+
+    public UserService(DatabaseUserDao userDao, DatabaseAttendanceDao attendanceDao) {
         this.userDao = userDao;
+        this.attendanceDao = attendanceDao;
     }
 
     public List<User> getUsers() throws SQLException {
         return userDao.findUsers();
     }
 
-    public void putUsersToList() throws SQLException {
-        for (User user : getUsers()) {
-            UserList.getInstance().addUser(user);
-            System.out.println(user);
+    public List<User> getUsersWithMap() throws SQLException {
+        List<User> users =  new ArrayList<>();
+        for (User user : userDao.findUsers()) {
+            if(user instanceof Student) {
+                Map<LocalDate, Boolean> attendance = attendanceDao.findAttendanceMapByUser(user);
+                for ( Map.Entry<LocalDate, Boolean > entry : attendance.entrySet()) {
+                    ((Student)user).setAttendance(entry.getKey(), entry.getValue());
+                }
+                users.add(user);
+            }
         }
+        return users;
     }
+
 
 
     public void addUser(String userID, String role, String name, String email, String password) throws SQLException {
@@ -60,4 +76,6 @@ public class UserService {
             System.out.println(ex.getMessage());
         }
     }
+
+
 }

@@ -1,5 +1,6 @@
 package com.codecool.servlet;
 
+import com.codecool.dao.database.DatabaseAttendanceDao;
 import com.codecool.dao.database.DatabaseUserDao;
 import com.codecool.model.user.Mentor;
 import com.codecool.model.user.Student;
@@ -24,8 +25,9 @@ public class RegisterServlet extends AbstractServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try (Connection connection = getConnection(req.getServletContext())) {
-            DatabaseUserDao mentorDao = new DatabaseUserDao(connection);
-            UserService userService = new UserService(mentorDao);
+            DatabaseUserDao userDao = new DatabaseUserDao(connection);
+            DatabaseAttendanceDao attendanceDao = new DatabaseAttendanceDao(connection);
+            UserService userService = new UserService(userDao, attendanceDao);
             IDGeneratorService idService = new IDGeneratorService();
 
             String name = req.getParameter("name");
