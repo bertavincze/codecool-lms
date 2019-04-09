@@ -81,17 +81,7 @@ public class LoginServlet extends AbstractServlet {
             request.getRequestDispatcher("index.jsp").forward(request, response);
         }
 
-
-        /*@Deprecated
-        if (currentUser != null) {
-            if (currentUser instanceof Mentor) {
-                request.getRequestDispatcher("mentor.jsp").forward(request, response);
-            } else if (currentUser instanceof Student) {
-                request.getRequestDispatcher("student.jsp").forward(request, response);
-            }
-        } else {
-            request.getRequestDispatcher("index.jsp").forward(request, response);
-        }*/
+        
     }
 
 }
