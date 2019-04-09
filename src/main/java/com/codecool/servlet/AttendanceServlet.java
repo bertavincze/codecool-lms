@@ -17,6 +17,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 import java.util.List;
 
 @WebServlet("/attendance")
@@ -61,14 +62,21 @@ public class AttendanceServlet extends AbstractServlet {
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy");
             LocalDate localDate = LocalDate.parse(request.getParameter("date"), dtf);
 
-            String[] attending = request.getParameterValues("attending");
+            List<String> attending = Arrays.asList(request.getParameterValues("attending"));
 
-            if (attending != null) {
-                for (String name : attending) {
-                    Student student = findStudentByName(name, userService.getUsers());
-                    if (student != null) {
-                        student.setAttendance(localDate, true);
-                        attendanceService.addAttendance(idGeneratorService.generateID(), student.getId(), localDate, student.getAttendance().get(localDate));
+            for (String name : attending) {
+                Student student = findStudentByName(name, userService.getUsers());
+                if (student != null) {
+                    student.setAttendance(localDate, true);
+                    attendanceService.addAttendance(idGeneratorService.generateID(), student.getId(), localDate, student.getAttendance().get(localDate));
+                }
+            }
+
+            for (User user : userService.getUsers()) {
+                if (user instanceof Student) {
+                    if (!attending.contains(user.getName())) {
+                        ((Student) user).setAttendance(localDate, false);
+                        attendanceService.addAttendance(idGeneratorService.generateID(), user.getId(), localDate, ((Student) user).getAttendance().get(localDate));
                     }
                 }
             }
@@ -84,7 +92,7 @@ public class AttendanceServlet extends AbstractServlet {
     }
 
     private Student findStudentByName(String name, List<User> users) {
-        for (User user: users) {
+        for (User user : users) {
             if (user.getName().equals(name)) {
                 return (Student) user;
             }
