@@ -12,7 +12,5 @@
         "differences between java servlet api 2 and 3", etc.
     -->
 
-    <!--<error-page>
-        <location>/resources/errorpage/dino.html</location>
-    </error-page>-->
+
 </web-app>

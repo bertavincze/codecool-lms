@@ -35,6 +35,7 @@ public final class DatabaseUserDao extends AbstractDao {
     }
 
     public void addUser(String userID, String role, String name, String email, String password, String image_id) throws SQLException {
+
         boolean autoCommit = connection.getAutoCommit();
         connection.setAutoCommit(false);
         String sql = "INSERT INTO userBase (user_id, user_role, user_name, email, password, image_id) VALUES (?, ?, ?, ?, ?, ?)";

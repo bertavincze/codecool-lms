@@ -1,5 +1,6 @@
 package com.codecool.servlet;
 
+import com.codecool.dao.database.DatabaseAttendanceDao;
 import com.codecool.dao.database.DatabasePageDao;
 import com.codecool.dao.database.DatabaseSolutionDao;
 import com.codecool.dao.database.DatabaseUserDao;
@@ -34,7 +35,8 @@ public class StudentSolutionServlet extends AbstractServlet {
                 DatabaseSolutionDao solutionDao = new DatabaseSolutionDao(connection);
                 SolutionService solutionService = new SolutionService(solutionDao);
                 DatabaseUserDao userDao = new DatabaseUserDao(connection);
-                UserService userService = new UserService(userDao);
+                DatabaseAttendanceDao attendanceDao = new DatabaseAttendanceDao(connection);
+                UserService userService = new UserService(userDao, attendanceDao);
 
                 List<Page> assignments = pageService.loadPages();
                 List<AssignmentPage> assignmentList = new ArrayList<>();

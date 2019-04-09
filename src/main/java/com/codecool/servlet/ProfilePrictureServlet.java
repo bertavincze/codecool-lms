@@ -1,6 +1,7 @@
 package com.codecool.servlet;
 
 
+import com.codecool.dao.database.DatabaseAttendanceDao;
 import com.codecool.dao.database.DatabaseUserDao;
 import com.codecool.model.user.User;
 import com.codecool.service.UserService;
@@ -27,7 +28,8 @@ public class ProfilePrictureServlet extends AbstractServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try (Connection connection = getConnection(req.getServletContext())) {
             DatabaseUserDao userDao = new DatabaseUserDao(connection);
-            UserService userService = new UserService(userDao);
+            DatabaseAttendanceDao attendanceDao = new DatabaseAttendanceDao(connection);
+            UserService userService = new UserService(userDao, attendanceDao);
             User user = (User) req.getSession().getAttribute("user");
 
             String newImgId = req.getParameter("pic");

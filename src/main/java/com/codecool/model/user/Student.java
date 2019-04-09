@@ -33,10 +33,11 @@ public class Student extends User implements Serializable {
     }
 
     public int getAttendanceRate() {
+        int daysAttended = 0;
         if (attendance.isEmpty()) {
             return 0;
         } else {
-            int daysAttended = 0;
+
             for (Map.Entry<LocalDate, Boolean> entry : attendance.entrySet()) {
                 if (entry.getValue()) {
                     daysAttended ++;
@@ -44,6 +45,7 @@ public class Student extends User implements Serializable {
             }
             float totalDays = ((float)new DateUtilService().getNumOfDaysSinceStart());
             return (int) ((daysAttended/(totalDays))*100);
+            //return daysAttended;
         }
     }
 

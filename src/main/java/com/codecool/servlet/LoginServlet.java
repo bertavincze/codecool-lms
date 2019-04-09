@@ -1,5 +1,6 @@
 package com.codecool.servlet;
 
+import com.codecool.dao.database.DatabaseAttendanceDao;
 import com.codecool.dao.database.DatabaseNewsDao;
 import com.codecool.dao.database.DatabaseUserDao;
 import com.codecool.model.News;
@@ -53,7 +54,8 @@ public class LoginServlet extends AbstractServlet {
         User currentUser = null;
         try (Connection connection = getConnection(request.getServletContext())) {
             DatabaseUserDao userDao = new DatabaseUserDao(connection);
-            UserService userService = new UserService(userDao);
+            DatabaseAttendanceDao attendanceDao = new DatabaseAttendanceDao(connection);
+            UserService userService = new UserService(userDao, attendanceDao);
 
             String name = request.getParameter("name");
             String password = request.getParameter("password");

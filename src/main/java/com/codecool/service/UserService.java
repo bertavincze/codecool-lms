@@ -1,18 +1,29 @@
 package com.codecool.service;
 
+import com.codecool.dao.database.DatabaseAttendanceDao;
 import com.codecool.dao.database.DatabaseUserDao;
+import com.codecool.model.user.Student;
 import com.codecool.model.user.User;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class UserService {
 
     private final DatabaseUserDao userDao;
+    private final DatabaseAttendanceDao attendanceDao;
 
 
-    public UserService(DatabaseUserDao userDao) {
+    //public UserService(DatabaseUserDao userDao) {
+     //   this.userDao = userDao;
+    //}
+
+    public UserService(DatabaseUserDao userDao, DatabaseAttendanceDao attendanceDao) {
         this.userDao = userDao;
+        this.attendanceDao = attendanceDao;
     }
 
     public List<User> getUsers() throws SQLException {
@@ -25,6 +36,20 @@ public class UserService {
         } catch (NumberFormatException ex) {
             System.out.println(ex.getMessage());
         }
+    }
+
+    public List<User> getUsersWithMap() throws SQLException {
+        List<User> users =  new ArrayList<>();
+        for (User user : userDao.findUsers()) {
+            if(user instanceof Student) {
+                Map<LocalDate, Boolean> attendance = attendanceDao.findAttendanceMapByUser(user);
+                for ( Map.Entry<LocalDate, Boolean > entry : attendance.entrySet()) {
+                    ((Student)user).setAttendance(entry.getKey(), entry.getValue());
+                }
+                users.add(user);
+            }
+        }
+        return users;
     }
 
     public void updateName(String id, String name) {
@@ -54,4 +79,5 @@ public class UserService {
     public void updatePic(String id, String imageId) throws SQLException{
         userDao.changeProfilePic(id, imageId);
     }
+
 }
