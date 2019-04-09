@@ -26,12 +26,13 @@ public class GradingServlet extends AbstractServlet {
             SolutionService solutionService = new SolutionService(solutionDao);
             DatabasePageDao pageDao = new DatabasePageDao(connection);
             PageService pageService = new PageService(pageDao);
+
             int grade = Integer.parseInt(req.getParameter("grade"));
             String title = req.getParameter("title");
             for (Page page : pageService.loadPages()) {
                 if (page instanceof AssignmentPage) {
                     for (Solution solution : solutionService.loadSolutionsByPage(page)) {
-                        if (solution.getTitle().equals(page.getTitle())) {
+                        if (solution.getTitle().equals(title)) {
                             solution.setGrade(grade);
                             solutionService.updateSolution(solution.getSolution_id(), grade);
                         }
