@@ -1,7 +1,9 @@
 package com.codecool.servlet;
 
+import com.codecool.dao.database.DatabaseImageDao;
 import com.codecool.dao.database.DatabaseNewsDao;
 import com.codecool.dao.database.DatabaseUserDao;
+import com.codecool.model.Image;
 import com.codecool.model.News;
 import com.codecool.model.user.Mentor;
 import com.codecool.model.user.Student;
@@ -45,9 +47,10 @@ public class LoginServlet extends AbstractServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        uploadDefaultImagesOnLoad(request);
         request.getRequestDispatcher("index.jsp").forward(request, response);
-
     }
+
 
     private User authUser(HttpServletRequest request) {
         User currentUser = null;
@@ -81,7 +84,22 @@ public class LoginServlet extends AbstractServlet {
             request.getRequestDispatcher("index.jsp").forward(request, response);
         }
 
-        
+
+    }
+
+    protected void uploadDefaultImagesOnLoad(HttpServletRequest request) throws IOException{
+        try(Connection connection = getConnection(request.getServletContext())) {
+            DatabaseImageDao imageDao = new DatabaseImageDao(connection);
+            imageDao.updateImage(new Image("1", "/home/tamy/Documents/Java/codecool-lms/src/main/webapp/resources/pics/profile.jpg", "default"));
+            imageDao.addImage(new Image("2", "/home/tamy/Documents/Java/codecool-lms/src/main/webapp/resources/pics/pic2.jpg", "test"));
+            imageDao.addImage(new Image("3", "/home/tamy/Documents/Java/codecool-lms/src/main/webapp/resources/pics/pic3.jpg", "test"));
+            imageDao.addImage(new Image("4", "/home/tamy/Documents/Java/codecool-lms/src/main/webapp/resources/pics/pic4.jpg", "test"));
+            imageDao.addImage(new Image("5", "/home/tamy/Documents/Java/codecool-lms/src/main/webapp/resources/pics/pic5.jpg", "test"));
+            imageDao.addImage(new Image("6", "/home/tamy/Documents/Java/codecool-lms/src/main/webapp/resources/pics/pic6.png", "test"));
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }
 
 }

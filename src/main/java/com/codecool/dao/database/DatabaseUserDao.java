@@ -118,4 +118,6 @@ public final class DatabaseUserDao extends AbstractDao {
             connection.setAutoCommit(autoCommit);
         }
     }
+
+
 }
