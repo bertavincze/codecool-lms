@@ -1,7 +1,6 @@
 package com.codecool.servlet;
 
 import com.codecool.dao.database.DatabaseAttendanceDao;
-import com.codecool.dao.database.DatabasePageDao;
 import com.codecool.dao.database.DatabaseUserDao;
 import com.codecool.model.user.Student;
 import com.codecool.model.user.User;
@@ -18,9 +17,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @WebServlet("/attendance")
 public class AttendanceServlet extends AbstractServlet {
@@ -29,13 +26,21 @@ public class AttendanceServlet extends AbstractServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try (Connection connection = getConnection(request.getServletContext())) {
             DatabaseUserDao userDao = new DatabaseUserDao(connection);
-           // UserService userService = new UserService(userDao);
             DatabaseAttendanceDao attendanceDao = new DatabaseAttendanceDao(connection);
-            AttendanceService attendanceService = new AttendanceService(attendanceDao);
             UserService userService = new UserService(userDao, attendanceDao);
 
             List<User> students = userService.getUsersWithMap();
+            String dateFromRequest = request.getParameter("date");
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+            LocalDate localDate;
+            if (dateFromRequest != null) {
+                localDate = LocalDate.parse(dateFromRequest, dtf);
+            } else {
+                localDate = LocalDate.now();
+            }
 
+            request.setAttribute("dateFromRequest", dateFromRequest);
+            request.setAttribute("date", localDate);
             request.setAttribute("students", students);
             request.getRequestDispatcher("attendance.jsp").forward(request, response);
         } catch (SQLException ex) {
@@ -53,13 +58,10 @@ public class AttendanceServlet extends AbstractServlet {
             UserService userService = new UserService(userDao, attendanceDao);
             IDGeneratorService idGeneratorService = new IDGeneratorService();
 
-            String date = request.getParameter("datefield");
-            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("uuuu-MM-dd");
-            LocalDate localDate = LocalDate.parse(date, dateTimeFormatter);
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+            LocalDate localDate = LocalDate.parse(request.getParameter("date"), dtf);
+
             String[] attending = request.getParameterValues("attending");
-
-            List<User> students = new ArrayList<>();
-
 
             if (attending != null) {
                 for (String name : attending) {
@@ -71,8 +73,9 @@ public class AttendanceServlet extends AbstractServlet {
                 }
             }
 
-            students =  userService.getUsersWithMap();
+            List<User> students = userService.getUsersWithMap();
 
+            request.setAttribute("date", localDate);
             request.setAttribute("students", students);
             request.getRequestDispatcher("attendance.jsp").forward(request, response);
         } catch (SQLException ex) {
