@@ -1,7 +1,6 @@
 package com.codecool.servlet;
 
 import com.codecool.dao.database.DatabasePageDao;
-import com.codecool.model.curriculum.Page;
 import com.codecool.service.dao.PageService;
 import com.codecool.service.servlet.PageUtilService;
 
@@ -23,14 +22,13 @@ public class PublishServlet extends AbstractServlet {
             String[] unpublished = request.getParameterValues("unpublish");
             DatabasePageDao pageDao = new DatabasePageDao(connection);
             PageService pageService = new PageService(pageDao);
-            PageUtilService pageUtilService = new PageUtilService();
 
             if (published != null) {
-                pageUtilService.publishPages(published, pageService);
+                PageUtilService.publishPages(published, pageService);
             }
 
             if (unpublished != null) {
-                pageUtilService.unpublishPages(unpublished, pageService);
+                PageUtilService.unpublishPages(unpublished, pageService);
             }
 
         } catch (SQLException ex) {
