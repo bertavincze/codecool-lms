@@ -34,7 +34,6 @@ public class ProfilePictureServlet extends AbstractServlet {
 
             String newImgId = req.getParameter("pic");
 
-
             userService.updatePic(user.getId(), newImgId);
             user.setImage_id(newImgId);
             req.setAttribute("user", user);

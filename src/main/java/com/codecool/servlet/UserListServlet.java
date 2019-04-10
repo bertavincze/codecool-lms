@@ -21,6 +21,7 @@ public class UserListServlet extends AbstractServlet {
             DatabaseUserDao userDao = new DatabaseUserDao(connection);
             DatabaseAttendanceDao attendanceDao = new DatabaseAttendanceDao(connection);
             UserService userService = new UserService(userDao, attendanceDao);
+
             request.setAttribute("userList", userService.getUsers());
             request.getRequestDispatcher("userlist.jsp").forward(request, response);
         } catch (SQLException ex) {

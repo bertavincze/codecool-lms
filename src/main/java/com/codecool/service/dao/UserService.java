@@ -17,7 +17,7 @@ public class UserService {
     private final DatabaseAttendanceDao attendanceDao;
 
 
-    //public UserService(DatabaseUserDao userDao) {
+    //public UserUtilService(DatabaseUserDao userDao) {
      //   this.userDao = userDao;
     //}
 

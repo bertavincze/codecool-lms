@@ -1,4 +1,5 @@
 package com.codecool.service.servlet;
 
-public class PageService {
+public class UserUtilService {
+
 }
