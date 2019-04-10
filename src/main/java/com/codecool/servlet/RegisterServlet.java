@@ -38,10 +38,10 @@ public class RegisterServlet extends AbstractServlet {
             if (UserUtilService.validateUserData(name, email, password, userRoleString, userService)) {
                 User user = null;
                 if (userRoleString.equals("mentor")) {
-                    userService.addUser(generatedID,"mentor", name, email,password, image_id);
+                    userService.addUser(generatedID, "mentor", name, email, password, image_id);
                     user = new Mentor(generatedID, name, email, password, image_id);
                 } else {
-                    userService.addUser(generatedID,"student", name, email,password, image_id);
+                    userService.addUser(generatedID, "student", name, email, password, image_id);
                     user = new Student(generatedID, name, email, password, image_id);
                 }
                 req.setAttribute("user", user);

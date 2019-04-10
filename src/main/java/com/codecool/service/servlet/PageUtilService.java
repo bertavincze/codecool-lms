@@ -60,9 +60,10 @@ public class PageUtilService {
 
     public static List<AssignmentPage> findAssignmentsNotSolved(PageService pageService, List<Solution> solutions, User user) throws SQLException {
         List<String> titleList = new ArrayList<>();
-        List<AssignmentPage> assignments = pageService.loadAssignmentPages();
+        List<AssignmentPage> assignmentsloaded = pageService.loadAssignmentPages();
+        List<AssignmentPage> assignments = new ArrayList<>();
         if (solutions == null) {
-            for (AssignmentPage page : assignments) {
+            for (AssignmentPage page : assignmentsloaded) {
                 if (page.isPublished()) {
                     assignments.add(page);
                 }
@@ -72,7 +73,7 @@ public class PageUtilService {
             for (Solution solution : solutions) {
                 titleList.add(solution.getTitle());
             }
-            for (AssignmentPage page : assignments) {
+            for (AssignmentPage page : assignmentsloaded) {
                 if (!titleList.contains(page.getTitle()) && page.isPublished()) {
                     assignments.add(page);
                 }
