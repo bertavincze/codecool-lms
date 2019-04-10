@@ -145,7 +145,7 @@ table {
 
 .title {
     background: #ffffff;
-    color: #af3a6e;
+    color: #322391;
     display:inline-block;
     padding:0px 16px;
     position:relative;
@@ -221,7 +221,7 @@ nav {
     font-weight: 100;
     letter-spacing: 2px;
     text-transform: uppercase;
-    background: #4368e4;
+    background: #000d0d;
     margin:auto;
     padding:0px;
     position:relative;
@@ -245,7 +245,7 @@ nav {
      width: 80px;
      padding: 0px 0px;
      border: transparent;
-     background: #221c5a;
+     background: #000d0d;
      outline: transparent;
      }
 
@@ -296,7 +296,7 @@ ul.links li {
 }
 
 a {
-    color: #af3a6e;
+    color: #322391;
     text-decoration:none;
 }
 

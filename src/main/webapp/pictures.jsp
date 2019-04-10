@@ -3,15 +3,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="javascript/themeChanger.js">
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GoatCool</title>
-    <link rel="stylesheet" type="text/css" href="resources/css/finalstyle.css">
+    <link rel="stylesheet" type="text/css" href="resources/css/finalstyle.css"  id="themer">
     <link rel="stylesheet" type="text/css" href="resources/css/temp.css">
     <link href='https://fonts.googleapis.com/css?family=Roboto|Megrim' rel='stylesheet' type='text/css'>
 </head>
 
-<body class="two_div">
+<body class="two_div" onload="checkCookie()">
 <nav>
     <ul>
         <a href="profile.jsp"><li>Profile</li></a>
@@ -28,6 +30,7 @@
             </c:otherwise>
         </c:choose>
     </ul>
+        <jsp:include page="snippets/themeChanger.jsp"/>
 </nav>
 
 <script>
@@ -61,7 +64,7 @@
                         <input name="pic" type="radio" value="resources/pics/pic4.jpg"><img src="resources/pics/pic4.jpg"/>
                     </div>
                     <div class="third">
-                        <input name="pic" type="radio" value="resources/pics/pic5.jpg"><img src="resources/pics/pic5.jpg"/>
+                        <input name="pic" type="radio" value="resources/pics/cage5.jpg"><img src="resources/pics/cage5.jpg"/>
                     </div>
                     <div class="third">
                         <input name="pic" type="radio" value="resources/pics/pic6.png"><img src="resources/pics/pic6.png"/>

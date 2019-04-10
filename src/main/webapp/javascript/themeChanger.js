@@ -1,8 +1,7 @@
  function changeTheme() {
    var x = document.getElementById("themeSelector").value;
-
     document.getElementById('themer').href = 'resources/css/' + x + ".css";
-      setCookie("theme", x, 5);
+    setCookie("theme", x, 5);
     };
 
   function setCookie(cname, cvalue, exdays) {
@@ -20,7 +19,6 @@ function checkCookie() {
               document.getElementById('themer').href = 'resources/css/alternative.css';
       } else if (theme == "funky") {
               document.getElementById('themer').href = 'resources/css/funky.css';
-
       }
     }
 

@@ -29,7 +29,7 @@ footer, header, hgroup, menu, nav, section {
 }
 
 body {
-	line-height: 1;
+	line-height: 1;ű
 }
 
 ol, ul {
@@ -85,6 +85,7 @@ table {
 /* ONE DIV STYLE BODY */
 
 .one_div {
+    background: #221c5a;
     font-family: 'Roboto', sans-serif;
 	background-position: top center;
 	background-repeat: no-repeat;
@@ -96,6 +97,7 @@ table {
 /* TWO DIV STYLE BODY */
 
 .two_div {
+    background: #221c5a;
     background-position: top center;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -107,6 +109,37 @@ table {
     margin: none;
     word-wrap: break-word;
 }
+
+body {
+  background-color: #fff;
+  -webkit-animation: random 15s infinite;
+  animation: random 15s infinite;
+}
+@keyframes random {
+  15% {
+    background: url('../pics/cage1.gif') #221c5a;
+  }
+  30% {
+    background: url('../pics/cage2.gif') #221c5a;
+  }
+  45% {
+    background: url('../pics/cage3.gif') #221c5a;
+  }
+  60% {
+    background: url('../pics/cage4.gif') #221c5a;
+  }
+  75% {
+    background: url('../pics/cage5.gif') #221c5a;
+  }
+}
+
+/*
+@keyframes mymove{
+    form{background-color: #38dc58; }
+    to{background-color: #9b40f1;}
+}
+YOU CAN USE LIKE IT TOO :d
+*/
 
 /* CONTAINER DIVS */
 
@@ -143,7 +176,7 @@ table {
 
 .title {
     background: #ffffff;
-    color: #af3a6e;
+    color: #39ff14;
     display:inline-block;
     padding:0px 16px;
     position:relative;
@@ -219,7 +252,7 @@ nav {
     font-weight: 100;
     letter-spacing: 2px;
     text-transform: uppercase;
-    background: #221c5a;
+    background: fuchsia;
     margin:auto;
     padding:0px;
     position:relative;
@@ -238,12 +271,13 @@ nav {
      text-transform: none;
      font-size: 10px;
      color:rgba(255,255,255,0.8);
-     cursor:pointer;
+     cursor: pointer;
 
      width: 80px;
      padding: 0px 0px;
      border: transparent;
-     background: #221c5a;
+     color: #39ff14;
+     background: fuchsia;
      outline: transparent;
      }
 
@@ -256,7 +290,7 @@ nav ul {
 }
 
 nav li {
-	color: #ffffff;
+	color: #39ff14;
     display:inline-block;
     font-size:18px;
     margin:0px auto;
@@ -296,7 +330,7 @@ ul.links li {
 }
 
 a {
-    color: #af3a6e;
+    color: #39ff14;
     text-decoration:none;
 }
 
@@ -374,7 +408,7 @@ input[type=text]:focus, input[type=password]:focus, textarea:focus {
 }
 
 .box, .button, input[type=reset] {
-  background-color:#221c5a;
+  background-color:fuchsia;
   display: block;
   margin: 0 auto;
   margin-top: 10px;
@@ -382,7 +416,7 @@ input[type=text]:focus, input[type=password]:focus, textarea:focus {
   padding: 10px 25px;
   color:#ffffff;
   text-decoration:none;
-  cursor:pointer;
+  cursor: pointer;
   font-size: 16px;
   font-family: 'Roboto', sans-serif;
   text-transform: uppercase;
@@ -521,7 +555,7 @@ select {
     position: relative;
     float: right;
     top: -2px;
-    cursor:pointer;
+    cursor: pointer;
     color:#ffffff;
     border: none;
     padding: 5px 10px;
