@@ -1,11 +1,15 @@
 package com.codecool.service.servlet;
 
 import com.codecool.model.user.Student;
+
+import com.codecool.model.curriculum.Solution;
 import com.codecool.model.user.User;
 import com.codecool.service.dao.UserService;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class UserUtilService {
 
@@ -30,6 +34,17 @@ public class UserUtilService {
             }
         }
         return isValidUserData;
+    }
+    public static Map<User, Solution> getSolutionMapForUser(List<Solution> solutions, List<User> users){
+        Map<User, Solution> solutionMap = new HashMap<>();
+        for (Solution solution: solutions) {
+            for (User user: users) {
+                if (solution.getUser_id().equals(user.getId())) {
+                    solutionMap.put(user, solution);
+                }
+            }
+        }
+        return solutionMap;
     }
 
 }
