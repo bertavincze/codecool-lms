@@ -2,7 +2,7 @@ package com.codecool.servlet;
 
 import com.codecool.dao.database.DatabasePageDao;
 import com.codecool.model.curriculum.Page;
-import com.codecool.service.PageService;
+import com.codecool.service.dao.PageService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

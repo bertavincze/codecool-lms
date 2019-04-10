@@ -3,8 +3,8 @@ package com.codecool.servlet;
 import com.codecool.dao.database.DatabaseNewsDao;
 import com.codecool.model.News;
 import com.codecool.model.user.User;
-import com.codecool.service.IDGeneratorService;
-import com.codecool.service.NewsService;
+import com.codecool.service.dao.IDGeneratorService;
+import com.codecool.service.dao.NewsService;
 
 
 import javax.servlet.ServletException;
@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 

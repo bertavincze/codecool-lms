@@ -1,7 +1,7 @@
 package com.codecool.model.user;
 
 import com.codecool.model.curriculum.Solution;
-import com.codecool.service.DateUtilService;
+import com.codecool.service.dao.DateUtilService;
 
 import java.io.Serializable;
 import java.util.*;

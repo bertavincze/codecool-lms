@@ -7,8 +7,8 @@ import com.codecool.model.News;
 import com.codecool.model.user.Mentor;
 import com.codecool.model.user.Student;
 import com.codecool.model.user.User;
-import com.codecool.service.NewsService;
-import com.codecool.service.UserService;
+import com.codecool.service.dao.NewsService;
+import com.codecool.service.dao.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

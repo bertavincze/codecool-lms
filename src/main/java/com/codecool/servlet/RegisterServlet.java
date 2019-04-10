@@ -5,8 +5,8 @@ import com.codecool.dao.database.DatabaseUserDao;
 import com.codecool.model.user.Mentor;
 import com.codecool.model.user.Student;
 import com.codecool.model.user.User;
-import com.codecool.service.IDGeneratorService;
-import com.codecool.service.UserService;
+import com.codecool.service.dao.IDGeneratorService;
+import com.codecool.service.dao.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

@@ -1,4 +1,4 @@
-package com.codecool.service;
+package com.codecool.service.dao;
 
 import com.codecool.dao.database.DatabasePageDao;
 import com.codecool.model.curriculum.Page;

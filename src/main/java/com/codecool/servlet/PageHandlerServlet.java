@@ -14,10 +14,10 @@ import com.codecool.model.user.Mentor;
 import com.codecool.model.user.Student;
 import com.codecool.model.user.User;
 
-import com.codecool.service.IDGeneratorService;
-import com.codecool.service.PageService;
-import com.codecool.service.SolutionService;
-import com.codecool.service.UserService;
+import com.codecool.service.dao.IDGeneratorService;
+import com.codecool.service.dao.PageService;
+import com.codecool.service.dao.SolutionService;
+import com.codecool.service.dao.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

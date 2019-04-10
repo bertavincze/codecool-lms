@@ -1,4 +1,4 @@
-package com.codecool.service;
+package com.codecool.service.dao;
 
 import java.util.Random;
 

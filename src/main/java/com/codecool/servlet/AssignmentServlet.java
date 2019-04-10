@@ -6,8 +6,8 @@ import com.codecool.model.curriculum.AssignmentPage;
 import com.codecool.model.curriculum.Page;
 import com.codecool.model.curriculum.Solution;
 import com.codecool.model.user.Student;
-import com.codecool.service.PageService;
-import com.codecool.service.SolutionService;
+import com.codecool.service.dao.PageService;
+import com.codecool.service.dao.SolutionService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
