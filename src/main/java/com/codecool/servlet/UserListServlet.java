@@ -27,7 +27,5 @@ public class UserListServlet extends AbstractServlet {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-
-
     }
 }
