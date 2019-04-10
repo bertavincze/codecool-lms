@@ -4,7 +4,7 @@ package com.codecool.servlet;
 import com.codecool.dao.database.DatabaseAttendanceDao;
 import com.codecool.dao.database.DatabaseUserDao;
 import com.codecool.model.user.User;
-import com.codecool.service.UserService;
+import com.codecool.service.dao.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,7 +16,7 @@ import java.sql.SQLException;
 
 
 @WebServlet("/changePic")
-public class ProfilePrictureServlet extends AbstractServlet {
+public class ProfilePictureServlet extends AbstractServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -34,15 +34,11 @@ public class ProfilePrictureServlet extends AbstractServlet {
 
             String newImgId = req.getParameter("pic");
 
-
             userService.updatePic(user.getId(), newImgId);
             user.setImage_id(newImgId);
             req.setAttribute("user", user);
             req.getRequestDispatcher("profile.jsp").forward(req, resp);
-        } catch (ServletException ex) {
-            req.setAttribute("error", "Oops, something went wrong, please try again.");
-            doGet(req, resp);
-        } catch (SQLException ex) {
+        } catch (ServletException | SQLException ex) {
             req.setAttribute("error", "Oops, something went wrong, please try again.");
             doGet(req, resp);
         }

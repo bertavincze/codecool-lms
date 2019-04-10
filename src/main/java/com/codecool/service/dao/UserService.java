@@ -1,4 +1,4 @@
-package com.codecool.service;
+package com.codecool.service.dao;
 
 import com.codecool.dao.database.DatabaseAttendanceDao;
 import com.codecool.dao.database.DatabaseUserDao;
@@ -17,7 +17,7 @@ public class UserService {
     private final DatabaseAttendanceDao attendanceDao;
 
 
-    //public UserService(DatabaseUserDao userDao) {
+    //public UserUtilService(DatabaseUserDao userDao) {
      //   this.userDao = userDao;
     //}
 

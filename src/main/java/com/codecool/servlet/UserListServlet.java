@@ -2,7 +2,7 @@ package com.codecool.servlet;
 
 import com.codecool.dao.database.DatabaseAttendanceDao;
 import com.codecool.dao.database.DatabaseUserDao;
-import com.codecool.service.UserService;
+import com.codecool.service.dao.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,12 +21,11 @@ public class UserListServlet extends AbstractServlet {
             DatabaseUserDao userDao = new DatabaseUserDao(connection);
             DatabaseAttendanceDao attendanceDao = new DatabaseAttendanceDao(connection);
             UserService userService = new UserService(userDao, attendanceDao);
+
             request.setAttribute("userList", userService.getUsers());
             request.getRequestDispatcher("userlist.jsp").forward(request, response);
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-
-
     }
 }

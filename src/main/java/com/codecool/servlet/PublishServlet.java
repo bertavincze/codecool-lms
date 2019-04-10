@@ -1,8 +1,8 @@
 package com.codecool.servlet;
 
 import com.codecool.dao.database.DatabasePageDao;
-import com.codecool.model.curriculum.Page;
-import com.codecool.service.PageService;
+import com.codecool.service.dao.PageService;
+import com.codecool.service.servlet.PageUtilService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,26 +24,13 @@ public class PublishServlet extends AbstractServlet {
             PageService pageService = new PageService(pageDao);
 
             if (published != null) {
-                for (Page page : pageService.loadPages()) {
-                    for (String name : published) {
-                        if (page.getTitle().equals(name)) {
-                            page.publish();
-                            pageService.updatePagePublishedState(page, true);
-                        }
-                    }
-                }
+                PageUtilService.publishPages(published, pageService);
             }
 
             if (unpublished != null) {
-                for (Page page : pageService.loadPages()) {
-                    for (String name : unpublished) {
-                        if (page.getTitle().equals(name)) {
-                            page.unpublish();
-                            pageService.updatePagePublishedState(page, false);
-                        }
-                    }
-                }
+                PageUtilService.unpublishPages(unpublished, pageService);
             }
+
         } catch (SQLException ex) {
             throw new ServletException(ex);
         }

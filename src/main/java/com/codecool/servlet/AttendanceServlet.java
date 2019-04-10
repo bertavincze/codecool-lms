@@ -4,9 +4,10 @@ import com.codecool.dao.database.DatabaseAttendanceDao;
 import com.codecool.dao.database.DatabaseUserDao;
 import com.codecool.model.user.Student;
 import com.codecool.model.user.User;
-import com.codecool.service.AttendanceService;
-import com.codecool.service.IDGeneratorService;
-import com.codecool.service.UserService;
+import com.codecool.service.dao.AttendanceService;
+import com.codecool.service.dao.IDGeneratorService;
+import com.codecool.service.dao.UserService;
+import com.codecool.service.servlet.UserUtilService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -65,7 +66,7 @@ public class AttendanceServlet extends AbstractServlet {
             List<String> attending = Arrays.asList(request.getParameterValues("attending"));
 
             for (String name : attending) {
-                Student student = findStudentByName(name, userService.getUsers());
+                Student student = UserUtilService.findStudentByName(name, userService.getUsers());
                 if (student != null) {
                     student.setAttendance(localDate, true);
                     attendanceService.addAttendance(idGeneratorService.generateID(), student.getId(), localDate, student.getAttendance().get(localDate));
@@ -91,12 +92,5 @@ public class AttendanceServlet extends AbstractServlet {
         }
     }
 
-    private Student findStudentByName(String name, List<User> users) {
-        for (User user : users) {
-            if (user.getName().equals(name)) {
-                return (Student) user;
-            }
-        }
-        return null;
-    }
+
 }

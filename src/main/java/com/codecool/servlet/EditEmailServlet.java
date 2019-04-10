@@ -1,11 +1,12 @@
 package com.codecool.servlet;
 
+import com.codecool.dao.database.DatabaseAttendanceDao;
 import com.codecool.dao.database.DatabaseUserDao;
 import com.codecool.model.user.User;
+import com.codecool.service.dao.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -25,10 +26,13 @@ public class EditEmailServlet extends AbstractServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try (Connection connection = getConnection(request.getServletContext())) {
             DatabaseUserDao userDao = new DatabaseUserDao(connection);
+            DatabaseAttendanceDao attendanceDao = new DatabaseAttendanceDao(connection);
+            UserService userService = new UserService(userDao, attendanceDao);
+
             User user =  getCurrentUser(request);
             String newEmail = request.getParameter("email");
             user.setEmail(newEmail);
-            userDao.updateEmail(user.getId(), newEmail);
+            userService.updateEmail(user.getId(), newEmail);
             request.getRequestDispatcher("profile.jsp").forward(request, response);
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());

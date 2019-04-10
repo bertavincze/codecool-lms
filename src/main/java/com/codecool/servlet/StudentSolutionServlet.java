@@ -5,12 +5,12 @@ import com.codecool.dao.database.DatabasePageDao;
 import com.codecool.dao.database.DatabaseSolutionDao;
 import com.codecool.dao.database.DatabaseUserDao;
 import com.codecool.model.curriculum.AssignmentPage;
-import com.codecool.model.curriculum.Page;
 import com.codecool.model.curriculum.Solution;
 import com.codecool.model.user.User;
-import com.codecool.service.PageService;
-import com.codecool.service.SolutionService;
-import com.codecool.service.UserService;
+import com.codecool.service.dao.PageService;
+import com.codecool.service.dao.SolutionService;
+import com.codecool.service.dao.UserService;
+import com.codecool.service.servlet.UserUtilService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,7 +20,6 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -38,36 +37,20 @@ public class StudentSolutionServlet extends AbstractServlet {
                 DatabaseAttendanceDao attendanceDao = new DatabaseAttendanceDao(connection);
                 UserService userService = new UserService(userDao, attendanceDao);
 
-                List<Page> assignments = pageService.loadPages();
-                List<AssignmentPage> assignmentList = new ArrayList<>();
-                for (Page page : assignments) {
-                    if (page instanceof AssignmentPage && page.isPublished()) {
-                        assignmentList.add((AssignmentPage) page);
-                    }
-                }
+                List<AssignmentPage> assignmentList = pageService.loadAssignmentPages();
 
                 List<Solution> solutions = new ArrayList<>();
                 for (AssignmentPage page: assignmentList) {
                     solutions.addAll(solutionService.loadSolutionsByPage(page));
                 }
 
-                Map<User, Solution> solutionMap = new HashMap<>();
-
-                for (Solution solution: solutions) {
-                    for (User user: userService.getUsers()) {
-                        if (solution.getUser_id().equals(user.getId())) {
-                            solutionMap.put(user, solution);
-                        }
-                    }
-                }
+                Map<User, Solution> solutionMap = UserUtilService.getSolutionMapForUser(solutions, userService.getUsers());
 
                 request.setAttribute("solutionMap", solutionMap);
                 request.getRequestDispatcher("studentSolution.jsp").forward(request, response);
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
-
-
     }
 
 }

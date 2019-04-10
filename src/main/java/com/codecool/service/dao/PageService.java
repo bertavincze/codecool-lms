@@ -1,8 +1,10 @@
-package com.codecool.service;
+package com.codecool.service.dao;
 
 import com.codecool.dao.database.DatabasePageDao;
+import com.codecool.model.curriculum.AssignmentPage;
 import com.codecool.model.curriculum.Page;
 import com.codecool.model.curriculum.Solution;
+import com.codecool.model.curriculum.TextPage;
 import com.codecool.model.user.User;
 
 import java.sql.SQLException;
@@ -40,5 +42,13 @@ public class PageService {
 
     public void addToSolutionMap(Solution solution, User user, Page page) throws SQLException {
         pageDao.addToSolutionMap(solution, user, page);
+    }
+
+    public List<AssignmentPage> loadAssignmentPages() throws SQLException {
+        return pageDao.loadAssignmentPages();
+    }
+
+    public List<TextPage> loadTextPages() throws SQLException {
+        return pageDao.loadTextPages();
     }
 }

@@ -1,4 +1,4 @@
-package com.codecool.service;
+package com.codecool.service.dao;
 
 
 import com.codecool.dao.database.DatabaseNewsDao;

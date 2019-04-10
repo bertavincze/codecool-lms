@@ -5,8 +5,9 @@ import com.codecool.dao.database.DatabaseUserDao;
 import com.codecool.model.user.Mentor;
 import com.codecool.model.user.Student;
 import com.codecool.model.user.User;
-import com.codecool.service.IDGeneratorService;
-import com.codecool.service.UserService;
+import com.codecool.service.dao.IDGeneratorService;
+import com.codecool.service.dao.UserService;
+import com.codecool.service.servlet.UserUtilService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,8 +19,6 @@ import java.sql.SQLException;
 
 @WebServlet("/register")
 public class RegisterServlet extends AbstractServlet {
-
-    private boolean isValidUserData = true;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -36,16 +35,13 @@ public class RegisterServlet extends AbstractServlet {
             String image_id = "1";
             String generatedID = idService.generateID();
 
-
-            validateUserData(name, email, password, userRoleString, userService);
-            //
-            if (isValidUserData) {
+            if (UserUtilService.validateUserData(name, email, password, userRoleString, userService)) {
                 User user = null;
                 if (userRoleString.equals("mentor")) {
-                    userService.addUser(generatedID,"mentor", name, email,password, image_id);
+                    userService.addUser(generatedID, "mentor", name, email, password, image_id);
                     user = new Mentor(generatedID, name, email, password, image_id);
                 } else {
-                    userService.addUser(generatedID,"student", name, email,password, image_id);
+                    userService.addUser(generatedID, "student", name, email, password, image_id);
                     user = new Student(generatedID, name, email, password, image_id);
                 }
                 req.setAttribute("user", user);
@@ -64,17 +60,5 @@ public class RegisterServlet extends AbstractServlet {
         req.getRequestDispatcher("registration.jsp").forward(req, resp);
     }
 
-    private void validateUserData(String name, String email, String password, String userRoleString, UserService userService) throws SQLException {
 
-        for (User user: userService.getUsers()) {
-            if (user.getName().equals(name) && user.getEmail().equals(email)) {
-                isValidUserData = false;
-            } else if (user.getEmail().equals(email) || user.getName().equals(name)) {
-                isValidUserData = false;
-            } else if (name == null || email == null || password == null || userRoleString == null) {
-                isValidUserData = false;
-            }
-        }
-
-    }
 }
