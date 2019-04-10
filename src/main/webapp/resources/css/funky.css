@@ -29,7 +29,7 @@ footer, header, hgroup, menu, nav, section {
 }
 
 body {
-	line-height: 1;ű
+	line-height: 1;
 }
 
 ol, ul {
@@ -106,7 +106,6 @@ table {
     font-family: 'Roboto', sans-serif;
     font-size: 100%;
     line-height: 1.5;
-    margin: none;
     word-wrap: break-word;
 }
 
@@ -381,6 +380,12 @@ td {
   border-bottom: 1px solid #ddd;
 }
 
+.error-message{
+    font-weight: bold;
+    font-style: italic;
+    color: red;
+}
+
 /* FORM & INPUT STYLING */
 
 input[type=text] {
@@ -497,7 +502,7 @@ select {
     width: 20%;
     height: 130px;
     background-image: var(--profile1);
-    background-attachment: center top;
+    background-attachment: fixed;
     background-size: cover;
     background-repeat: no-repeat;
     display: inline-block;

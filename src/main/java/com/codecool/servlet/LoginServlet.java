@@ -8,6 +8,7 @@ import com.codecool.model.user.Mentor;
 import com.codecool.model.user.Student;
 import com.codecool.model.user.User;
 import com.codecool.service.dao.NewsService;
+import com.codecool.service.dao.PasswordService;
 import com.codecool.service.dao.UserService;
 
 import javax.servlet.ServletException;
@@ -16,6 +17,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
@@ -56,12 +59,13 @@ public class LoginServlet extends AbstractServlet {
             DatabaseUserDao userDao = new DatabaseUserDao(connection);
             DatabaseAttendanceDao attendanceDao = new DatabaseAttendanceDao(connection);
             UserService userService = new UserService(userDao, attendanceDao);
+            PasswordService passwordService = new PasswordService();
 
             String name = request.getParameter("name");
             String password = request.getParameter("password");
 
             for (User user : userService.getUsers()) {
-                if (name.equals(user.getName()) && password.equals(user.getPassword())) {
+                if (name.equals(user.getName()) && passwordService.validatePassword(password, user.getPassword())) {
                     currentUser = user;
                     HttpSession session = request.getSession();
                     session.setAttribute("user", currentUser);
@@ -70,6 +74,10 @@ public class LoginServlet extends AbstractServlet {
 
         } catch (SQLException ex) {
             ex.printStackTrace();
+        } catch (NoSuchAlgorithmException exc){
+            exc.getMessage();
+        } catch (InvalidKeySpecException e){
+            e.getMessage();
         }
         return currentUser;
     }
@@ -80,6 +88,7 @@ public class LoginServlet extends AbstractServlet {
                 request.getRequestDispatcher("news.jsp").forward(request, response);
             }
         } else {
+            request.setAttribute("error", "Invalid username or password!");
             request.getRequestDispatcher("index.jsp").forward(request, response);
         }
 

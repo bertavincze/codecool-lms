@@ -86,7 +86,7 @@
                     </tr>
                     <tr>
                         <td>Password: </td>
-                        <td><p>${user.getPasswordDisplay()}</p>
+                        <td><p>* * * * * * * * * *</p>
                         <form id="editPassword" action = "editedPassword" method = "post" class="hide_form">
                             <input  class="popupbox" type = "text" name = "password">
                             <input  class="popupbutton" type = "submit" value = "Save" />

@@ -23,3 +23,9 @@
 .third:hover{
     background: rgba(34,28,90, 0.5);
 }
+
+.error-message{
+    font-weight: bold;
+    font-style: italic;
+    color: red;
+}

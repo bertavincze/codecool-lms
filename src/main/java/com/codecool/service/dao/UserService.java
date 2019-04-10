@@ -5,6 +5,8 @@ import com.codecool.dao.database.DatabaseUserDao;
 import com.codecool.model.user.Student;
 import com.codecool.model.user.User;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -31,10 +33,16 @@ public class UserService {
     }
 
     public void addUser(String userID, String role, String name, String email, String password, String image_id) throws SQLException {
+
         try {
-            userDao.addUser(userID, role, name, email, password, image_id); // Insert data here);
+            String hashedPassword = new PasswordService().getHashedPassword(password);
+            userDao.addUser(userID, role, name, email, hashedPassword, image_id); // Insert data here);
         } catch (NumberFormatException ex) {
             System.out.println(ex.getMessage());
+        } catch (NoSuchAlgorithmException exc){
+            exc.getMessage();
+        } catch (InvalidKeySpecException e){
+            e.getMessage();
         }
     }
 
@@ -70,9 +78,14 @@ public class UserService {
 
     public void updatePassword(String id, String password) {
         try {
-            userDao.updatePassword(id, password); // Insert data here);
+            String hashedPassword = new PasswordService().getHashedPassword(password);
+            userDao.updatePassword(id, hashedPassword); // Insert data here);
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
+        } catch (NoSuchAlgorithmException exc){
+            exc.getMessage();
+        } catch (InvalidKeySpecException e){
+            e.getMessage();
         }
     }
 

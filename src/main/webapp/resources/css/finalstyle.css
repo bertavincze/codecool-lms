@@ -352,6 +352,12 @@ td {
     text-transform: none;
 }
 
+.error-message{
+    font-weight: bold;
+    font-style: italic;
+    color: red;
+}
+
 /* FORM & INPUT STYLING */
 
 input[type=text], input[type=textarea] {

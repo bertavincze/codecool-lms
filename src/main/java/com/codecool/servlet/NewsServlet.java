@@ -5,6 +5,7 @@ import com.codecool.model.News;
 import com.codecool.model.user.User;
 import com.codecool.service.dao.IDGeneratorService;
 import com.codecool.service.dao.NewsService;
+import com.codecool.service.dao.PasswordService;
 
 
 import javax.servlet.ServletException;
@@ -12,6 +13,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
@@ -31,6 +34,7 @@ public class NewsServlet extends AbstractServlet {
             User user = ((User) req.getSession().getAttribute("user"));
 
 
+
             List<News> getNews = newsService.getLatestNews();
             News latestNews = newsService.getNewestOne();
 
@@ -38,9 +42,12 @@ public class NewsServlet extends AbstractServlet {
             req.setAttribute("Older", getNews);
             req.setAttribute("User", user);
 
+
+
         } catch (SQLException ex) {
             ex.printStackTrace();
-        } req.getRequestDispatcher("news.jsp").forward(req, resp);
+        }
+        req.getRequestDispatcher("news.jsp").forward(req, resp);
     }
 
     @Override
@@ -66,6 +73,7 @@ public class NewsServlet extends AbstractServlet {
             req.setAttribute("Current", latestNews);
             req.setAttribute("Older", getNews);
             req.setAttribute("User", user);
+
         } catch (SQLException ex) {
             ex.printStackTrace();
         }

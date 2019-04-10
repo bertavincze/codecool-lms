@@ -24,12 +24,13 @@ DROP TABLE IF EXISTS attendance CASCADE;
 DROP TABLE IF EXISTS newsfeed CASCADE;
 
 
+
 CREATE TABLE userBase(
 	user_id varchar(6) NOT NULL,
 	user_role varchar(10) NOT NULL,
 	user_name varchar(15) NOT NULL,
 	email varchar(254) UNIQUE NOT NULL,
-	password varchar(15),
+	password text,
 	image_id text NOT NULL,
 	PRIMARY KEY(user_id)
 );
@@ -100,12 +101,12 @@ CREATE TABLE newsfeed(
 
 
 
-INSERT INTO userBase VALUES('12ab#.', 'mentor', 'mentor', 'm', 'm', 'resources/pics/profile.jpg');
-INSERT INTO userBase VALUES('34cd#.', 'student', 'student', 's', 's', 'resources/pics/profile.jpg');
-INSERT INTO userBase VALUES('56ab#.', 'mentor', 'Berta', 'berta', 'berta', 'resources/pics/profile.jpg');
-INSERT INTO userBase VALUES('34ef#.', 'student', 'Andi', 'andi', 'andi', 'resources/pics/profile.jpg');
-INSERT INTO userBase VALUES('12gb#.', 'mentor', 'Attila', 'attila', 'attila', 'resources/pics/profile.jpg');
-INSERT INTO userBase VALUES('34ch#.', 'mentor', 'Tamy', 'tamy', 'tamy', 'resources/pics/profile.jpg');
+INSERT INTO userBase VALUES('12ab#.', 'mentor', 'mentor', 'm', '1000:f0df76015ad1889b478111dba08f8549:246f41d4d9e10271946e2e3696c9d58865fd0cf80081cffcf773e676da930f73c62732a2be3064cb2bd2aa33e7ac6879a1a5e48bfdca80cfad1307485346590b', 'resources/pics/profile.jpg');
+INSERT INTO userBase VALUES('34cd#.', 'student', 'student', 's', '1000:367c3d3e0946e061c8bd0251477c86fb:f116261b8558e552ebe0b5ec6d8387ca27eea79650666fe94187bbf7e0154f62be93e570b44e3424d0cdaba384ccf2084e848e7d63c64c31f8d9a47dc71d0160', 'resources/pics/profile.jpg');
+INSERT INTO userBase VALUES('56ab#.', 'mentor', 'Berta', 'berta', '1000:5a0cb039b75b41d5da28c9617174c94e:cb3e0fe403c38d03799c8c6727655a49d9a175af48c55feb7d2fc7195637c6afb288a6205b2d012fe150f3aa6efa6cb35d1a8b6dc523c6ef58a9bfcbff3bd07d', 'resources/pics/profile.jpg');
+INSERT INTO userBase VALUES('34ef#.', 'student', 'Andi', 'andi', '1000:dba70971922bea97006ef7eee5b5e17d:27f1e63c9603856d048ff0b07a330c7bd23bc7a6731da1e27744640f4238e3f779b9652105c738eae30e3edc3bfda939954b18073b45e42b477b4188e5dc1fbc', 'resources/pics/profile.jpg');
+INSERT INTO userBase VALUES('12gb#.', 'mentor', 'Attila', 'attila', '1000:890e281ac33fd93865e1abe4dd4f37f2:dc7370de09fb13b5563332e9c6b41d27fcc7d26da938d21702a3aadd81f2de9c5c488fbe21137ffa8b64044697da5c5ab884ca5d155a9362d46145a9e88d8f04', 'resources/pics/profile.jpg');
+INSERT INTO userBase VALUES('34ch#.', 'mentor', 'Tamy', 'tamy', '1000:3fc8a6758c2b7342ef6f6e7d3808082a:12048bdbbe2f31458d497f6a4e7f7f504ea9a13c08b8cc2116f37c988613c0a5d040ba8aa3ca6523aa5c80060ee725ab2943b7152ba5b46e756816e5abcf7293', 'resources/pics/profile.jpg');
 
 INSERT INTO page VALUES('56ef#.', 'Kecske Text', true);
 INSERT INTO text_page VALUES('56ef#.', 'Kecske!!!!!');

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,7 +27,8 @@
             <form action="login" method="post">
                 <p>Name:<input class="box" type="text" name ="name"></p>
                 <p>Password: <input type="password" name="password"/></p>
-                    <input class="button" type="submit" value="Sign in"/>
+                <p class="error-message"><c:out value="${error}"/></p>
+                <input class="button" type="submit" value="Sign in"/>
 
             </form>
 
