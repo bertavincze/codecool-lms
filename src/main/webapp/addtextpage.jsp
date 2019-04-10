@@ -3,14 +3,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="javascript/themeChanger.js">
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GoatCool</title>
-    <link rel="stylesheet" type="text/css" href="resources/css/finalstyle.css">
+    <link rel="stylesheet" type="text/css" href="resources/css/blank.css" id="themer">
     <link href='https://fonts.googleapis.com/css?family=Roboto|Megrim' rel='stylesheet' type='text/css'>
 </head>
 
-<body class="two_div">
+<body class="two_div" onload="checkCookie()">
 
 <nav>
     <ul>
@@ -20,6 +22,7 @@
         <a href="attendance"><li>Attendance</li></a>
         <a href="solutions"><li>Student Solutions</li></a>
     </ul>
+         <jsp:include page="snippets/themeChanger.jsp"/>
 </nav>
 
 <jsp:include page="snippets/header.jsp" />

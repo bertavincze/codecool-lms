@@ -85,7 +85,7 @@ table {
 /* ONE DIV STYLE BODY */
 
 .one_div {
-    background: url('../pics/code3.gif') #221c5a;
+    background: #33005c;
     font-family: 'Roboto', sans-serif;
 	background-position: top center;
 	background-repeat: no-repeat;
@@ -97,7 +97,7 @@ table {
 /* TWO DIV STYLE BODY */
 
 .two_div {
-    background: url('../pics/code3.gif') #221c5a;
+    background: #33005c;
     background-position: top center;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -221,7 +221,7 @@ nav {
     font-weight: 100;
     letter-spacing: 2px;
     text-transform: uppercase;
-    background: #4368e4;
+    background: #33005c;
     margin:auto;
     padding:0px;
     position:relative;

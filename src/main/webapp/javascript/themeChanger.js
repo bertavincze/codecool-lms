@@ -14,7 +14,7 @@
 
 function checkCookie() {
       var theme = getCookie("theme");
-      if (theme == "" || theme== "default") {
+      if (theme == "" || theme== "finalstyle") {
               document.getElementById('themer').href = 'resources/css/finalstyle.css';
       } else if (theme == "alternative") {
               document.getElementById('themer').href = 'resources/css/alternative.css';
