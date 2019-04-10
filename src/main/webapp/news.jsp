@@ -15,7 +15,7 @@
 <body class="two_div" onload="checkCookie()">
 <nav>
     <ul>
-        <a href="profile.jsp"><li class="marked">Profile</li></a>
+        <a href="profile.jsp"><li>Profile</li></a>
         <a href="userlist"><li>UserList</li></a>
         <a href="curriculum"><li>Curriculum</li></a>
         <c:choose>

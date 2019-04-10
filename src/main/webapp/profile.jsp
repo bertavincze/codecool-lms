@@ -50,17 +50,20 @@
 
 <jsp:include page="snippets/header.jsp" />
 
+<c:out value="${error}"></c:out>
+
 <div class="wrapper">
     <div class="content">
         <div class="container">
             <div class="containerhead">
                 <div class="title">Profile</div>
             </div>
-            <div class="one-third">
+            <div class="one-third-pic">
+                <img src="${user.getImage_id()}">
             </div>
-                <div class="two-third">
-                     <table class="profile">
-                      <tr>
+            <div class="two-third">
+                <table class="profile">
+                    <tr>
                         <td>Name: </td>
                         <td><p>${user.getName()}</p>
                             <form id="editName" action = "editedName" method = "post" class="hide_form">
@@ -68,10 +71,9 @@
                                 <input class="popupbutton" type = "submit" value = "Save" />
                             </form>
                         </td>
-                        <td class="icon" onclick="editName()">
-                        </td>
-                      </tr>
-                      <tr>
+                        <td class="icon" onclick="editName()"></td>
+                    </tr>
+                    <tr>
                         <td>E-mail: </td>
                         <td><p>${user.getEmail()}</p>
                             <form id="editMail" action = "editedMail" method = "post" class="hide_form">
@@ -81,34 +83,38 @@
                         </td>
                         <td class="icon" onclick="editMail()">
                         </td>
-                      </tr>
-                     <tr>
-                         <td>Password: </td>
-                         <td><p>${user.getPasswordDisplay()}</p>
-                             <form id="editPassword" action = "editedPassword" method = "post" class="hide_form">
-                                 <input  class="popupbox" type = "text" name = "password">
-                                 <input  class="popupbutton" type = "submit" value = "Save" />
-                             </form>
-                         </td>
-                         <td class="icon" onclick="editPassword()">
-                         </td>
-                     </tr>
-                      <tr>
-                        <td>Role: </td>
-                        <td>
-                        <c:choose>
-                            <c:when test="${user.getClass().simpleName == 'Student'}">
-                                <p>Student</p>
-                            </c:when>
-                            <c:otherwise>
-                                <p>Mentor</p>
-                            </c:otherwise>
-                            </c:choose>
+                    </tr>
+                    <tr>
+                        <td>Password: </td>
+                        <td><p>${user.getPasswordDisplay()}</p>
+                        <form id="editPassword" action = "editedPassword" method = "post" class="hide_form">
+                            <input  class="popupbox" type = "text" name = "password">
+                            <input  class="popupbutton" type = "submit" value = "Save" />
+                        </form>
                         </td>
-                      </tr>
-                    </table>
-
-                </div>
+                        <td class="icon" onclick="editPassword()">
+                        </td>
+                    </tr>
+                    <tr>
+                    <td>Role: </td>
+                    <td>
+                    <c:choose>
+                        <c:when test="${user.getClass().simpleName == 'Student'}">
+                            <p>Student</p>
+                        </c:when>
+                        <c:otherwise>
+                            <p>Mentor</p>
+                        </c:otherwise>
+                        </c:choose>
+                    </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="one-third">
+                <form action="changePic" method="get">
+                    <input type="submit" class="button" value="New pic">
+                </form>
+            </div>
             <div class="containerfoot" id="profile_foot"></div>
         </div>
     </div>

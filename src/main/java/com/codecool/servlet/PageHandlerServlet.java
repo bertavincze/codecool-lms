@@ -1,8 +1,11 @@
 package com.codecool.servlet;
 
+
+import com.codecool.dao.database.DatabaseAttendanceDao;
 import com.codecool.dao.database.DatabasePageDao;
 import com.codecool.dao.database.DatabaseSolutionDao;
 import com.codecool.dao.database.DatabaseUserDao;
+
 import com.codecool.model.curriculum.AssignmentPage;
 import com.codecool.model.curriculum.Page;
 import com.codecool.model.curriculum.Solution;
@@ -10,6 +13,7 @@ import com.codecool.model.curriculum.TextPage;
 import com.codecool.model.user.Mentor;
 import com.codecool.model.user.Student;
 import com.codecool.model.user.User;
+
 import com.codecool.service.IDGeneratorService;
 import com.codecool.service.PageService;
 import com.codecool.service.SolutionService;
@@ -62,7 +66,8 @@ public class PageHandlerServlet extends AbstractServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try (Connection connection = getConnection(request.getServletContext())) {
             DatabaseUserDao userDao = new DatabaseUserDao(connection);
-            UserService userService = new UserService(userDao);
+            DatabaseAttendanceDao attendanceDao = new DatabaseAttendanceDao(connection);
+            UserService userService = new UserService(userDao, attendanceDao);
             DatabasePageDao databasePageDao = new DatabasePageDao(connection);
             PageService pageService = new PageService(databasePageDao);
             DatabaseSolutionDao solutionDao = new DatabaseSolutionDao(connection);

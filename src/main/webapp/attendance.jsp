@@ -11,13 +11,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GoatCool</title>
     <link rel="stylesheet" type="text/css" href="resources/css/blank.css" id="themer">
+    <link href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="resources/css/finalstyle.css">
     <link href='https://fonts.googleapis.com/css?family=Roboto|Megrim' rel='stylesheet' type='text/css'>
-     <script>
-            document.getElementById('datefield').valueAsDate = new Date();
-     </script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 
+
 <body class="two_div" onload="checkCookie()">
+<script>
+    $( document ).ready(function() {
+        $(function() {
+             $('#datepicker').datepicker().datepicker('setDate', new Date(Date.parse("${dateFromRequest}")));
+             $('#datepicker').datepicker( "option", "maxDate", new Date());
+             $('#datepicker').attr("autocomplete", "off");
+        });
+
+        $("#datepicker").datepicker({
+        onSelect: function (date) {
+            window.location.href = "attendance?date=" + date;
+            }
+        });
+
+    });
+</script>
 
 <nav>
     <ul>
@@ -39,35 +57,28 @@
                 <div class="title">Attendance</div>
             </div>
             <form action="attendance" method="post">
-                <input id="datefield" name="datefield" type="date" min="2019-03-01" max="2000-13-13">
-                <script>
-                    var today = new Date();
-                    var dd = today.getDate();
-                    var mm = today.getMonth()+1;
-                    var yyyy = today.getFullYear();
-                    if(dd<10){
-                        dd='0'+dd
-                    }
-                    if(mm<10){
-                        mm='0'+mm
-                    }
-                    var currentDate = yyyy+'-'+mm+'-'+dd;
-                    document.getElementById("datefield").setAttribute("max", currentDate);
-                    document.getElementById("datefield").value = currentDate;
-                </script>
+                <input type="text" id="datepicker" name="date"></input>
                 <table>
                 <tr>
                     <th>Name</th>
                     <th>Attendance rate</th>
                     <th>Current Attendance</th>
                 </tr>
+                <c:set var="date" scope="session" value="${date}" />
                 <c:forEach var="u" items="${students}">
                     <tr>
                         <td>${u.getName()}</td>
                         <td>${u.getAttendanceRate()}%</td>
                         <td>
                             <label class="switch">
+                            <c:choose>
+                            <c:when test="${u.getAttendance().get(date)}">
+                            <input type="checkbox" name="attending" value="${u.getName()}" checked>
+                            </c:when>
+                            <c:otherwise>
                             <input type="checkbox" name="attending" value="${u.getName()}">
+                            </c:otherwise>
+                            </c:choose>
                             <span class="slider"></span>
                             </label>
                         </td>

@@ -17,7 +17,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @WebServlet("/attendance")
@@ -27,13 +27,21 @@ public class AttendanceServlet extends AbstractServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try (Connection connection = getConnection(request.getServletContext())) {
             DatabaseUserDao userDao = new DatabaseUserDao(connection);
-            UserService userService = new UserService(userDao);
-            List<User> students = new ArrayList<>();
-            for (User user : userService.getUsers()) {
-                if (user instanceof Student) {
-                    students.add(user);
-                }
+            DatabaseAttendanceDao attendanceDao = new DatabaseAttendanceDao(connection);
+            UserService userService = new UserService(userDao, attendanceDao);
+
+            List<User> students = userService.getUsersWithMap();
+            String dateFromRequest = request.getParameter("date");
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+            LocalDate localDate;
+            if (dateFromRequest != null) {
+                localDate = LocalDate.parse(dateFromRequest, dtf);
+            } else {
+                localDate = LocalDate.now();
             }
+
+            request.setAttribute("dateFromRequest", dateFromRequest);
+            request.setAttribute("date", localDate);
             request.setAttribute("students", students);
             request.getRequestDispatcher("attendance.jsp").forward(request, response);
         } catch (SQLException ex) {
@@ -48,31 +56,34 @@ public class AttendanceServlet extends AbstractServlet {
             DatabaseAttendanceDao attendanceDao = new DatabaseAttendanceDao(connection);
             AttendanceService attendanceService = new AttendanceService(attendanceDao);
             DatabaseUserDao userDao = new DatabaseUserDao(connection);
-            UserService userService = new UserService(userDao);
+            UserService userService = new UserService(userDao, attendanceDao);
             IDGeneratorService idGeneratorService = new IDGeneratorService();
 
-            String date = request.getParameter("datefield");
-            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("uuuu-MM-dd");
-            LocalDate localDate = LocalDate.parse(date, dateTimeFormatter);
-            String[] attending = request.getParameterValues("attending");
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+            LocalDate localDate = LocalDate.parse(request.getParameter("date"), dtf);
 
-            List<User> students = new ArrayList<>();
-            for (User user : userService.getUsers()) {
-                if (user instanceof Student) {
-                    students.add(user);
+            List<String> attending = Arrays.asList(request.getParameterValues("attending"));
+
+            for (String name : attending) {
+                Student student = findStudentByName(name, userService.getUsers());
+                if (student != null) {
+                    student.setAttendance(localDate, true);
+                    attendanceService.addAttendance(idGeneratorService.generateID(), student.getId(), localDate, student.getAttendance().get(localDate));
                 }
             }
 
-            if (attending != null) {
-                for (String name : attending) {
-                    Student student = findStudentByName(name, userService.getUsers());
-                    if (student != null) {
-                        student.setAttendance(localDate, true);
-                        attendanceService.addAttendance(idGeneratorService.generateID(), student.getId(), localDate, student.getAttendance().get(localDate));
+            for (User user : userService.getUsers()) {
+                if (user instanceof Student) {
+                    if (!attending.contains(user.getName())) {
+                        ((Student) user).setAttendance(localDate, false);
+                        attendanceService.addAttendance(idGeneratorService.generateID(), user.getId(), localDate, ((Student) user).getAttendance().get(localDate));
                     }
                 }
             }
 
+            List<User> students = userService.getUsersWithMap();
+
+            request.setAttribute("date", localDate);
             request.setAttribute("students", students);
             request.getRequestDispatcher("attendance.jsp").forward(request, response);
         } catch (SQLException ex) {
@@ -81,7 +92,7 @@ public class AttendanceServlet extends AbstractServlet {
     }
 
     private Student findStudentByName(String name, List<User> users) {
-        for (User user: users) {
+        for (User user : users) {
             if (user.getName().equals(name)) {
                 return (Student) user;
             }

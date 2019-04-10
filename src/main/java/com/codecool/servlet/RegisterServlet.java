@@ -1,5 +1,6 @@
 package com.codecool.servlet;
 
+import com.codecool.dao.database.DatabaseAttendanceDao;
 import com.codecool.dao.database.DatabaseUserDao;
 import com.codecool.model.user.Mentor;
 import com.codecool.model.user.Student;
@@ -23,26 +24,29 @@ public class RegisterServlet extends AbstractServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try (Connection connection = getConnection(req.getServletContext())) {
-            DatabaseUserDao mentorDao = new DatabaseUserDao(connection);
-            UserService userService = new UserService(mentorDao);
+            DatabaseUserDao userDao = new DatabaseUserDao(connection);
+            DatabaseAttendanceDao attendanceDao = new DatabaseAttendanceDao(connection);
+            UserService userService = new UserService(userDao, attendanceDao);
             IDGeneratorService idService = new IDGeneratorService();
 
             String name = req.getParameter("name");
             String email = req.getParameter("email");
             String password = req.getParameter("password");
             String userRoleString = req.getParameter("status");
+            String image_id = "1";
             String generatedID = idService.generateID();
+
 
             validateUserData(name, email, password, userRoleString, userService);
             //
             if (isValidUserData) {
                 User user = null;
                 if (userRoleString.equals("mentor")) {
-                    userService.addUser(generatedID,"mentor", name, email,password);
-                    user = new Mentor(generatedID, name, email, password);
+                    userService.addUser(generatedID,"mentor", name, email,password, image_id);
+                    user = new Mentor(generatedID, name, email, password, image_id);
                 } else {
-                    userService.addUser(generatedID,"student", name, email,password);
-                    user = new Student(generatedID, name, email, password);
+                    userService.addUser(generatedID,"student", name, email,password, image_id);
+                    user = new Student(generatedID, name, email, password, image_id);
                 }
                 req.setAttribute("user", user);
                 req.getRequestDispatcher("succesfulregist.jsp").forward(req, resp);
