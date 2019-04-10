@@ -1,6 +1,6 @@
 package com.codecool.service.dao;
 
-import com.codecool.dao.database.DatabaseAttendanceDao;
+import com.codecool.dao.database.database.DatabaseAttendanceDao;
 import com.codecool.model.user.User;
 
 import java.sql.SQLException;

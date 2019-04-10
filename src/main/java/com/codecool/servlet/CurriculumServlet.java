@@ -1,6 +1,6 @@
 package com.codecool.servlet;
 
-import com.codecool.dao.database.DatabasePageDao;
+import com.codecool.dao.database.database.DatabasePageDao;
 import com.codecool.model.curriculum.Page;
 import com.codecool.model.user.Mentor;
 import com.codecool.model.user.Student;

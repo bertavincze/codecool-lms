@@ -1,4 +1,4 @@
-package com.codecool.dao.database;
+package com.codecool.dao.database.database;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

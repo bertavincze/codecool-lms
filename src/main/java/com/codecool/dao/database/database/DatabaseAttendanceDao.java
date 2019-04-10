@@ -1,12 +1,10 @@
-package com.codecool.dao.database;
+package com.codecool.dao.database.database;
 
 import com.codecool.model.user.User;
 
 import java.sql.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class DatabaseAttendanceDao extends AbstractDao {

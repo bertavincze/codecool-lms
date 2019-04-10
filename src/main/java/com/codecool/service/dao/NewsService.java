@@ -1,7 +1,7 @@
 package com.codecool.service.dao;
 
 
-import com.codecool.dao.database.DatabaseNewsDao;
+import com.codecool.dao.database.database.DatabaseNewsDao;
 import com.codecool.model.News;
 import com.codecool.model.user.User;
 

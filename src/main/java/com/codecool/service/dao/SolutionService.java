@@ -1,9 +1,8 @@
 package com.codecool.service.dao;
 
-import com.codecool.dao.database.DatabaseSolutionDao;
+import com.codecool.dao.database.database.DatabaseSolutionDao;
 import com.codecool.model.curriculum.Page;
 import com.codecool.model.curriculum.Solution;
-import com.codecool.model.user.Student;
 import com.codecool.model.user.User;
 
 import java.sql.SQLException;

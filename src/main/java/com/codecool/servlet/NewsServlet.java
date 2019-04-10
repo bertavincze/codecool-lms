@@ -1,11 +1,10 @@
 package com.codecool.servlet;
 
-import com.codecool.dao.database.DatabaseNewsDao;
+import com.codecool.dao.database.database.DatabaseNewsDao;
 import com.codecool.model.News;
 import com.codecool.model.user.User;
 import com.codecool.service.dao.IDGeneratorService;
 import com.codecool.service.dao.NewsService;
-import com.codecool.service.dao.PasswordService;
 
 
 import javax.servlet.ServletException;
@@ -13,8 +12,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.time.LocalDateTime;

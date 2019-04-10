@@ -1,6 +1,6 @@
 package com.codecool.servlet;
 
-import com.codecool.dao.database.DatabasePageDao;
+import com.codecool.dao.database.database.DatabasePageDao;
 import com.codecool.service.dao.PageService;
 import com.codecool.service.servlet.PageUtilService;
 
