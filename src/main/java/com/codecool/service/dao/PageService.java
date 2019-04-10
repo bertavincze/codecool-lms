@@ -1,6 +1,6 @@
 package com.codecool.service.dao;
 
-import com.codecool.dao.database.database.DatabasePageDao;
+import com.codecool.dao.database.DatabasePageDao;
 import com.codecool.model.curriculum.AssignmentPage;
 import com.codecool.model.curriculum.Page;
 import com.codecool.model.curriculum.Solution;

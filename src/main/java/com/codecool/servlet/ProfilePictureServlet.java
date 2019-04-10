@@ -1,8 +1,8 @@
 package com.codecool.servlet;
 
 
-import com.codecool.dao.database.database.DatabaseAttendanceDao;
-import com.codecool.dao.database.database.DatabaseUserDao;
+import com.codecool.dao.database.DatabaseAttendanceDao;
+import com.codecool.dao.database.DatabaseUserDao;
 import com.codecool.model.user.User;
 import com.codecool.service.dao.UserService;
 
