@@ -10,6 +10,7 @@ import com.codecool.model.user.User;
 import com.codecool.service.dao.PageService;
 import com.codecool.service.dao.SolutionService;
 import com.codecool.service.dao.UserService;
+import com.codecool.service.servlet.UserUtilService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -44,15 +45,7 @@ public class StudentSolutionServlet extends AbstractServlet {
                     solutions.addAll(solutionService.loadSolutionsByPage(page));
                 }
 
-                Map<User, Solution> solutionMap = new HashMap<>();
-
-                for (Solution solution: solutions) {
-                    for (User user: userService.getUsers()) {
-                        if (solution.getUser_id().equals(user.getId())) {
-                            solutionMap.put(user, solution);
-                        }
-                    }
-                }
+                Map<User, Solution> solutionMap = UserUtilService.getSolutionMapForUser(solutions, userService.getUsers());
 
                 request.setAttribute("solutionMap", solutionMap);
                 request.getRequestDispatcher("studentSolution.jsp").forward(request, response);
