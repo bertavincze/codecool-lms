@@ -18,6 +18,7 @@ import com.codecool.service.dao.IDGeneratorService;
 import com.codecool.service.dao.PageService;
 import com.codecool.service.dao.SolutionService;
 import com.codecool.service.dao.UserService;
+import com.codecool.service.servlet.PageUtilService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -32,7 +33,8 @@ import java.util.List;
 @WebServlet("/handlepage")
 public class PageHandlerServlet extends AbstractServlet {
 
-    IDGeneratorService idGeneratorService = new IDGeneratorService();
+    private IDGeneratorService idGeneratorService = new IDGeneratorService();
+    private PageUtilService pageUtilService = new PageUtilService();
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -75,23 +77,16 @@ public class PageHandlerServlet extends AbstractServlet {
 
             List<User> users = userService.getUsers();
 
-            String title = request.getParameter("title");
-            String name = request.getParameter("name");
             HttpSession session = request.getSession(false);
             User user = (User) session.getAttribute("user");
+            String title = request.getParameter("title");
+            String name = request.getParameter("name");
 
-            Page requestedPage = null;
-            for (Page page : pageService.loadPages()) {
-                if (page.getTitle().equals(title)) {
-                    request.setAttribute("page", page);
-                    requestedPage = page;
-                    break;
-                }
-            }
+            Page requestedPage = getRequestedPage(request, pageService, title);
 
-            if (isAssignmentPage(requestedPage)) {
+            if (requestedPage instanceof AssignmentPage) {
                 if (user instanceof Student) {
-                    Solution solution = findUserSolutionByPage(user, requestedPage, solutionService);
+                    Solution solution = pageUtilService.findUserSolutionByPage(user, requestedPage, solutionService);
                     if (solution != null) {
                         request.setAttribute("assignmentPage", requestedPage);
                         request.setAttribute("solution", solution);
@@ -106,7 +101,7 @@ public class PageHandlerServlet extends AbstractServlet {
                     if (isEditRequest) {
                         for (User u : users){
                             if (u instanceof Student && u.getName().equals(name)) {
-                                Solution solution = findUserSolutionByPage(u, requestedPage, solutionService);
+                                Solution solution = pageUtilService.findUserSolutionByPage(u, requestedPage, solutionService);
                                 request.setAttribute("solution", solution);
                             }
                         }
@@ -117,7 +112,7 @@ public class PageHandlerServlet extends AbstractServlet {
                     }
                 }
 
-            } else if (isTextPage(requestedPage)) {
+            } else if (requestedPage instanceof TextPage) {
                 request.getRequestDispatcher("seetextpage.jsp").forward(request, response);
             }
         } catch (SQLException ex) {
@@ -126,20 +121,15 @@ public class PageHandlerServlet extends AbstractServlet {
 
     }
 
-    private boolean isAssignmentPage(Page page) {
-        return page instanceof AssignmentPage;
-    }
-
-    private boolean isTextPage(Page page) {
-        return page instanceof TextPage;
-    }
-
-    private Solution findUserSolutionByPage(User user, Page page, SolutionService solutionService) throws SQLException {
-        for (Solution solution: solutionService.loadSolutionsByPage(page)) {
-            if (solution.getUser_id().equals(user.getId())) {
-                return solution;
+    private Page getRequestedPage(HttpServletRequest request, PageService pageService, String title) throws SQLException {
+        Page requestedPage = null;
+        for (Page page : pageService.loadPages()) {
+            if (page.getTitle().equals(title)) {
+                request.setAttribute("page", page);
+                requestedPage = page;
+                break;
             }
         }
-        return null;
+        return requestedPage;
     }
 }

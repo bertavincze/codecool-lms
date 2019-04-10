@@ -38,13 +38,7 @@ public class StudentSolutionServlet extends AbstractServlet {
                 DatabaseAttendanceDao attendanceDao = new DatabaseAttendanceDao(connection);
                 UserService userService = new UserService(userDao, attendanceDao);
 
-                List<Page> assignments = pageService.loadPages();
-                List<AssignmentPage> assignmentList = new ArrayList<>();
-                for (Page page : assignments) {
-                    if (page instanceof AssignmentPage && page.isPublished()) {
-                        assignmentList.add((AssignmentPage) page);
-                    }
-                }
+                List<AssignmentPage> assignmentList = pageService.loadAssignmentPages();
 
                 List<Solution> solutions = new ArrayList<>();
                 for (AssignmentPage page: assignmentList) {

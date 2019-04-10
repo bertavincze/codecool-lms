@@ -10,6 +10,7 @@ import com.codecool.model.user.User;
 import com.codecool.service.dao.IDGeneratorService;
 import com.codecool.service.dao.PageService;
 import com.codecool.service.dao.SolutionService;
+import com.codecool.service.servlet.PageUtilService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -38,12 +39,15 @@ public class SolutionServlet extends AbstractServlet {
             String title = req.getParameter("title");
             String answer = req.getParameter("solution");
             String generatedID = idService.generateID();
+
             Solution solution = new Solution(generatedID, title, answer);
             user.addSolution(solution);
             solutionService.addSolution(generatedID, user.getId(), title, answer, solution.getSubmissionDate());
+
             AssignmentPage assignmentPage = (AssignmentPage) pageService.findPageByTitle(title);
             assignmentPage.addToSolutionMap(user, solution);
             pageService.addToSolutionMap(solution, user, assignmentPage);
+
             req.getRequestDispatcher("curriculum").forward(req, resp);
         } catch (SQLException ex) {
             throw new ServletException(ex);
@@ -58,11 +62,11 @@ public class SolutionServlet extends AbstractServlet {
             Student user = (Student) session.getAttribute("user");
             DatabaseSolutionDao solutionDao = new DatabaseSolutionDao(connection);
             SolutionService solutionService = new SolutionService(solutionDao);
+            PageUtilService pageUtilService = new PageUtilService();
 
-            String title = request.getParameter("title");
             AssignmentPage assignmentPage = (AssignmentPage) request.getAttribute("assignmentPage");
 
-            Solution solution = findUserSolutionByPage(user, assignmentPage, solutionService);
+            Solution solution = pageUtilService.findUserSolutionByPage(user, assignmentPage, solutionService);
             if (solution != null) {
                 request.setAttribute("solution", solution);
                 request.setAttribute("assignmentPage", assignmentPage);
@@ -75,14 +79,5 @@ public class SolutionServlet extends AbstractServlet {
         } catch (SQLException ex) {
             throw new ServletException(ex);
         }
-    }
-
-    private Solution findUserSolutionByPage(User user, Page page, SolutionService solutionService) throws SQLException {
-        for (Solution solution: solutionService.loadSolutionsByPage(page)) {
-            if (solution.getUser_id().equals(user.getId())) {
-                return solution;
-            }
-        }
-        return null;
     }
 }
