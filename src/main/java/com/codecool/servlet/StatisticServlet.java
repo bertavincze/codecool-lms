@@ -24,7 +24,6 @@ import java.util.Map;
 
 @WebServlet("/stats")
 public class StatisticServlet extends AbstractServlet {
-    List<Solution> solutions;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
