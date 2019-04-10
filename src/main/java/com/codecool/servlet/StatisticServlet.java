@@ -2,8 +2,6 @@ package com.codecool.servlet;
 
 import com.codecool.dao.database.DatabasePageDao;
 import com.codecool.dao.database.DatabaseSolutionDao;
-import com.codecool.model.curriculum.AssignmentPage;
-import com.codecool.model.curriculum.Page;
 import com.codecool.model.curriculum.Solution;
 import com.codecool.model.user.Student;
 import com.codecool.service.dao.PageService;
@@ -18,7 +16,6 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
