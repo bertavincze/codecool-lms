@@ -17,17 +17,6 @@ public class ErrorPageServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        distributeUser(request, response);
-
-    }
-
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("error.html").forward(request, response);
-
-    }
-
-    private void distributeUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(false);
         User currentUser = (User) session.getAttribute("user");
         if (currentUser != null) {
@@ -40,4 +29,9 @@ public class ErrorPageServlet extends HttpServlet {
 
     }
 
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getRequestDispatcher("error.html").forward(request, response);
+
+    }
 }

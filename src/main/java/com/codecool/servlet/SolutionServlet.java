@@ -3,10 +3,8 @@ package com.codecool.servlet;
 import com.codecool.dao.database.DatabasePageDao;
 import com.codecool.dao.database.DatabaseSolutionDao;
 import com.codecool.model.curriculum.AssignmentPage;
-import com.codecool.model.curriculum.Page;
 import com.codecool.model.curriculum.Solution;
 import com.codecool.model.user.Student;
-import com.codecool.model.user.User;
 import com.codecool.service.dao.IDGeneratorService;
 import com.codecool.service.dao.PageService;
 import com.codecool.service.dao.SolutionService;
@@ -62,11 +60,10 @@ public class SolutionServlet extends AbstractServlet {
             Student user = (Student) session.getAttribute("user");
             DatabaseSolutionDao solutionDao = new DatabaseSolutionDao(connection);
             SolutionService solutionService = new SolutionService(solutionDao);
-            PageUtilService pageUtilService = new PageUtilService();
 
             AssignmentPage assignmentPage = (AssignmentPage) request.getAttribute("assignmentPage");
 
-            Solution solution = pageUtilService.findUserSolutionByPage(user, assignmentPage, solutionService);
+            Solution solution = PageUtilService.findUserSolutionByPage(user, assignmentPage, solutionService);
             if (solution != null) {
                 request.setAttribute("solution", solution);
                 request.setAttribute("assignmentPage", assignmentPage);

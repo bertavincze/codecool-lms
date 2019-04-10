@@ -34,7 +34,6 @@ import java.util.List;
 public class PageHandlerServlet extends AbstractServlet {
 
     private IDGeneratorService idGeneratorService = new IDGeneratorService();
-    private PageUtilService pageUtilService = new PageUtilService();
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -86,7 +85,7 @@ public class PageHandlerServlet extends AbstractServlet {
 
             if (requestedPage instanceof AssignmentPage) {
                 if (user instanceof Student) {
-                    Solution solution = pageUtilService.findUserSolutionByPage(user, requestedPage, solutionService);
+                    Solution solution = PageUtilService.findUserSolutionByPage(user, requestedPage, solutionService);
                     if (solution != null) {
                         request.setAttribute("assignmentPage", requestedPage);
                         request.setAttribute("solution", solution);
@@ -101,7 +100,7 @@ public class PageHandlerServlet extends AbstractServlet {
                     if (isEditRequest) {
                         for (User u : users){
                             if (u instanceof Student && u.getName().equals(name)) {
-                                Solution solution = pageUtilService.findUserSolutionByPage(u, requestedPage, solutionService);
+                                Solution solution = PageUtilService.findUserSolutionByPage(u, requestedPage, solutionService);
                                 request.setAttribute("solution", solution);
                             }
                         }

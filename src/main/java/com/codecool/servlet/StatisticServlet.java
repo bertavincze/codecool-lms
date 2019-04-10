@@ -2,12 +2,11 @@ package com.codecool.servlet;
 
 import com.codecool.dao.database.DatabasePageDao;
 import com.codecool.dao.database.DatabaseSolutionDao;
-import com.codecool.model.curriculum.AssignmentPage;
-import com.codecool.model.curriculum.Page;
 import com.codecool.model.curriculum.Solution;
 import com.codecool.model.user.Student;
 import com.codecool.service.dao.PageService;
 import com.codecool.service.dao.SolutionService;
+import com.codecool.service.servlet.PageUtilService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,7 +16,6 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -35,15 +33,8 @@ public class StatisticServlet extends AbstractServlet {
 
             HttpSession session = request.getSession(false);
             Student user = (Student) session.getAttribute("user");
-            solutions = solutionService.loadSolutionForUser(user);
-            Map<Solution, Integer> assignmentMap= new HashMap<>();
 
-            for (Solution solution : solutions) {
-                AssignmentPage assignmentPage = findAssignmentsByTitle(solution.getTitle(), pageService);
-                if (assignmentPage != null){
-                    assignmentMap.put(solution, assignmentPage.getMaxScore());
-                }
-            }
+            Map<Solution, Integer> assignmentMap = PageUtilService.getAssignmentMap(solutionService.loadSolutionForUser(user), pageService);
 
             request.setAttribute("assignmentMap", assignmentMap);
             request.getRequestDispatcher("stats.jsp").forward(request, response);
@@ -53,16 +44,7 @@ public class StatisticServlet extends AbstractServlet {
 
     }
 
-    private AssignmentPage findAssignmentsByTitle(String title, PageService pageService) throws SQLException {
-            for (Page page : pageService.loadPages()) {
-                if (page instanceof AssignmentPage) {
-                    if (((AssignmentPage)page).getTitle().equals(title)) {
-                        return (AssignmentPage) page;
-                    }
-                }
-            }
-            return null;
-    }
+
 
 
 }
