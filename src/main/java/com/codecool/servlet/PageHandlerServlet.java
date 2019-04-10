@@ -81,7 +81,7 @@ public class PageHandlerServlet extends AbstractServlet {
             String title = request.getParameter("title");
             String name = request.getParameter("name");
 
-            Page requestedPage = getRequestedPage(request, pageService, title);
+            Page requestedPage = PageUtilService.getRequestedPage(request, pageService, title);
 
             if (requestedPage instanceof AssignmentPage) {
                 if (user instanceof Student) {
@@ -120,15 +120,5 @@ public class PageHandlerServlet extends AbstractServlet {
 
     }
 
-    private Page getRequestedPage(HttpServletRequest request, PageService pageService, String title) throws SQLException {
-        Page requestedPage = null;
-        for (Page page : pageService.loadPages()) {
-            if (page.getTitle().equals(title)) {
-                request.setAttribute("page", page);
-                requestedPage = page;
-                break;
-            }
-        }
-        return requestedPage;
-    }
+
 }

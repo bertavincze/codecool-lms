@@ -3,11 +3,11 @@ package com.codecool.servlet;
 import com.codecool.dao.database.DatabasePageDao;
 import com.codecool.dao.database.DatabaseSolutionDao;
 import com.codecool.model.curriculum.AssignmentPage;
-import com.codecool.model.curriculum.Page;
 import com.codecool.model.curriculum.Solution;
 import com.codecool.model.user.Student;
 import com.codecool.service.dao.PageService;
 import com.codecool.service.dao.SolutionService;
+import com.codecool.service.servlet.PageUtilService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,12 +17,10 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet("/assignments")
 public class AssignmentServlet extends AbstractServlet {
-    List<Solution> solutions;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -34,8 +32,8 @@ public class AssignmentServlet extends AbstractServlet {
 
             HttpSession session = request.getSession(false);
             Student user = (Student) session.getAttribute("user");
-            solutions = solutionService.loadSolutionForUser(user);
-            List<AssignmentPage> assignments = findAssignmentsNotSolved(pageService);
+            List<Solution> solutions = solutionService.loadSolutionForUser(user);
+            List<AssignmentPage> assignments = PageUtilService.findAssignmentsNotSolved(pageService, solutions, user);
 
             request.setAttribute("assignments", assignments);
             request.getRequestDispatcher("notsolvedassignments.jsp").forward(request, response);
@@ -43,31 +41,5 @@ public class AssignmentServlet extends AbstractServlet {
             ex.printStackTrace();
         }
 
-    }
-
-    private List<AssignmentPage> findAssignmentsNotSolved(PageService pageService) throws SQLException {
-        List<String> titleList = new ArrayList<>();
-        List<AssignmentPage> assignments = new ArrayList<>();
-        if (solutions == null) {
-            for (Page page : pageService.loadPages()) {
-                if (page instanceof AssignmentPage && page.isPublished() == true) {
-                        assignments.add((AssignmentPage)page);
-                    }
-                }
-
-        } else {
-            for (Solution solution : solutions) {
-                titleList.add(solution.getTitle());
-            }
-            for (Page page : pageService.loadPages()) {
-                if (page instanceof AssignmentPage) {
-                    if (!titleList.contains(((AssignmentPage)page).getTitle()) && page.isPublished() == true) {
-                        assignments.add((AssignmentPage)page);
-                    }
-                }
-            }
-        }
-
-        return assignments;
     }
 }

@@ -3,7 +3,6 @@ package com.codecool.servlet;
 import com.codecool.dao.database.DatabasePageDao;
 import com.codecool.dao.database.DatabaseSolutionDao;
 import com.codecool.model.curriculum.AssignmentPage;
-import com.codecool.model.curriculum.Page;
 import com.codecool.model.curriculum.Solution;
 import com.codecool.service.dao.PageService;
 import com.codecool.service.dao.SolutionService;
@@ -15,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 @WebServlet("/grader")
 public class GradingServlet extends AbstractServlet {
@@ -29,16 +29,19 @@ public class GradingServlet extends AbstractServlet {
 
             int grade = Integer.parseInt(req.getParameter("grade"));
             String title = req.getParameter("title");
-            for (Page page : pageService.loadPages()) {
-                if (page instanceof AssignmentPage) {
-                    for (Solution solution : solutionService.loadSolutionsByPage(page)) {
-                        if (solution.getTitle().equals(title)) {
-                            solution.setGrade(grade);
-                            solutionService.updateSolution(solution.getSolution_id(), grade);
-                        }
+
+            List<AssignmentPage> assignmentPages = pageService.loadAssignmentPages();
+
+            for (AssignmentPage page : assignmentPages) {
+                for (Solution solution : solutionService.loadSolutionsByPage(page)) {
+                    if (solution.getTitle().equals(title)) {
+                        solution.setGrade(grade);
+                        solutionService.updateSolution(solution.getSolution_id(), grade);
                     }
                 }
+
             }
+
         } catch (SQLException ex) {
             throw new ServletException(ex);
         }
