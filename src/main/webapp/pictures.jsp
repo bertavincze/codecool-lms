@@ -9,7 +9,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GoatCool</title>
     <link rel="stylesheet" type="text/css" href="resources/css/finalstyle.css"  id="themer">
-    <link rel="stylesheet" type="text/css" href="resources/css/temp.css">
     <link href='https://fonts.googleapis.com/css?family=Roboto|Megrim' rel='stylesheet' type='text/css'>
 </head>
 

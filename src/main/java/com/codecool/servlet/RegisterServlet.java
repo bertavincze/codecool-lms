@@ -47,7 +47,8 @@ public class RegisterServlet extends AbstractServlet {
                 req.setAttribute("user", user);
                 req.getRequestDispatcher("succesfulregist.jsp").forward(req, resp);
             } else {
-                resp.sendRedirect("registration.jsp");
+                req.setAttribute("error", "User with this name or e-mail already exist!");
+                req.getRequestDispatcher("registration.jsp").forward(req, resp);
             }
         } catch (SQLException ex) {
             throw new ServletException(ex);
