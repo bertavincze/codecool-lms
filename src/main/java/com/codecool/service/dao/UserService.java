@@ -93,4 +93,8 @@ public class UserService {
         userDao.changeProfilePic(id, imageId);
     }
 
+    public void deleteUser(String id) throws SQLException{
+        userDao.removeUser(id);
+    }
+
 }

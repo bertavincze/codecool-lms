@@ -43,7 +43,7 @@ CREATE TABLE solution(
 	grade integer,
 	submission_date timestamp NOT NULL,
 	PRIMARY KEY (solution_id),
-	FOREIGN KEY (user_id) REFERENCES userBase(user_id)
+	FOREIGN KEY (user_id) REFERENCES userBase(user_id) ON DELETE CASCADE
 );
 
 CREATE TABLE page(
@@ -72,7 +72,7 @@ CREATE TABLE solutionmap(
 	user_id varchar(6),
 	solution_id varchar(6),
 	page_id varchar(6),
-	FOREIGN KEY (user_id) REFERENCES userBase(user_id),
+	FOREIGN KEY (user_id) REFERENCES userBase(user_id) ON DELETE CASCADE,
 	FOREIGN KEY (solution_id) REFERENCES solution(solution_id),
 	FOREIGN KEY (page_id) REFERENCES assignment_page(page_id)
 );
@@ -83,7 +83,7 @@ CREATE TABLE attendance(
     attended_day date,
     is_present boolean,
     PRIMARY KEY (attendance_id),
-    FOREIGN KEY (user_id) REFERENCES userBase(user_id)
+    FOREIGN KEY (user_id) REFERENCES userBase(user_id) ON DELETE CASCADE
 );
 
 
@@ -94,7 +94,7 @@ CREATE TABLE newsfeed(
     date TIMESTAMP WITH TIME ZONE NOT NULL,
     user_id varchar(6),
     PRIMARY KEY (news_id),
-    FOREIGN KEY (user_id) REFERENCES userBase(user_id)
+    FOREIGN KEY (user_id) REFERENCES userBase(user_id) ON DELETE CASCADE
 );
 
 

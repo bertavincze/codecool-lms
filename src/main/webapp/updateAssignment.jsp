@@ -36,7 +36,7 @@
                 <input type="hidden" value="${id}" name="id">
 
                 <p>Title:</p>
-                <p><input class="box" type="text" name="title" value="${title}" autofocus><c:out value="${title}"/></p>
+                <p><input class="box" type="text" name="title" value="${title}" autofocus></p>
 
                 <p>Question: </p>
                 <p><textarea rows="20" cols="20" name="question"><c:out value="${content}"/></textarea></p>

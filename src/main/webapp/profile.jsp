@@ -122,6 +122,9 @@
                 </form>
             </div>
             <div class="containerfoot" id="profile_foot"></div>
+            <form action="deleteUser" method="get">
+                <input class="del-button" type="submit" value="Delete profile">
+            </form>
         </div>
     </div>
 

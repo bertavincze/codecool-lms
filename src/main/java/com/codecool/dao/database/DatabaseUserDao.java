@@ -139,4 +139,14 @@ public final class DatabaseUserDao extends AbstractDao {
     }
 
 
+    public void removeUser(String id) throws SQLException{
+        String sql = "DELETE FROM userbase WHERE user_id=?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, id);
+            statement.executeUpdate();
+        } catch (SQLException ex) {
+            throw ex;
+        }
+    }
+
 }
