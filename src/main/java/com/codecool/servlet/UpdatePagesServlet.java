@@ -26,8 +26,7 @@ public class UpdatePagesServlet extends AbstractServlet {
             DatabasePageDao pageDao = new DatabasePageDao(connection);
             PageService pageService = new PageService(pageDao);
 
-            HttpSession session = request.getSession(false);
-            User user = (User) session.getAttribute("user");
+
             List<Page> pageList = pageService.loadPages();
             request.setAttribute("pageList", pageList);
 

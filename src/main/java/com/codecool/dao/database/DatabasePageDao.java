@@ -202,4 +202,14 @@ public class DatabasePageDao extends AbstractDao {
             }
         }
     }
+
+    public void removePage(String id) throws SQLException{
+            String sql = "DELETE FROM page WHERE page_id=?";
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setString(1, id);
+                statement.executeUpdate();
+            } catch (SQLException ex) {
+                throw ex;
+            }
+    }
 }

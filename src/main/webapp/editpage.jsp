@@ -40,12 +40,19 @@
                     <tr>
                         <th>Page title</th>
                     </tr>
+                    <p class="error-message"><c:out value="${success}"/></p>
                     <c:forEach var="page" items="${pageList}">
                         <c:choose>
                             <c:when test="${page.isPublished()}">
                                 <tr>
                                     <td>
                                         <a href="updatePage?title=${page.getTitle()}&edit=false">${page.getTitle()}</a>
+                                    </td>
+                                    <td>
+                                    <form action="deletePage" method="get">
+                                        <input type="hidden" name="title" value="${page.getTitle()}">
+                                        <input class="del-button" type="submit" value="Delete">
+                                    </form>
                                     </td>
                                 </tr>
                             </c:when>

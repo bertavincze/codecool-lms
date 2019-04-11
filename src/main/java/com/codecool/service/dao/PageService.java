@@ -12,7 +12,7 @@ import java.util.List;
 
 public class PageService {
 
-    private final DatabasePageDao pageDao;
+    private DatabasePageDao pageDao;
 
     public PageService(DatabasePageDao pageDao) {
         this.pageDao = pageDao;
@@ -54,5 +54,9 @@ public class PageService {
 
     public void updatePage(Page page, String title, String content) throws SQLException{
         pageDao.updatePage(page, title, content);
+    }
+
+    public void deletePage(String id) throws SQLException{
+        pageDao.removePage(id);
     }
 }

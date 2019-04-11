@@ -57,7 +57,7 @@ CREATE TABLE text_page(
 	page_id varchar(6) NOT NULL,
 	content text NOT NULL,
 	PRIMARY KEY(page_id),
-	FOREIGN KEY (page_id) REFERENCES page(page_id)
+	FOREIGN KEY (page_id) REFERENCES page(page_id) ON DELETE CASCADE
 );
 
 CREATE TABLE assignment_page(
@@ -65,7 +65,7 @@ CREATE TABLE assignment_page(
     question text NOT NULL,
     max_score integer NOT NULL,
 	PRIMARY KEY(page_id),
-    FOREIGN KEY (page_id) REFERENCES page(page_id)
+    FOREIGN KEY (page_id) REFERENCES page(page_id) ON DELETE CASCADE
 );
 
 CREATE TABLE solutionmap(

@@ -56,33 +56,8 @@
                 <div class="title">Attendance</div>
             </div>
 
-            <form method="post" action="setDate">
-                <input id="setNewDate" type="submit" value="Set date">
-                <input id="datefield2" type='date' min='1899-01-01' max='2000-13-13'/>
-
-                <script>
-                    var today = new Date();
-                    var dd = today.getDate();
-                    var mm = today.getMonth()+1;
-                    var yyyy = today.getFullYear();
-                    if(dd<10){
-                        dd='0'+dd
-                    }
-                    if(mm<10){
-                        mm='0'+mm
-                    }
-                    var currentDate = yyyy+'-'+mm+'-'+dd;
-                    document.getElementById("datefield2").setAttribute("max", currentDate);
-                </script>
-            </form>
-            <form method="post" action="attendance">
-                <input id="datefield" type='date' min='1899-01-01' max='2000-13-13'/>
-                <script>
-                    document.getElementById("datefield").setAttribute("max", currentDate);
-                    document.getElementById("datefield").value = currentDate;
-                </script>
             <form action="attendance" method="post">
-                <input type="text" id="datepicker" name="date"></input>
+                <input type="text" id="datepicker" name="date"/>
 
                 <table>
                 <tr>
@@ -112,11 +87,7 @@
                 </c:forEach>
                 </table>
                 <p align="center">Check the box to add attendance record for the selected date.</p>
-<<<<<<< HEAD
-                <input type="submit" value="Set attendance">
-=======
                 <center><input class="button" type="submit" value="Set attendance"></center>
->>>>>>> master
                 <br>
             </form>
             <div class="containerfoot"></div>

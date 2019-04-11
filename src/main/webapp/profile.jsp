@@ -64,12 +64,8 @@
             <div class="containerhead">
                 <div class="title">Profile</div>
             </div>
-<<<<<<< HEAD
-            <div class="one-third" onclick="changePic()">
-=======
             <div class="one-third-pic">
                 <img src="${user.getImage_id()}">
->>>>>>> master
             </div>
             <div class="two-third">
                 <table class="profile">
