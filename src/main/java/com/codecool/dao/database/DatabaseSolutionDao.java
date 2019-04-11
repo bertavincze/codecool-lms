@@ -1,10 +1,14 @@
 package com.codecool.dao.database;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
+import com.codecool.model.curriculum.Page;
+import com.codecool.model.curriculum.Solution;
+import com.codecool.model.user.User;
+
+import java.sql.*;
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DatabaseSolutionDao extends AbstractDao {
 
@@ -49,4 +53,71 @@ public class DatabaseSolutionDao extends AbstractDao {
             connection.setAutoCommit(autoCommit);
         }
     }
+
+    public List<Solution> loadSolutionsByPage(Page page) throws SQLException {
+        List<Solution> solutions = new ArrayList<>();
+        boolean autoCommit = connection.getAutoCommit();
+        connection.setAutoCommit(false);
+        String sql = "SELECT * FROM solution WHERE solution.title = ?";
+        try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            statement.setString(1, page.getTitle());
+            connection.commit();
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                Solution solution = new Solution(
+                    resultSet.getString("solution_id"),
+                    resultSet.getString("user_id"),
+                    resultSet.getString("title"),
+                    resultSet.getString("answer"),
+                    localDateFromTimestamp(resultSet.getTimestamp("submission_date")));
+                if (resultSet.getInt("grade") != 0) {
+                    solution.setGrade(resultSet.getInt("grade"));
+                }
+                solutions.add(solution);
+            }
+        } catch (SQLException ex) {
+            connection.rollback();
+            throw ex;
+        } finally {
+            connection.setAutoCommit(autoCommit);
+        }
+        return solutions;
+    }
+
+    public List<Solution> loadSolutionsForSingleUser(User user) throws SQLException {
+        List<Solution> solutions = new ArrayList<>();
+        boolean autoCommit = connection.getAutoCommit();
+        connection.setAutoCommit(false);
+        String sql = "SELECT * FROM solution WHERE user_id = ?";
+        try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            statement.setString(1, user.getId());
+            connection.commit();
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                Solution solution = new Solution(
+                    resultSet.getString("solution_id"),
+                    resultSet.getString("user_id"),
+                    resultSet.getString("title"),
+                    resultSet.getString("answer"),
+                    localDateFromTimestamp(resultSet.getTimestamp("submission_date")));
+                if (resultSet.getInt("grade") != 0) {
+                    solution.setGrade(resultSet.getInt("grade"));
+                }
+                solutions.add(solution);
+            }
+        } catch (SQLException ex) {
+            connection.rollback();
+            throw ex;
+        } finally {
+            connection.setAutoCommit(autoCommit);
+        }
+        return solutions;
+    }
+
+
+
+    private LocalDateTime localDateFromTimestamp(Timestamp timestamp) {
+        return LocalDateTime.ofInstant(timestamp.toInstant(), ZoneOffset.ofHours(0));
+    }
+
 }

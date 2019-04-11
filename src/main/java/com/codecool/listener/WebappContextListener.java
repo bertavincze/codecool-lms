@@ -1,13 +1,5 @@
 package com.codecool.listener;
 
-import com.codecool.dao.database.DatabasePageDao;
-import com.codecool.dao.database.DatabaseUserDao;
-import com.codecool.dao.database.PageList;
-import com.codecool.dao.database.UserList;
-
-import com.codecool.model.user.User;
-import com.codecool.service.PageService;
-import com.codecool.service.UserService;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.jdbc.datasource.init.ScriptUtils;
 
@@ -18,16 +10,11 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
-import javax.servlet.http.HttpServletRequest;
 import javax.sql.DataSource;
-import java.io.IOException;
 import java.sql.Connection;
-import java.sql.SQLException;
 
 @WebListener
 public final class WebappContextListener implements ServletContextListener {
-    private PageList pageList = PageList.getInstance();
-    private UserList userList = UserList.getInstance();
     private String homeDir = System.getenv("CATALINA_HOME");
     private String directory = homeDir + "/webapps/";
 
@@ -38,14 +25,6 @@ public final class WebappContextListener implements ServletContextListener {
         runDatabaseInitScript(dataSource, "/goatcool.sql");
 
         System.out.println("This method is invoked once when the webapp gets deployed.");
-        //try {
-            //pageList.loadPageList(directory + "pagelist.ser");
-           // userList.loadUserList(directory + "userlist.ser");
-        //} catch (IOException | ClassNotFoundException e) {
-        //    e.printStackTrace();
-        //}
-        loadUsersFromInit(dataSource);
-        loadPagesFromInit(dataSource);
     }
 
     private void registerCharacterEncodingFilter(ServletContextEvent sce) {
@@ -79,34 +58,6 @@ public final class WebappContextListener implements ServletContextListener {
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
         System.out.println("This method is invoked once when the webapp gets undeployed.");
-
-        try {
-            pageList.savePageList(pageList.getPageList(), directory + "pagelist.ser");
-            userList.saveUserList(userList.getUsers(), directory + "userlist.ser");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
-
-    private void loadUsersFromInit(DataSource dataSource) {
-        try (Connection connection = dataSource.getConnection()) {
-            DatabaseUserDao mentorDao = new DatabaseUserDao(connection);
-            UserService userService = new UserService(mentorDao);
-            userService.putUsersToList();
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
-
-    private void loadPagesFromInit(DataSource dataSource) {
-        try (Connection connection = dataSource.getConnection()) {
-            DatabasePageDao pageDao = new DatabasePageDao(connection);
-            PageService pageService = new PageService(pageDao);
-            PageList.getInstance().getPageList().addAll(pageService.loadPages());
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
-
 
 }

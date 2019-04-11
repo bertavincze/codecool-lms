@@ -1,4 +1,4 @@
-package com.codecool.service;
+package com.codecool.service.dao;
 
 import java.time.LocalDate;
 import java.time.Month;

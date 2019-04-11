@@ -1,9 +1,13 @@
-package com.codecool.service;
+package com.codecool.service.dao;
 
 import com.codecool.dao.database.DatabaseSolutionDao;
+import com.codecool.model.curriculum.Page;
+import com.codecool.model.curriculum.Solution;
+import com.codecool.model.user.User;
 
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class SolutionService {
 
@@ -30,5 +34,13 @@ public class SolutionService {
         } catch (NumberFormatException ex) {
             System.out.println(ex.getMessage());
         }
+    }
+
+    public List<Solution> loadSolutionsByPage(Page page) throws SQLException {
+        return solutionDao.loadSolutionsByPage(page);
+    }
+
+    public List<Solution> loadSolutionForUser(User user) throws SQLException {
+        return solutionDao.loadSolutionsForSingleUser(user);
     }
 }

@@ -4,24 +4,16 @@
 <!doctype html>
 <html lang="en">
 <head>
+    <script src="javascript/themeChanger.js">
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="resources/css/reset.css">
-    <link rel="stylesheet" type="text/css" href="resources/css/style.css">
-    <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="resources/css/text.css">
     <title>GoatCool</title>
+    <link rel="stylesheet" type="text/css" href="resources/css/finalstyle.css" id="themer">
+    <link href='https://fonts.googleapis.com/css?family=Roboto|Megrim' rel='stylesheet' type='text/css'>
 </head>
-<body>
 
-<div class="header">
-    <div class="svg-wrapper">
-  <svg height="60" width="320" xmlns="http://www.w3.org/2000/svg">
-    <rect class="shape" height="60" width="320" />
-    <div class="headertext">GoatCool LMS</div>
-  </svg>
-</div>
-</div>
+<body class="two_div" onload="checkCookie()">
 
 <nav>
     <ul>
@@ -31,8 +23,10 @@
         <a href="attendance"><li>Attendance</li></a>
         <a href="solutions"><li>Student Solutions</li></a>
     </ul>
+         <jsp:include page="snippets/themeChanger.jsp"/>
 </nav>
 
+<jsp:include page="snippets/header.jsp" />
 
 <div class="wrapper">
     <div class="content">
@@ -43,33 +37,61 @@
             <h2>Published pages</h2>
             <p>Check the box to unpublish the selected page.</p>
             <form action="publishservlet" method="post">
-            <ul>
+            <table>
+            <tr>
+            <th>Page title</th>
+            <th>Check to unpublish</th>
+            </tr>
             <c:forEach var="page" items="${pageList}">
                 <c:choose>
                 <c:when test="${page.isPublished()}">
-                <li><input type="checkbox" name="unpublish" value="${page.getTitle()}" />Published: <a href="handlepage?title=${page.getTitle()}&edit=false">${page.getTitle()}</a></li>
+                <tr>
+                <td>
+                <a href="handlepage?title=${page.getTitle()}&edit=false">${page.getTitle()}</a>
+                </td>
+                <td>
+                <label class="switch">
+                <input type="checkbox" name="unpublish" value="${page.getTitle()}" />
+                <span class="slider"></span>
+                </label>
+                </td>
+                </tr>
                 </c:when>
                 </c:choose>
             </c:forEach>
-            </ul>
+            </table>
             <br>
-            <input type="submit" value="Submit changes">
+            <input class="button" type="submit" value="Submit changes">
             <br>
             </form>
             <h2>Unpublished pages</h2>
             <p>Check the box to publish the selected page.</p>
             <form action="publishservlet" method="post">
-            <ul>
+            <table>
+            <tr>
+            <th>Page title</th>
+            <th>Check to publish</th>
+            </tr>
             <c:forEach var="page" items="${pageList}">
                 <c:choose>
                 <c:when test="${!page.isPublished()}">
-                <li><input type="checkbox" name="publish" value="${page.getTitle()}" />Unpublished: <a href="handlepage?title=${page.getTitle()}&edit=false">${page.getTitle()}</a></li>
+                <tr>
+                <td>
+                <a href="handlepage?title=${page.getTitle()}&edit=false">${page.getTitle()}</a>
+                </td>
+                <td>
+                <label class="switch">
+                <input type="checkbox" name="publish" value="${page.getTitle()}" />
+                <span class="slider"></span>
+                </label>
+                </td>
+                </tr>
                 </c:when>
                 </c:choose>
             </c:forEach>
-            </ul>
+            </table>
             <br>
-            <input type="submit" value="Submit changes">
+            <input class="button" type="submit" value="Submit changes">
             <br>
             </form>
             <div class="containerfoot"></div>
@@ -78,35 +100,13 @@
 
     <div class="sidebar">
         <div class="sbcontainer">
-            <div class="containerhead">
-                <div class="title">Current user</div>
-            </div>
-
-            <div class="desc">
-                <p>Name: ${user.getName()}</p>
-                    <c:choose>
-                          <c:when test="${user.getClass().simpleName == 'Student'}">
-                                <p>Role: Student</p>
-                          </c:when>
-                          <c:otherwise>
-                                <p>Role: Mentor</p>
-                          </c:otherwise>
-                    </c:choose>
-                <br>
-                <form action="logout" method="post">
-                    <input type="submit" value="Log out">
-                </form>
-                <br></div>
-
             <ul class="links">
-                <div class="linktitle">Favourites</div>
+                <div class="linktitle">Links</div>
                 <li><a href="addassignment.jsp">Add new assignment page</a></li>
                 <li><a href="addtextpage.jsp">Add new text page</a></li>
-                <li><a href="">Sidebar link 3</a></li>
-                <li><a href="">Sidebar link 4</a></li>
             </ul>
-
         </div>
+        <jsp:include page="snippets/sidebar.jsp" />
     </div>
 
 </div>

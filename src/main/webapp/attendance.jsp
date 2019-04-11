@@ -5,27 +5,36 @@
 <!doctype html>
 <html lang="en">
 <head>
+    <script src="javascript/themeChanger.js">
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="resources/css/reset.css">
-    <link rel="stylesheet" type="text/css" href="resources/css/style.css">
-    <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="resources/css/text.css">
     <title>GoatCool</title>
-    <script>
-        document.getElementById('datefield').valueAsDate = new Date();
-    </script>
+    <link rel="stylesheet" type="text/css" href="resources/css/finalstyle.css" id="themer">
+    <link href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto|Megrim' rel='stylesheet' type='text/css'>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
-<body>
 
-<div class="header">
-    <div class="svg-wrapper">
-  <svg height="60" width="320" xmlns="http://www.w3.org/2000/svg">
-    <rect class="shape" height="60" width="320" />
-    <div class="headertext">GoatCool LMS</div>
-  </svg>
-</div>
-</div>
+
+<body class="two_div" onload="checkCookie()">
+<script>
+    $( document ).ready(function() {
+        $(function() {
+             $('#datepicker').datepicker().datepicker('setDate', new Date(Date.parse("${dateFromRequest}")));
+             $('#datepicker').datepicker( "option", "maxDate", new Date());
+             $('#datepicker').attr("autocomplete", "off");
+        });
+
+        $("#datepicker").datepicker({
+        onSelect: function (date) {
+            window.location.href = "attendance?date=" + date;
+            }
+        });
+
+    });
+</script>
 
 <nav>
     <ul>
@@ -35,8 +44,10 @@
         <a href="attendance"><li class="marked">Attendance</li></a>
         <a href="solutions"><li>Student Solutions</li></a>
     </ul>
+         <jsp:include page="snippets/themeChanger.jsp"/>
 </nav>
 
+<jsp:include page="snippets/header.jsp" />
 
 <div class="wrapper">
     <div class="content">
@@ -44,6 +55,7 @@
             <div class="containerhead">
                 <div class="title">Attendance</div>
             </div>
+<<<<<<< HEAD
             <form method="post" action="setDate">
                 <input id="setNewDate" type="submit" value="Set date">
                 <input id="datefield2" type='date' min='1899-01-01' max='2000-13-13'/>
@@ -69,22 +81,43 @@
                     document.getElementById("datefield").setAttribute("max", currentDate);
                     document.getElementById("datefield").value = currentDate;
                 </script>
+=======
+            <form action="attendance" method="post">
+                <input type="text" id="datepicker" name="date"></input>
+>>>>>>> master
                 <table>
                 <tr>
-                    <td><p>Name</p></td>
-                    <td><p>Attendance rate</p></td>
-                    <td><p>Current Attendance</p></td>
+                    <th>Name</th>
+                    <th>Attendance rate</th>
+                    <th>Current Attendance</th>
                 </tr>
+                <c:set var="date" scope="session" value="${date}" />
                 <c:forEach var="u" items="${students}">
                     <tr>
-                        <td><p>${u.getName()}</p></td>
-                        <td><p>${u.getAttendanceRate()}%</p></td>
-                        <td><p><input type="checkbox" name="attending" value="${u.getName()}"><p></td>
+                        <td>${u.getName()}</td>
+                        <td>${u.getAttendanceRate()}%</td>
+                        <td>
+                            <label class="switch">
+                            <c:choose>
+                            <c:when test="${u.getAttendance().get(date)}">
+                            <input type="checkbox" name="attending" value="${u.getName()}" checked>
+                            </c:when>
+                            <c:otherwise>
+                            <input type="checkbox" name="attending" value="${u.getName()}">
+                            </c:otherwise>
+                            </c:choose>
+                            <span class="slider"></span>
+                            </label>
+                        </td>
                     </tr>
                 </c:forEach>
                 </table>
                 <p align="center">Check the box to add attendance record for the selected date.</p>
+<<<<<<< HEAD
                 <input type="submit" value="Set attendance">
+=======
+                <center><input class="button" type="submit" value="Set attendance"></center>
+>>>>>>> master
                 <br>
             </form>
             <div class="containerfoot"></div>
@@ -92,36 +125,7 @@
     </div>
 
     <div class="sidebar">
-        <div class="sbcontainer">
-            <div class="containerhead">
-                <div class="title">Current user</div>
-            </div>
-
-            <div class="desc">
-                <p>Name: ${user.getName()}</p>
-                    <c:choose>
-                          <c:when test="${user.getClass().simpleName == 'Student'}">
-                                <p>Role: Student</p>
-                          </c:when>
-                          <c:otherwise>
-                                <p>Role: Mentor</p>
-                          </c:otherwise>
-                    </c:choose>
-                <br>
-                <form action="logout" method="post">
-                    <input type="submit" value="Log out">
-                </form>
-                <br></div>
-
-            <ul class="links">
-                <div class="linktitle">Favourites</div>
-                <li><a href="">Sidebar link 1</a></li>
-                <li><a href="">Sidebar link 2</a></li>
-                <li><a href="">Sidebar link 3</a></li>
-                <li><a href="">Sidebar link 4</a></li>
-            </ul>
-
-        </div>
+        <jsp:include page="snippets/sidebar.jsp" />
     </div>
 
 </div>

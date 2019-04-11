@@ -9,8 +9,12 @@
         servlets, filters, etc. needed to be configured here, in the web.xml
         file (web deployment descriptor), but since version 3.x every configuration
         can be defined instead with annotations. For more search for information on
-        "differences between java servlet api 2 and 3", etc.
+        "differences between java com.codecool.servlet api 2 and 3", etc.
     -->
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
     <error-page>
         <location>/resources/errorpage/dino.html</location>
     </error-page>

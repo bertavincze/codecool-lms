@@ -1,9 +1,11 @@
-package com.codecool.service;
+package com.codecool.service.dao;
 
 import com.codecool.dao.database.DatabaseAttendanceDao;
+import com.codecool.model.user.User;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.Map;
 
 public class AttendanceService {
 
@@ -30,5 +32,9 @@ public class AttendanceService {
         } catch (NumberFormatException ex) {
             System.out.println(ex.getMessage());
         }
+    }
+
+    public Map<LocalDate, Boolean> getAttendance(User user) throws SQLException{
+        return attendanceDao.findAttendanceMapByUser(user);
     }
 }

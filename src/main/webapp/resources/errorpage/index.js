@@ -297,7 +297,7 @@
             if (Runner.imageSprite.complete) {
                 this.init();
             } else {
-                // If the images are not yet loaded, add a listener.
+                // If the images are not yet loaded, add a com.codecool.listener.
                 Runner.imageSprite.addEventListener(Runner.events.LOAD,
                     this.init.bind(this));
             }

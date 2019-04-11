@@ -1,7 +1,7 @@
 package com.codecool.model.user;
 
 import com.codecool.model.curriculum.Solution;
-import com.codecool.service.DateUtilService;
+import com.codecool.service.dao.DateUtilService;
 
 import java.io.Serializable;
 import java.util.*;
@@ -12,8 +12,8 @@ public class Student extends User implements Serializable {
     private List<Solution> solutionList;
     private Map<LocalDate, Boolean> attendance;
 
-    public Student(String id, String name, String email, String password) {
-        super(id, name, email, password);
+    public Student(String id, String name, String email, String password, String image_id) {
+        super(id, name, email, password, image_id);
         solutionList = new ArrayList<>();
         attendance = new HashMap<>();
     }
@@ -33,10 +33,11 @@ public class Student extends User implements Serializable {
     }
 
     public int getAttendanceRate() {
+        int daysAttended = 0;
         if (attendance.isEmpty()) {
             return 0;
         } else {
-            int daysAttended = 0;
+
             for (Map.Entry<LocalDate, Boolean> entry : attendance.entrySet()) {
                 if (entry.getValue()) {
                     daysAttended ++;
@@ -44,6 +45,7 @@ public class Student extends User implements Serializable {
             }
             float totalDays = ((float)new DateUtilService().getNumOfDaysSinceStart());
             return (int) ((daysAttended/(totalDays))*100);
+            //return daysAttended;
         }
     }
 

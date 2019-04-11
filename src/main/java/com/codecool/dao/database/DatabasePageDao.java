@@ -2,7 +2,9 @@ package com.codecool.dao.database;
 
 import com.codecool.model.curriculum.AssignmentPage;
 import com.codecool.model.curriculum.Page;
+import com.codecool.model.curriculum.Solution;
 import com.codecool.model.curriculum.TextPage;
+import com.codecool.model.user.User;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -89,13 +91,13 @@ public class DatabasePageDao extends AbstractDao {
         return allPages;
     }
 
-    private List<Page> loadAssignmentPages() throws SQLException {
-        List<Page> assignments = new ArrayList<>();
+    public List<AssignmentPage> loadAssignmentPages() throws SQLException {
+        List<AssignmentPage> assignments = new ArrayList<>();
         String sql = "SELECT page.page_id, title, ispublished, question, max_score FROM page " +
             "JOIN assignment_page ON page.page_id = assignment_page.page_id";
         try (Statement statement = connection.createStatement(); ResultSet resultSet = statement.executeQuery(sql)) {
             while (resultSet.next()) {
-                Page page = new AssignmentPage(
+                AssignmentPage page = new AssignmentPage(
                     resultSet.getString("page_id"),
                     resultSet.getString("title"),
                     resultSet.getString("question"),
@@ -111,12 +113,12 @@ public class DatabasePageDao extends AbstractDao {
         return assignments;
     }
 
-    private List<Page> loadTextPages() throws SQLException {
-        List<Page> textPages = new ArrayList<>();
+    public List<TextPage> loadTextPages() throws SQLException {
+        List<TextPage> textPages = new ArrayList<>();
         String sql = "SELECT page.page_id, title, ispublished, content FROM page JOIN text_page ON page.page_id = text_page.page_id";
         try (Statement statement = connection.createStatement(); ResultSet resultSet = statement.executeQuery(sql)) {
             while (resultSet.next()) {
-                Page page = new TextPage(
+                TextPage page = new TextPage(
                     resultSet.getString("page_id"),
                     resultSet.getString("title"),
                     resultSet.getString("content"));
@@ -129,5 +131,23 @@ public class DatabasePageDao extends AbstractDao {
             }
         }
         return textPages;
+    }
+
+    public void addToSolutionMap(Solution solution, User user, Page page) throws SQLException {
+        boolean autoCommit = connection.getAutoCommit();
+        connection.setAutoCommit(false);
+        String sql = "INSERT INTO solutionmap (user_id, solution_id, page_id) VALUES (?, ?, ?)";
+        try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            statement.setString(1, user.getId());
+            statement.setString(2, solution.getSolution_id());
+            statement.setString(3, page.getId());
+            executeInsert(statement);
+            connection.commit();
+        } catch (SQLException ex) {
+            connection.rollback();
+            throw ex;
+        } finally {
+            connection.setAutoCommit(autoCommit);
+        }
     }
 }

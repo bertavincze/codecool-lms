@@ -1,55 +1,48 @@
 package com.codecool.servlet;
 
-import com.codecool.dao.database.PageList;
-import com.codecool.model.curriculum.AssignmentPage;
-import com.codecool.model.curriculum.Page;
+import com.codecool.dao.database.DatabasePageDao;
+import com.codecool.dao.database.DatabaseSolutionDao;
 import com.codecool.model.curriculum.Solution;
 import com.codecool.model.user.Student;
+import com.codecool.service.dao.PageService;
+import com.codecool.service.dao.SolutionService;
+import com.codecool.service.servlet.PageUtilService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.Map;
 
 @WebServlet("/stats")
-public class StatisticServlet extends HttpServlet {
-    List<Solution> solutions;
+public class StatisticServlet extends AbstractServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession(false);
-        Student user = (Student) session.getAttribute("user");
-        solutions = user.getSolutionList();
-        Map<Solution, Integer> assignmentMap= new HashMap<>();
-        //List<AssignmentPage> assignments = new ArrayList<>();
-        for (Solution solution : solutions) {
-            AssignmentPage assignmentPage = findAssignmentsByTitle(solution.getTitle());
-            if (assignmentPage != null){
-                assignmentMap.put(solution, assignmentPage.getMaxScore());
-            }
+        try (Connection connection = getConnection(request.getServletContext()) ) {
+            DatabasePageDao pageDao = new DatabasePageDao(connection);
+            PageService pageService = new PageService(pageDao);
+            DatabaseSolutionDao solutionDao = new DatabaseSolutionDao(connection);
+            SolutionService solutionService = new SolutionService(solutionDao);
+
+            HttpSession session = request.getSession(false);
+            Student user = (Student) session.getAttribute("user");
+
+            Map<Solution, Integer> assignmentMap = PageUtilService.getAssignmentMap(solutionService.loadSolutionForUser(user), pageService);
+
+            request.setAttribute("assignmentMap", assignmentMap);
+            request.getRequestDispatcher("stats.jsp").forward(request, response);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
-        //request.setAttribute("user", user);
-        request.setAttribute("assignmentMap", assignmentMap);
-        request.getRequestDispatcher("stats.jsp").forward(request, response);
+
     }
 
-    private AssignmentPage findAssignmentsByTitle(String title) {
-            for (Page page : PageList.getInstance().getPageList()) {
-                if (page instanceof AssignmentPage) {
-                    if (((AssignmentPage)page).getTitle().equals(title)) {
-                        return (AssignmentPage) page;
-                    }
-                }
-            }
-            return null;
-    }
+
 
 
 }
