@@ -43,7 +43,7 @@
 
                 <br><br>
 
-                <p><input class="button" type="submit"></p>
+                <p><input class="button" type="submit" value="Submit changes"></p>
 
             </form>
             <div class="containerfoot"></div>
