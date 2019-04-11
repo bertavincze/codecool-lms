@@ -399,6 +399,25 @@ input[type=text]:focus, input[type=password]:focus, textarea:focus {
   text-transform: uppercase;
 }
 
+.del-button{
+    border: none;
+    display: block;
+    clear: both;
+    text-decoration:none;
+    cursor:pointer;
+    color: white;
+    background-color: #221c5a;
+    padding: 10px 7px;
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+    text-transform: uppercase;
+}
+
+.del-button:hover{
+    background: red;
+    color: black;
+}
+
 .box{
     color: black;
     text-transform: none;
