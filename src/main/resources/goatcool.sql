@@ -114,7 +114,7 @@ INSERT INTO text_page VALUES('56ef#.', 'Session is a generic term in the context
 INSERT INTO page VALUES('51ec#.', 'Filters', true);
 INSERT INTO text_page VALUES('51ec#.', 'Filters allow to pass or block a requests based on some criteria. They decide which request to block by inspecting the "request" object. Requests containing a JSESSIONID which has an associated attribute, flag, object, etc. which signifies that the user (which to the JSESSIONID belongs to) has already logged in are allowed to pass, other requests are blocked (e.g. redirected to the login page).');
 INSERT INTO page VALUES('59ea#.', 'Handling XML with Java?', false);
-INSERT INTO text_page VALUES('59ea#.', 'When you were dealing with CSV you had to write custom code to read and write CSV files. This is what we call serialization (writing objects to a file in a certain format) and deserialization (reading a file in a certain format into objects). You have to do something similar when dealing with XML, but it"s a little more complex, and you have to get a grasp of the DOM concept.');
+INSERT INTO text_page VALUES('59ea#.', 'When you were dealing with CSV you had to write custom code to read and write CSV files. This is what we call serialization (writing objects to a file in a certain format) and deserialization (reading a file in a certain format into objects). You have to do something similar when dealing with XML, but it is a little more complex, and you have to get a grasp of the DOM concept.');
 
 --Assignment pages
 INSERT INTO page VALUES('78zh#.', 'What is the output1 ?', false);
@@ -126,7 +126,7 @@ INSERT INTO assignment_page VALUES('78jh#.', 'SQL?', 10);
 
 
 
---INSERT INTO newsfeed VALUES ('99gh#.', 'Still no coffe', 'The situation is getting worse and worse, students are falling asleep at their laptop...', '2019/04/07 21:45:00', '34ch#.');
+--INSERT INTO newsfeed VALUES ('99gh#.', 'Still no coffee', 'The situation is getting worse and worse, students are falling asleep at their laptop...', '2019/04/07 21:45:00', '34ch#.');
 INSERT INTO newsfeed VALUES ('89gh#.', 'Total Panic', 'After students raided the newly working coffe machine, we regret to announce, that we are out of coffe beans for the foreseeable future', '2019/04/05 09:01:00', '34ch#.');
 INSERT INTO newsfeed VALUES ('79gh#.', 'COFFEE AGAIN', 'After eight weeks without a coffe machine, it is finally working again', '2019/04/02 08:55:00', '34ch#.');
 
