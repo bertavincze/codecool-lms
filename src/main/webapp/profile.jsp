@@ -10,6 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GoatCool</title>
     <link rel="stylesheet" type="text/css" href="resources/css/finalstyle.css" id="themer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href='https://fonts.googleapis.com/css?family=Roboto|Megrim' rel='stylesheet' type='text/css'>
 </head>
 
@@ -71,7 +72,7 @@
                                 <input class="popupbutton" type = "submit" value = "Save" />
                             </form>
                         </td>
-                        <td class="icon" onclick="editName()"></td>
+                        <td><i class="fa fa-edit" onclick="editName()" style="font-size:24px; cursor:pointer"></i></td>
                     </tr>
                     <tr>
                         <td>E-mail: </td>
@@ -81,7 +82,7 @@
                                 <input  class="popupbutton" type = "submit" value = "Save" />
                             </form>
                         </td>
-                        <td class="icon" onclick="editMail()">
+                        <td><i class="fa fa-edit" onclick="editMail()" style="font-size:24px; cursor:pointer"></i></td>
                         </td>
                     </tr>
                     <tr>
@@ -92,7 +93,7 @@
                             <input  class="popupbutton" type = "submit" value = "Save" />
                         </form>
                         </td>
-                        <td class="icon" onclick="editPassword()">
+                        <td><i class="fa fa-edit" onclick="editPassword()" style="font-size:24px; cursor:pointer"></i></td>
                         </td>
                     </tr>
                     <tr>
