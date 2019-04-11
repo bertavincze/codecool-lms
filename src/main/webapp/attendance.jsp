@@ -55,7 +55,7 @@
             <div class="containerhead">
                 <div class="title">Attendance</div>
             </div>
-<<<<<<< HEAD
+
             <form method="post" action="setDate">
                 <input id="setNewDate" type="submit" value="Set date">
                 <input id="datefield2" type='date' min='1899-01-01' max='2000-13-13'/>
@@ -81,10 +81,9 @@
                     document.getElementById("datefield").setAttribute("max", currentDate);
                     document.getElementById("datefield").value = currentDate;
                 </script>
-=======
             <form action="attendance" method="post">
                 <input type="text" id="datepicker" name="date"></input>
->>>>>>> master
+
                 <table>
                 <tr>
                     <th>Name</th>

@@ -150,4 +150,56 @@ public class DatabasePageDao extends AbstractDao {
             connection.setAutoCommit(autoCommit);
         }
     }
+
+
+
+    /*NEWLY ADDED UPDATE CODE*/
+    public void updatePage(Page page, String title, String content) throws SQLException {
+        boolean autoCommit = connection.getAutoCommit();
+        connection.setAutoCommit(false);
+
+        String sql = "UPDATE page SET title=? WHERE page_id=?";
+        try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            statement.setString(1, title);
+            statement.setString(2, page.getId());
+            executeInsert(statement);
+            connection.commit();
+        } catch (SQLException ex) {
+            connection.rollback();
+            throw ex;
+        } finally {
+            connection.setAutoCommit(autoCommit);
+        }
+
+        if (page instanceof AssignmentPage) {
+            connection.setAutoCommit(false);
+            sql = "UPDATE assignment_page SET question=? WHERE page_id=?";
+            try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+                statement.setString(1, content);
+                statement.setString(2, page.getId());
+                executeInsert(statement);
+                connection.commit();
+            } catch (SQLException ex) {
+                connection.rollback();
+                throw ex;
+            } finally {
+                connection.setAutoCommit(autoCommit);
+            }
+
+        } else if (page instanceof TextPage) {
+            connection.setAutoCommit(false);
+            sql = "UPDATE text_page SET content=? WHERE page_id=?";
+            try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+                statement.setString(1, content);
+                statement.setString(2,  page.getId());
+                executeInsert(statement);
+                connection.commit();
+            } catch (SQLException ex) {
+                connection.rollback();
+                throw ex;
+            } finally {
+                connection.setAutoCommit(autoCommit);
+            }
+        }
+    }
 }

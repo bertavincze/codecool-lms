@@ -1,10 +1,7 @@
 package com.codecool.servlet;
 
-<<<<<<< HEAD
 
-=======
 import com.codecool.dao.database.DatabasePageDao;
->>>>>>> master
 import com.codecool.dao.database.DatabaseSolutionDao;
 import com.codecool.model.curriculum.AssignmentPage;
 import com.codecool.model.curriculum.Solution;

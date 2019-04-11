@@ -95,4 +95,16 @@ public class PageUtilService {
         return requestedPage;
     }
 
+
+    public Page findPageById(PageService pageService, String id) throws SQLException{
+        Page requestedPage = null;
+        for (Page page : pageService.loadPages()) {
+            if (page.getId().equals(id)) {
+                requestedPage = page;
+                break;
+            }
+        }
+        return requestedPage;
+    }
+
 }

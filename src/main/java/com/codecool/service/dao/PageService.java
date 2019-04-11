@@ -51,4 +51,8 @@ public class PageService {
     public List<TextPage> loadTextPages() throws SQLException {
         return pageDao.loadTextPages();
     }
+
+    public void updatePage(Page page, String title, String content) throws SQLException{
+        pageDao.updatePage(page, title, content);
+    }
 }

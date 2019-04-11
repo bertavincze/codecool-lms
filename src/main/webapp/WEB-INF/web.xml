@@ -11,11 +11,7 @@
         can be defined instead with annotations. For more search for information on
         "differences between java com.codecool.servlet api 2 and 3", etc.
     -->
-<<<<<<< HEAD
-=======
-
->>>>>>> master
-    <error-page>
+    <!--<error-page>
         <location>/resources/errorpage/dino.html</location>
-    </error-page>
+    </error-page>-->
 </web-app>

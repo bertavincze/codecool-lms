@@ -104,6 +104,7 @@
                 <div class="linktitle">Links</div>
                 <li><a href="addassignment.jsp">Add new assignment page</a></li>
                 <li><a href="addtextpage.jsp">Add new text page</a></li>
+                <li><a href="updatePages">Update pages</a> </li>
             </ul>
         </div>
         <jsp:include page="snippets/sidebar.jsp" />
