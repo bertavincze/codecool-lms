@@ -52,7 +52,7 @@
                         <input name="pic" type="radio" value="resources/pics/profile.jpg"><img src="resources/pics/profile.jpg"/>
                     </div>
                     <div class="third">
-                        <input name="pic" type="radio" value="resources/pics/pic2.jpg"><img src="resources/pics/pic2.jpg"/>
+                        <input name="pic" type="radio" value="resources/pics/lenny.png"><img src="resources/pics/lenny.png"/>
                     </div>
                     <div class="third">
                         <input name="pic" type="radio" value="resources/pics/pic3.jpg"><img src="resources/pics/pic3.jpg"/>
